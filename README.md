@@ -67,10 +67,10 @@ This site is automatically deployed via GitHub Pages. Any push to the `main` bra
 ## Contact
 
 - **Email:** pranayb2773@gmail.com
-- **LinkedIn:** [Pranay Teja Baddam](https://www.linkedin.com/in/pranay-teja-baddam-5180071b6/)
+- **LinkedIn:** [Pranay Teja Baddam](https://www.linkedin.com/in/pranay-teja-baddam/)
 - **GitHub:** [@pranayb2773](https://github.com/pranayb2773)
 - **X (Twitter):** [@pranayb2773](https://x.com/pranayb2773)
 
 ## License
 
-© 2024 Pranay Teja Baddam. All rights reserved.
+© 2025 Pranay Teja Baddam. All rights reserved.
