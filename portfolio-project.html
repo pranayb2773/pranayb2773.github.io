@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio Website - A modern, responsive personal portfolio built with HTML, Tailwind CSS, and JavaScript featuring light/dark theme toggle and mobile-first design." />
+    <meta name="keywords" content="Portfolio, Web Development, Tailwind CSS, JavaScript, Responsive Design, Dark Mode, GitHub Pages" />
+    <meta name="author" content="Pranay Teja Baddam" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pranaybaddam.site/portfolio-project.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://pranaybaddam.site/portfolio-project.html" />
+    <meta property="og:title" content="Portfolio Website - Project Case Study | Pranay Teja Baddam" />
+    <meta property="og:description" content="A detailed case study of my portfolio website built with vanilla HTML, Tailwind CSS, and JavaScript." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pranaybaddam.site/portfolio-project.html" />
+    <meta name="twitter:title" content="Portfolio Website - Project Case Study | Pranay Teja Baddam" />
+    <meta name="twitter:description" content="A detailed case study of my portfolio website built with vanilla HTML, Tailwind CSS, and JavaScript." />
+
+    <title>Portfolio Website - Project Case Study | Pranay Teja Baddam</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="img/svg+xml" href="/pb.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-navy: #0a192f;
+        --color-light-navy: #112240;
+        --color-lightest-navy: #233554;
+        --color-slate: #8892b0;
+        --color-light-slate: #a8b2d1;
+        --color-lightest-slate: #ccd6f6;
+        --color-accent: #64ffda;
+
+        --font-family-sans: Inter, sans-serif;
+        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
+          monospace;
+      }
+    </style>
+  </head>
+  <body class="text-slate font-sans">
+    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
+      <nav
+        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
+      >
+        <div class="text-accent text-2xl font-mono font-bold">
+          <a href="/">PB</a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="flex items-center space-x-6">
+          <a
+            href="/"
+            class="text-lightest-slate hover:text-accent duration-300"
+          >
+            <span class="text-accent">←</span> Back to Portfolio
+          </a>
+          <button
+            id="theme-toggle"
+            class="theme-toggle text-accent focus:outline-none"
+            aria-label="Toggle theme"
+          >
+            <svg
+              id="sun-icon"
+              class="w-6 h-6 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              id="moon-icon"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pt-24">
+      <!-- Hero Section -->
+      <section class="py-12">
+        <a
+          href="/"
+          class="inline-flex items-center text-accent font-mono text-sm hover:underline mb-8"
+        >
+          <svg
+            class="w-4 h-4 me-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Portfolio
+        </a>
+        <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate mb-4">
+          Portfolio Website
+        </h1>
+        <p class="text-xl text-light-slate mb-8">
+          A modern, responsive personal portfolio built with vanilla HTML,
+          Tailwind CSS, and JavaScript
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://github.com/pranayb2773/pranayb2773.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+          >
+            <svg
+              class="w-5 h-5 me-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+              ></path>
+            </svg>
+            View on GitHub
+          </a>
+          <a
+            href="https://pranaybaddam.site"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+          >
+            <svg
+              class="w-5 h-5 me-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+            Live Demo
+          </a>
+        </div>
+      </section>
+
+      <!-- Project Overview -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Project Overview
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Purpose
+          </h3>
+          <p class="text-light-slate mb-6">
+            This portfolio website serves as a digital resume and showcase of my
+            professional experience as a Full-Stack Software Engineer. The goal
+            was to create a clean, modern, and accessible platform that
+            effectively communicates my skills, experience, and projects while
+            demonstrating my front-end development capabilities.
+          </p>
+
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Challenge
+          </h3>
+          <p class="text-light-slate mb-6">
+            Create a portfolio website that is fast, accessible, and visually
+            appealing without relying on heavy frameworks or build processes.
+            The site needed to be easily maintainable, SEO-friendly, and provide
+            an excellent user experience across all devices and themes.
+          </p>
+
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Solution
+          </h3>
+          <p class="text-light-slate">
+            Built a single-page application using semantic HTML5, Tailwind CSS
+            Browser CDN for rapid styling, and vanilla JavaScript for
+            interactivity. Implemented a custom light/dark theme toggle with
+            localStorage persistence, mobile-first responsive design, and SEO
+            optimizations including meta tags, robots.txt, and sitemap.xml.
+          </p>
+        </div>
+      </section>
+
+      <!-- Screenshots Section -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Screenshots
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="screenshot-container">
+            <img
+              src="assets/Home.png"
+              alt="Portfolio Homepage"
+              class="w-full rounded-md border-2 border-lightest-navy"
+            />
+            <p class="text-light-slate text-sm mt-2 text-center">
+              Hero Section with Introduction
+            </p>
+          </div>
+          <div class="screenshot-container">
+            <img
+              src="assets/About.png"
+              alt="About Section"
+              class="w-full rounded-md border-2 border-lightest-navy"
+            />
+            <p class="text-light-slate text-sm mt-2 text-center">
+              About Section with Skills
+            </p>
+          </div>
+          <div class="screenshot-container">
+            <img
+              src="assets/Experience.png"
+              alt="Experience Section"
+              class="w-full rounded-md border-2 border-lightest-navy"
+            />
+            <p class="text-light-slate text-sm mt-2 text-center">
+              Work Experience with Tab Navigation
+            </p>
+          </div>
+          <div class="screenshot-container">
+            <img
+              src="assets/Projects.png"
+              alt="Projects Section"
+              class="w-full rounded-md border-2 border-lightest-navy"
+            />
+            <p class="text-light-slate text-sm mt-2 text-center">
+              Featured Projects Showcase
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Features -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Light/Dark Theme Toggle
+                </h3>
+                <p class="text-light-slate">
+                  Custom theme switcher with smooth transitions. User preference
+                  persists across sessions using localStorage. Includes
+                  carefully crafted color palettes for both themes with
+                  optimized contrast ratios.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Mobile-First Design
+                </h3>
+                <p class="text-light-slate">
+                  Fully responsive layout optimized for all screen sizes.
+                  Features a hamburger menu for mobile navigation with smooth
+                  slide-in animation and body scroll prevention when menu is
+                  open.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  SEO Optimized
+                </h3>
+                <p class="text-light-slate">
+                  Comprehensive meta tags including Open Graph and Twitter
+                  Cards. Includes robots.txt for search engine instructions and
+                  sitemap.xml for better indexing. Semantic HTML5 markup for
+                  improved accessibility and SEO.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Performance Optimized
+                </h3>
+                <p class="text-light-slate">
+                  Zero build process with CDN-based Tailwind CSS for fast
+                  loading. Minimal JavaScript for core functionality. Smooth CSS
+                  transitions and animations without performance overhead.
+                  Perfect for static hosting on GitHub Pages.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Interactive Components
+                </h3>
+                <p class="text-light-slate">
+                  Tab-based work experience navigation for easy browsing.
+                  Smooth scroll-to-section navigation. Hover effects and
+                  animations on project cards. Downloadable PDF resume with
+                  clear call-to-action buttons.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Accessible Design
+                </h3>
+                <p class="text-light-slate">
+                  ARIA labels for better screen reader support. Keyboard
+                  navigation friendly. High contrast color schemes in both
+                  themes. Semantic HTML structure for improved accessibility and
+                  better user experience.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Technology Stack
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+                Frontend
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >HTML5</span
+                    >
+                    <p class="text-slate text-sm">
+                      Semantic markup for better SEO and accessibility
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Tailwind CSS (Browser CDN v4)</span
+                    >
+                    <p class="text-slate text-sm">
+                      Utility-first CSS framework for rapid styling without
+                      build process
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >JavaScript (ES6+)</span
+                    >
+                    <p class="text-slate text-sm">
+                      Vanilla JavaScript for theme toggle, mobile menu, and tab
+                      navigation
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Google Fonts</span
+                    >
+                    <p class="text-slate text-sm">
+                      Inter font family for modern typography
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+                Development & Deployment
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold">Git</span>
+                    <p class="text-slate text-sm">
+                      Version control and source code management
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >GitHub Pages</span
+                    >
+                    <p class="text-slate text-sm">
+                      Static site hosting with automatic deployment from main
+                      branch
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Custom Domain</span
+                    >
+                    <p class="text-slate text-sm">
+                      Configured with CNAME for professional domain
+                      (pranaybaddam.site)
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
+                SEO & Performance
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Meta Tags</span
+                    >
+                    <p class="text-slate text-sm">
+                      Open Graph, Twitter Cards, and standard SEO meta tags
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >robots.txt & sitemap.xml</span
+                    >
+                    <p class="text-slate text-sm">
+                      Search engine optimization files for better indexing
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Structure -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Project Structure
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <pre
+            class="text-light-slate font-mono text-sm overflow-x-auto"
+          ><code>.
+├── index.html                              # Main portfolio page (HTML + Tailwind + JS)
+├── portfolio-project.html                  # This case study page
+├── pranay_baddam_software_engineer.pdf     # Downloadable CV/Resume
+├── assets/                                 # Project screenshots and images
+│   ├── Home.png
+│   ├── About.png
+│   ├── Experience.png
+│   └── Projects.png
+├── pb.ico                                  # Favicon
+├── robots.txt                              # SEO - Search engine instructions
+├── sitemap.xml                             # SEO - Site map for search engines
+├── .gitignore                              # Git ignore rules
+├── CNAME                                   # Custom domain configuration
+└── README.md                               # Project documentation</code></pre>
+        </div>
+      </section>
+
+      <!-- Technical Implementation -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Technical Implementation
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              1. Theme Toggle System
+            </h3>
+            <p class="text-light-slate mb-4">
+              Implemented a custom theme switcher that toggles between light and
+              dark modes. The system uses CSS custom properties (CSS variables)
+              to define color schemes and JavaScript to manage theme state.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                CSS custom properties for dynamic color switching
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                localStorage API for persisting user preference
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Smooth 0.3s transitions for theme changes
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Synchronized toggle buttons for desktop and mobile
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              2. Responsive Navigation
+            </h3>
+            <p class="text-light-slate mb-4">
+              Created a mobile-first navigation system with a hamburger menu for
+              smaller screens and a traditional horizontal menu for desktop.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Breakpoint-based visibility with Tailwind's responsive classes
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Full-screen mobile menu overlay with slide-in animation
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Body scroll prevention when mobile menu is open
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Smooth scroll to sections with proper z-index management
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              3. Interactive Experience Tabs
+            </h3>
+            <p class="text-light-slate mb-4">
+              Built a tab-based interface for the work experience section,
+              allowing users to switch between different companies easily.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Event delegation for efficient tab switching
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Dynamic content visibility with show/hide logic
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Active state styling with border accent colors
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Responsive layout (vertical on desktop, horizontal on mobile)
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              4. Performance Optimization
+            </h3>
+            <p class="text-light-slate mb-4">
+              Focused on delivering fast loading times and smooth performance
+              without compromising design quality.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Zero build process - direct browser execution
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                CDN-delivered Tailwind CSS for fast loading
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Minimal JavaScript (under 100 lines)
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                CSS transitions instead of JavaScript animations
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Preconnect hints for Google Fonts
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons Learned -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Lessons Learned
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <ul class="space-y-4 text-light-slate">
+            <li class="flex items-start">
+              <span class="text-accent me-3 mt-1 text-xl">▹</span>
+              <div>
+                <span class="font-semibold text-lightest-slate"
+                  >Simplicity is powerful:</span
+                >
+                Modern web development doesn't always require complex
+                frameworks. Vanilla JavaScript and Tailwind CSS can deliver
+                professional results with better performance.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-accent me-3 mt-1 text-xl">▹</span>
+              <div>
+                <span class="font-semibold text-lightest-slate"
+                  >Mobile-first approach works:</span
+                >
+                Starting with mobile design constraints leads to better
+                decision-making and cleaner code for all screen sizes.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-accent me-3 mt-1 text-xl">▹</span>
+              <div>
+                <span class="font-semibold text-lightest-slate"
+                  >User preferences matter:</span
+                >
+                Implementing theme persistence with localStorage significantly
+                improves user experience by respecting their choice.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-accent me-3 mt-1 text-xl">▹</span>
+              <div>
+                <span class="font-semibold text-lightest-slate"
+                  >SEO from the start:</span
+                >
+                Building in SEO optimizations from the beginning (semantic HTML,
+                meta tags, sitemap) is easier than adding them later.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-accent me-3 mt-1 text-xl">▹</span>
+              <div>
+                <span class="font-semibold text-lightest-slate"
+                  >Accessibility is essential:</span
+                >
+                Using ARIA labels, semantic HTML, and proper contrast ratios
+                makes the site usable for everyone and improves overall quality.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Future Improvements -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Future Improvements
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
+              Blog Integration
+            </h3>
+            <p class="text-light-slate text-sm">
+              Add a blog section to share technical articles and tutorials,
+              helping to increase organic traffic and demonstrate expertise.
+            </p>
+          </div>
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
+              Contact Form
+            </h3>
+            <p class="text-light-slate text-sm">
+              Implement a working contact form with backend integration
+              (possibly using Netlify Forms or similar) to make it easier for
+              potential employers to reach out.
+            </p>
+          </div>
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
+              Analytics Integration
+            </h3>
+            <p class="text-light-slate text-sm">
+              Add Google Analytics or privacy-focused alternatives like Plausible
+              to track visitor behavior and optimize content.
+            </p>
+          </div>
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
+              Project Filtering
+            </h3>
+            <p class="text-light-slate text-sm">
+              Add filter buttons to the projects section to allow visitors to
+              filter by technology stack (Laravel, Python, React, etc.).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back to Portfolio -->
+      <section class="py-12 text-center">
+        <a
+          href="/"
+          class="inline-flex items-center px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+        >
+          <svg
+            class="w-5 h-5 me-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Portfolio
+        </a>
+      </section>
+    </main>
+
+    <footer class="text-center py-6">
+      <p class="text-slate text-xs font-mono">
+        Designed & Built by Pranay Teja Baddam
+      </p>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="/assets/theme.js"></script>
+  </body>
+</html>

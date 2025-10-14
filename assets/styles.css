@@ -1,0 +1,64 @@
+/* Dark theme (default) */
+body {
+  --color-navy: #0a192f;
+  --color-light-navy: #112240;
+  --color-lightest-navy: #233554;
+  --color-slate: #8892b0;
+  --color-light-slate: #a8b2d1;
+  --color-lightest-slate: #ccd6f6;
+  --color-accent: #64ffda;
+  background-color: var(--color-navy);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme */
+body.light-theme {
+  --color-navy: #f8fafc;
+  --color-light-navy: #f1f5f9;
+  --color-lightest-navy: #e2e8f0;
+  --color-slate: #475569;
+  --color-light-slate: #334155;
+  --color-lightest-slate: #1e293b;
+  --color-accent: #14b8a6;
+  background-color: var(--color-navy);
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.project-card:hover .project-title {
+  color: var(--color-accent);
+}
+
+#mobile-menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+#mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Screenshot hover effect */
+.screenshot-container {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.screenshot-container img {
+  transition: transform 0.3s ease;
+}
+
+.screenshot-container:hover img {
+  transform: scale(1.05);
+}

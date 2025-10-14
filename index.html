@@ -50,6 +50,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/assets/styles.css" />
     <style type="text/tailwindcss">
       @theme {
         --color-navy: #0a192f;
@@ -63,50 +64,6 @@
         --font-family-sans: Inter, sans-serif;
         --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
           monospace;
-      }
-
-      /* Dark theme (default) */
-      body {
-        background-color: var(--color-navy);
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      /* Light theme */
-      body.light-theme {
-        --color-navy: #f8fafc;
-        --color-light-navy: #f1f5f9;
-        --color-lightest-navy: #e2e8f0;
-        --color-slate: #475569;
-        --color-light-slate: #334155;
-        --color-lightest-slate: #1e293b;
-        --color-accent: #14b8a6;
-        background-color: var(--color-navy);
-      }
-
-      body.menu-open {
-        overflow: hidden;
-      }
-
-      .project-card:hover .project-title {
-        color: var(--color-accent);
-      }
-
-      #mobile-menu {
-        transition: transform 0.3s ease-in-out;
-      }
-
-      #mobile-menu.active {
-        transform: translateX(0);
-      }
-
-      /* Theme toggle button styles */
-      .theme-toggle {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-
-      .theme-toggle:hover {
-        transform: scale(1.1);
       }
     </style>
   </head>
@@ -830,9 +787,7 @@
           </a>
 
           <a
-            href="https://github.com/pranayb2773/pranayb2773.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/portfolio-project.html"
             class="project-card bg-light-navy p-6 rounded-md shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
           >
             <div>
@@ -1063,113 +1018,8 @@
       </p>
     </footer>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Theme toggle functionality
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeToggleMobile = document.getElementById(
-          "theme-toggle-mobile"
-        );
-        const sunIcon = document.getElementById("sun-icon");
-        const moonIcon = document.getElementById("moon-icon");
-        const sunIcons = document.querySelectorAll(".sun-icon");
-        const moonIcons = document.querySelectorAll(".moon-icon");
-
-        // Check for saved theme preference or default to dark theme
-        const currentTheme = localStorage.getItem("theme") || "dark";
-
-        // Apply saved theme on page load
-        if (currentTheme === "light") {
-          document.body.classList.add("light-theme");
-          sunIcon.classList.remove("hidden");
-          moonIcon.classList.add("hidden");
-          sunIcons.forEach((icon) => icon.classList.remove("hidden"));
-          moonIcons.forEach((icon) => icon.classList.add("hidden"));
-        }
-
-        const toggleTheme = () => {
-          const isLight = document.body.classList.contains("light-theme");
-
-          if (isLight) {
-            // Switch to dark theme
-            document.body.classList.remove("light-theme");
-            sunIcon.classList.add("hidden");
-            moonIcon.classList.remove("hidden");
-            sunIcons.forEach((icon) => icon.classList.add("hidden"));
-            moonIcons.forEach((icon) => icon.classList.remove("hidden"));
-            localStorage.setItem("theme", "dark");
-          } else {
-            // Switch to light theme
-            document.body.classList.add("light-theme");
-            sunIcon.classList.remove("hidden");
-            moonIcon.classList.add("hidden");
-            sunIcons.forEach((icon) => icon.classList.remove("hidden"));
-            moonIcons.forEach((icon) => icon.classList.add("hidden"));
-            localStorage.setItem("theme", "light");
-          }
-        };
-
-        // Add event listeners to both toggle buttons
-        themeToggle.addEventListener("click", toggleTheme);
-        themeToggleMobile.addEventListener("click", toggleTheme);
-
-        // Tab switching functionality
-        const tabs = document.querySelectorAll(".tab-button");
-        const contents = document.querySelectorAll(".tab-content");
-
-        tabs.forEach((tab, index) => {
-          tab.addEventListener("click", () => {
-            tabs.forEach((t) => {
-              t.classList.remove("active", "text-accent", "border-accent");
-              t.classList.add("text-slate", "border-lightest-navy");
-            });
-            tab.classList.add("active", "text-accent", "border-accent");
-            tab.classList.remove("text-slate", "border-lightest-navy");
-
-            contents.forEach((c) => c.classList.add("hidden"));
-            contents[index].classList.remove("hidden");
-          });
-        });
-
-        // Mobile menu toggle functionality
-        const menuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const menuIcon = document.getElementById("menu-icon");
-        const closeIcon = document.getElementById("close-icon");
-        const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
-
-        const openMenu = () => {
-          mobileMenu.classList.remove("translate-x-full");
-          mobileMenu.classList.add("active");
-          menuIcon.classList.add("hidden");
-          closeIcon.classList.remove("hidden");
-          document.body.classList.add("menu-open");
-        };
-
-        const closeMenu = () => {
-          mobileMenu.classList.add("translate-x-full");
-          mobileMenu.classList.remove("active");
-          menuIcon.classList.remove("hidden");
-          closeIcon.classList.add("hidden");
-          document.body.classList.remove("menu-open");
-        };
-
-        menuButton.addEventListener("click", () => {
-          const isOpen = mobileMenu.classList.contains("active");
-          if (isOpen) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        });
-
-        // Close menu when a link is clicked
-        mobileMenuLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            closeMenu();
-          });
-        });
-      });
-    </script>
+    <!-- External JavaScript -->
+    <script src="/assets/theme.js"></script>
+    <script src="/assets/main.js"></script>
   </body>
 </html>
