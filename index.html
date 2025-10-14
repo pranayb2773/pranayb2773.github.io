@@ -51,19 +51,33 @@
         background-color: var(--color-navy);
       }
 
+      body.menu-open {
+        overflow: hidden;
+      }
+
       .project-card:hover .project-title {
         color: var(--color-accent);
+      }
+
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      #mobile-menu.active {
+        transform: translateX(0);
       }
     </style>
   </head>
   <body class="text-slate font-sans">
-    <header class="fixed top-0 z-50 w-full bg-navy/80 backdrop-blur-sm">
+    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
       <nav
         class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
       >
         <div class="text-accent text-2xl font-mono font-bold">
           <a href="/">PB</a>
         </div>
+
+        <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-6">
           <a
             href="#about"
@@ -86,8 +100,74 @@
             ><span class="text-accent">04.</span> Contact</a
           >
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-accent focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg
+            id="menu-icon"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <svg
+            id="close-icon"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </nav>
+
     </header>
+
+    <!-- Mobile Menu Overlay (moved outside header) -->
+    <div
+      id="mobile-menu"
+      class="md:hidden fixed inset-0 bg-navy translate-x-full z-50 flex flex-col items-center justify-center"
+    >
+      <nav class="flex flex-col items-center space-y-8">
+        <a
+          href="#about"
+          class="mobile-menu-link text-2xl text-lightest-slate hover:text-accent duration-300"
+          ><span class="text-accent font-mono me-2">01.</span> About</a
+        >
+        <a
+          href="#experience"
+          class="mobile-menu-link text-2xl text-lightest-slate hover:text-accent duration-300"
+          ><span class="text-accent font-mono me-2">02.</span> Experience</a
+        >
+        <a
+          href="#work"
+          class="mobile-menu-link text-2xl text-lightest-slate hover:text-accent duration-300"
+          ><span class="text-accent font-mono me-2">03.</span> Work</a
+        >
+        <a
+          href="#contact"
+          class="mobile-menu-link text-2xl text-lightest-slate hover:text-accent duration-300"
+          ><span class="text-accent font-mono me-2">04.</span> Contact</a
+        >
+      </nav>
+    </div>
 
     <div class="hidden md:block fixed bottom-0 start-12 z-10">
       <div class="flex flex-col items-center space-y-6">
@@ -195,17 +275,17 @@
           high-performance web applications and robust RESTful APIs using modern
           frameworks like Laravel and Django.
         </p>
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <a
             href="#work"
-            class="inline-block mt-12 px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300 w-max"
+            class="inline-block mt-8 sm:mt-12 px-6 sm:px-8 py-3 sm:py-4 border border-accent text-accent rounded font-mono text-sm sm:text-base hover:bg-accent/10 duration-300 whitespace-nowrap"
           >
             Check Out My Work!
           </a>
           <a
             href="/pranay_baddam_software_engineer.pdf"
             download
-            class="inline-block mt-12 px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300 w-max"
+            class="inline-block mt-0 sm:mt-12 px-6 sm:px-8 py-3 sm:py-4 border border-accent text-accent rounded font-mono text-sm sm:text-base hover:bg-accent/10 duration-300 whitespace-nowrap"
           >
             Download CV!
           </a>
@@ -214,10 +294,12 @@
 
       <section id="about" class="py-24">
         <h2
-          class="flex items-center text-2xl font-bold text-lightest-slate mb-8"
+          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-8"
         >
-          <span class="text-accent font-mono text-xl me-3">01.</span> About Me
-          <span class="block h-px w-full max-w-xs bg-lightest-navy ms-4"></span>
+          <span class="flex items-center mb-2 md:mb-0">
+            <span class="text-accent font-mono text-xl me-3">01.</span> About Me
+          </span>
+          <span class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"></span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
           <div class="md:col-span-3 text-light-slate">
@@ -282,11 +364,12 @@
 
       <section id="experience" class="py-24">
         <h2
-          class="flex items-center text-2xl font-bold text-lightest-slate mb-8"
+          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-8"
         >
-          <span class="text-accent font-mono text-xl me-3">02.</span> Where I've
-          Worked
-          <span class="block h-px w-full max-w-xs bg-lightest-navy ms-4"></span>
+          <span class="flex items-center mb-2 md:mb-0">
+            <span class="text-accent font-mono text-xl me-3">02.</span> Where I've Worked
+          </span>
+          <span class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"></span>
         </h2>
         <div class="flex flex-col md:flex-row gap-8">
           <div class="flex md:flex-col md:w-48 overflow-x-auto">
@@ -499,11 +582,12 @@
 
       <section id="work" class="py-24">
         <h2
-          class="flex items-center text-2xl font-bold text-lightest-slate mb-12"
+          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-12"
         >
-          <span class="text-accent font-mono text-xl me-3">03.</span> Some
-          Things I've Built
-          <span class="block h-px w-full max-w-xs bg-lightest-navy ms-4"></span>
+          <span class="flex items-center mb-2 md:mb-0">
+            <span class="text-accent font-mono text-xl me-3">03.</span> Some Things I've Built
+          </span>
+          <span class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"></span>
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -862,6 +946,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Tab switching functionality
         const tabs = document.querySelectorAll(".tab-button");
         const contents = document.querySelectorAll(".tab-content");
 
@@ -876,6 +961,45 @@
 
             contents.forEach((c) => c.classList.add("hidden"));
             contents[index].classList.remove("hidden");
+          });
+        });
+
+        // Mobile menu toggle functionality
+        const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+        const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+
+        const openMenu = () => {
+          mobileMenu.classList.remove("translate-x-full");
+          mobileMenu.classList.add("active");
+          menuIcon.classList.add("hidden");
+          closeIcon.classList.remove("hidden");
+          document.body.classList.add("menu-open");
+        };
+
+        const closeMenu = () => {
+          mobileMenu.classList.add("translate-x-full");
+          mobileMenu.classList.remove("active");
+          menuIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          document.body.classList.remove("menu-open");
+        };
+
+        menuButton.addEventListener("click", () => {
+          const isOpen = mobileMenu.classList.contains("active");
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        // Close menu when a link is clicked
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
           });
         });
       });
