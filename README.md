@@ -38,8 +38,24 @@ Personal portfolio website featuring:
 ```
 .
 ├── index.html                              # Main portfolio page (HTML + Tailwind + JS)
-├── pranay_baddam_software_engineer.pdf     # Downloadable CV/Resume
-├── pb.ico                                  # Favicon
+├── pages/                                  # Project detail pages
+│   ├── portfolio-project.html              # Portfolio website case study
+│   ├── carpark-booking-api.html            # Car Park Booking API project
+│   ├── todo-list-api.html                  # Todo List API project
+│   └── job-tracker.html                    # Job Application Tracker project
+├── assets/                                 # Static assets
+│   ├── images/                             # Images and media files
+│   │   ├── Home.png                        # Screenshot - Homepage
+│   │   ├── About.png                       # Screenshot - About section
+│   │   ├── Experience.png                  # Screenshot - Experience section
+│   │   ├── Projects.png                    # Screenshot - Projects section
+│   │   ├── pb.ico                          # Favicon
+│   │   └── pranay_baddam_software_engineer.pdf # Downloadable CV/Resume
+│   ├── css/                                # Stylesheets
+│   │   └── styles.css                      # Custom CSS styles
+│   └── js/                                 # JavaScript files
+│       ├── theme.js                        # Theme toggle functionality
+│       └── main.js                         # Main JavaScript file
 ├── robots.txt                              # SEO - Search engine instructions
 ├── sitemap.xml                             # SEO - Site map for search engines
 ├── .gitignore                              # Git ignore rules

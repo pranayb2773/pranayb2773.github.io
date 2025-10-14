@@ -3,34 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Job Application Tracker - A Laravel web application with AI-powered CV analysis, comprehensive job application management, and intelligent ATS scoring." />
-    <meta name="keywords" content="Laravel, Job Tracker, AI, CV Analysis, ATS, Livewire, PHP, Application Management, Tailwind CSS" />
+    <meta name="description" content="Todo List API - A RESTful API built with Laravel featuring role-based access control, tag management, and comprehensive todo list functionality." />
+    <meta name="keywords" content="Laravel, REST API, Todo List, Role-Based Access, PHP, Sanctum, API Development, Docker" />
     <meta name="author" content="Pranay Teja Baddam" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://pranaybaddam.site/job-tracker.html" />
+    <link rel="canonical" href="https://pranaybaddam.site/todo-list-api.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://pranaybaddam.site/job-tracker.html" />
-    <meta property="og:title" content="Job Application Tracker - Project Case Study | Pranay Teja Baddam" />
-    <meta property="og:description" content="A Laravel web application with AI-powered CV analysis and comprehensive job application tracking capabilities." />
+    <meta property="og:url" content="https://pranaybaddam.site/todo-list-api.html" />
+    <meta property="og:title" content="Todo List API - Project Case Study | Pranay Teja Baddam" />
+    <meta property="og:description" content="A Laravel REST API for todo list management with role-based access control and comprehensive documentation." />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://pranaybaddam.site/job-tracker.html" />
-    <meta name="twitter:title" content="Job Application Tracker - Project Case Study | Pranay Teja Baddam" />
-    <meta name="twitter:description" content="A Laravel web application with AI-powered CV analysis and comprehensive job application tracking capabilities." />
+    <meta name="twitter:url" content="https://pranaybaddam.site/todo-list-api.html" />
+    <meta name="twitter:title" content="Todo List API - Project Case Study | Pranay Teja Baddam" />
+    <meta name="twitter:description" content="A Laravel REST API for todo list management with role-based access control and comprehensive documentation." />
 
-    <title>Job Application Tracker - Project Case Study | Pranay Teja Baddam</title>
+    <title>Todo List API - Project Case Study | Pranay Teja Baddam</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="icon" type="img/svg+xml" href="/pb.ico" />
+    <link rel="icon" type="img/svg+xml" href="/assets/images/pb.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
     <style type="text/tailwindcss">
       @theme {
         --color-navy: #0a192f;
@@ -124,20 +124,15 @@
           </svg>
           Back to Portfolio
         </a>
-        <div class="flex items-center gap-4 mb-4">
-          <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate">
-            Job Application Tracker
-          </h1>
-          <span class="px-3 py-1 text-xs font-mono bg-accent/10 text-accent border border-accent rounded-full">
-            In Development
-          </span>
-        </div>
+        <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate mb-4">
+          Todo List API
+        </h1>
         <p class="text-xl text-light-slate mb-8">
-          A comprehensive Laravel web application with AI-powered CV analysis and intelligent job application tracking
+          A RESTful API built with Laravel featuring role-based access control, tag management, and Docker support
         </p>
         <div class="flex flex-wrap gap-4">
           <a
-            href="https://github.com/pranayb2773/job_tracker"
+            href="https://github.com/pranayb2773/todo-list-api"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
@@ -166,55 +161,22 @@
             Purpose
           </h3>
           <p class="text-light-slate mb-6">
-            Job Application Tracker is a comprehensive web application designed to help job seekers manage their application process efficiently. It combines traditional application tracking with cutting-edge AI technology to provide intelligent CV analysis, ATS scoring, and personalized improvement recommendations.
+            The Todo List API is a comprehensive RESTful API built with Laravel that provides robust todo list management functionality. It features sophisticated role-based access control, tag management capabilities, and complete CRUD operations for managing users, tags, and todo lists.
           </p>
 
           <h3 class="text-xl font-semibold text-lightest-slate mb-4">
             Challenge
           </h3>
           <p class="text-light-slate mb-6">
-            Job seekers often struggle to keep track of multiple applications and understand how their CVs perform against Applicant Tracking Systems (ATS). The challenge was to create a system that not only manages applications but also provides actionable insights to improve application success rates using AI analysis across multiple dimensions.
+            Build a scalable, secure API that implements fine-grained access control where administrators have full system access while regular users can only manage their own data. The system needed to support tag-based organization, containerized deployment, and comprehensive API documentation.
           </p>
 
           <h3 class="text-xl font-semibold text-lightest-slate mb-4">
             Solution
           </h3>
           <p class="text-light-slate">
-            Built a modern full-stack Laravel application using Livewire 3 and Volt for reactive UI components, integrated with multiple AI providers (Claude, OpenAI, Gemini) for comprehensive CV analysis. Implemented an 8-dimensional ATS scoring system with caching for performance, secure document management for PDF uploads, and real-time application status tracking. The application uses Tailwind CSS 4.x and Flux Pro UI for a polished, modern interface.
+            Implemented a RESTful API using Laravel with Laravel Sanctum for authentication. Created a policy-based authorization system that enforces role-specific permissions for all operations. Integrated Docker support via Laravel Sail for easy deployment, and provided comprehensive documentation through OpenAPI/Swagger specifications and Postman collections.
           </p>
-        </div>
-      </section>
-
-      <!-- Development Status -->
-      <section class="py-12">
-        <div class="bg-light-navy border-l-4 border-accent p-6 rounded-md">
-          <div class="flex items-start">
-            <svg
-              class="w-6 h-6 text-accent me-4 flex-shrink-0 mt-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-3">
-                Active Development
-              </h3>
-              <p class="text-light-slate mb-3">
-                This project is currently under active development. New features are being added regularly, and the application is being continuously improved based on real-world usage and feedback.
-              </p>
-              <p class="text-light-slate text-sm">
-                <span class="font-semibold text-accent">License:</span> MIT (Open Source) |
-                <span class="font-semibold text-accent ml-4">Status:</span> Actively Maintained
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -236,15 +198,41 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                 />
               </svg>
               <div>
                 <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  AI-Powered CV Analysis
+                  Role-Based Access Control
                 </h3>
                 <p class="text-light-slate">
-                  Comprehensive ATS scoring across 8 dimensions with AI-generated improvement recommendations. Supports multiple AI providers including Claude, OpenAI, and Gemini with intelligent caching for performance.
+                  Comprehensive policy-based authorization system. Admins have full CRUD access across all resources, while regular users can only view and manage their own data. Enforced at the API level for security.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Tag Management System
+                </h3>
+                <p class="text-light-slate">
+                  All authenticated users can create, edit, and delete tags for organizing todo items. Provides flexible categorization and filtering capabilities for better task organization.
                 </p>
               </div>
             </div>
@@ -267,10 +255,10 @@
               </svg>
               <div>
                 <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Application Lifecycle Tracking
+                  Complete Todo List CRUD
                 </h3>
                 <p class="text-light-slate">
-                  Real-time job application status tracking from initial submission through interviews to final decision. Manage all your applications in one centralized dashboard with detailed timeline views.
+                  Full lifecycle management for todo lists including create, read, update, and delete operations. Admin users can manage all lists, while regular users can only access their own.
                 </p>
               </div>
             </div>
@@ -288,15 +276,15 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
               <div>
                 <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Secure Document Management
+                  Comprehensive Documentation
                 </h3>
                 <p class="text-light-slate">
-                  Upload and securely store PDF documents including CVs, cover letters, and certificates. All documents are encrypted and accessible only to authenticated users with proper access controls.
+                  OpenAPI/Swagger specification for interactive API documentation. Includes Postman collection for easy testing and integration, providing clear examples for all endpoints.
                 </p>
               </div>
             </div>
@@ -314,15 +302,15 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                 />
               </svg>
               <div>
                 <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Modern Reactive UI
+                  Docker Support with Laravel Sail
                 </h3>
                 <p class="text-light-slate">
-                  Built with Livewire 3 and Volt for smooth, reactive interactions without page reloads. Features a polished interface using Flux Pro UI components and Tailwind CSS 4.x for a modern user experience.
+                  Containerized deployment using Laravel Sail for consistent development and production environments. Simplifies setup and ensures reproducible builds across different systems.
                 </p>
               </div>
             </div>
@@ -340,41 +328,15 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 />
               </svg>
               <div>
                 <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  8-Dimensional ATS Scoring
+                  User Management
                 </h3>
                 <p class="text-light-slate">
-                  Comprehensive analysis across keyword optimization, formatting, skills matching, experience relevance, education alignment, achievements quantification, readability, and overall ATS compatibility.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-              <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Secure Authentication
-                </h3>
-                <p class="text-light-slate">
-                  Built on Laravel's robust authentication system with secure session management. User data and documents are protected with industry-standard encryption and access controls.
+                  Admin users can perform all user operations including creation, updates, and deletion. Regular users can view and update their own profile information for account management.
                 </p>
               </div>
             </div>
@@ -398,10 +360,10 @@
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >Laravel 12</span
+                      >Laravel Framework</span
                     >
                     <p class="text-slate text-sm">
-                      Modern PHP framework for robust web application development
+                      Modern PHP framework for robust API development
                     </p>
                   </div>
                 </li>
@@ -409,10 +371,10 @@
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >PHP 8.3+</span
+                      >PHP (85.3%)</span
                     >
                     <p class="text-slate text-sm">
-                      Latest PHP version with enhanced performance and features
+                      Primary language with modern PHP features
                     </p>
                   </div>
                 </li>
@@ -420,19 +382,21 @@
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >Livewire 3</span
+                      >Blade Templates (13.7%)</span
                     >
                     <p class="text-slate text-sm">
-                      Full-stack framework for dynamic, reactive interfaces
+                      Laravel's templating engine for views
                     </p>
                   </div>
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold">Volt</span>
+                    <span class="text-lightest-slate font-semibold"
+                      >Laravel Sanctum</span
+                    >
                     <p class="text-slate text-sm">
-                      Functional Livewire components for cleaner code
+                      Token-based authentication for secure API access
                     </p>
                   </div>
                 </li>
@@ -441,17 +405,17 @@
 
             <div>
               <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Frontend & Styling
+                Development & Deployment
               </h3>
               <ul class="space-y-3">
                 <li class="flex items-start">
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >Tailwind CSS 4.x</span
+                      >Laravel Sail</span
                     >
                     <p class="text-slate text-sm">
-                      Utility-first CSS framework for modern styling
+                      Docker-based development environment
                     </p>
                   </div>
                 </li>
@@ -459,159 +423,243 @@
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >Flux Pro UI</span
+                      >Docker</span
                     >
                     <p class="text-slate text-sm">
-                      Premium UI component library for polished interfaces
+                      Containerization for consistent deployments
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Composer</span
+                    >
+                    <p class="text-slate text-sm">
+                      PHP dependency management
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold">Git</span>
+                    <p class="text-slate text-sm">
+                      Version control system
                     </p>
                   </div>
                 </li>
               </ul>
 
               <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
-                Database
+                Documentation & Testing
               </h3>
               <ul class="space-y-3">
                 <li class="flex items-start">
                   <span class="text-accent me-3 mt-1">▹</span>
                   <div>
                     <span class="text-lightest-slate font-semibold"
-                      >SQLite / MySQL / PostgreSQL</span
+                      >OpenAPI/Swagger</span
                     >
                     <p class="text-slate text-sm">
-                      Flexible database support for different environments
+                      Interactive API documentation
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Postman Collection</span
+                    >
+                    <p class="text-slate text-sm">
+                      Pre-configured API testing suite
                     </p>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="mt-8 pt-8 border-t border-lightest-navy">
+      <!-- Architecture & Access Control -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Architecture & Access Control
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-light-navy p-6 rounded-md">
             <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              AI Integration
+              Role-Based Permissions
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                <div>
-                  <span class="text-lightest-slate font-semibold"
-                    >Anthropic Claude</span
-                  >
-                  <p class="text-slate text-sm">
-                    Advanced AI for CV analysis and recommendations
-                  </p>
-                </div>
+            <p class="text-light-slate mb-4">
+              The API implements a sophisticated policy-based authorization system that enforces different access levels based on user roles.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              <div>
+                <h4 class="text-lg font-semibold text-lightest-slate mb-3">
+                  Admin Permissions
+                </h4>
+                <ul class="space-y-2 text-light-slate text-sm">
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    Full CRUD access to all users
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    Manage all todo lists across the system
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    Create, edit, and delete all tags
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    System-wide read and write access
+                  </li>
+                </ul>
               </div>
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                <div>
-                  <span class="text-lightest-slate font-semibold">OpenAI</span>
-                  <p class="text-slate text-sm">
-                    Alternative AI provider for diverse analysis
-                  </p>
-                </div>
+              <div>
+                <h4 class="text-lg font-semibold text-lightest-slate mb-3">
+                  Regular User Permissions
+                </h4>
+                <ul class="space-y-2 text-light-slate text-sm">
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    View and update own profile only
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    Manage only their own todo lists
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    Create, edit, and delete their own tags
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-accent me-2">▹</span>
+                    No access to other users' data
+                  </li>
+                </ul>
               </div>
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                <div>
-                  <span class="text-lightest-slate font-semibold"
-                    >Google Gemini</span
-                  >
-                  <p class="text-slate text-sm">
-                    Additional AI integration option
-                  </p>
-                </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Project Structure
+            </h3>
+            <p class="text-light-slate mb-4">
+              Clean architecture following Laravel best practices with organized controllers, policies, and database layers.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              <div>
+                <h4 class="text-sm font-semibold text-accent mb-2">
+                  Controllers (v1)
+                </h4>
+                <p class="text-light-slate text-sm">
+                  app/Http/Controllers/v1
+                </p>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-accent mb-2">
+                  Access Policies (v1)
+                </h4>
+                <p class="text-light-slate text-sm">
+                  app/Policies/v1
+                </p>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-accent mb-2">
+                  Database Layer
+                </h4>
+                <p class="text-light-slate text-sm">
+                  database/migrations & seeders
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ATS Scoring Dimensions -->
+      <!-- API Features -->
       <section class="py-12">
         <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          8-Dimensional ATS Scoring System
+          API Capabilities
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">01.</span>
-              Keyword Optimization
+            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
+              User Management
             </h3>
-            <p class="text-light-slate text-sm">
-              Analyzes the presence and placement of relevant industry keywords and job-specific terms to maximize ATS compatibility.
-            </p>
+            <ul class="space-y-2 text-light-slate text-sm">
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                User registration & authentication
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Profile view & updates
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Admin user CRUD operations
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Role-based access enforcement
+              </li>
+            </ul>
           </div>
 
           <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">02.</span>
-              Formatting Quality
+            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
+              Todo List Management
             </h3>
-            <p class="text-light-slate text-sm">
-              Evaluates document structure, consistency, and ATS-friendly formatting to ensure proper parsing by applicant tracking systems.
-            </p>
+            <ul class="space-y-2 text-light-slate text-sm">
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Create new todo lists
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                View all accessible lists
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Update list details
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Delete owned lists
+              </li>
+            </ul>
           </div>
 
           <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">03.</span>
-              Skills Matching
+            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
+              Tag Organization
             </h3>
-            <p class="text-light-slate text-sm">
-              Compares listed skills against job requirements and industry standards to identify gaps and strengths.
-            </p>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">04.</span>
-              Experience Relevance
-            </h3>
-            <p class="text-light-slate text-sm">
-              Assesses how well work experience aligns with target roles and demonstrates career progression.
-            </p>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">05.</span>
-              Education Alignment
-            </h3>
-            <p class="text-light-slate text-sm">
-              Evaluates educational background relevance to target positions and industry requirements.
-            </p>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">06.</span>
-              Achievements Quantification
-            </h3>
-            <p class="text-light-slate text-sm">
-              Checks for measurable accomplishments and quantified results that demonstrate impact and value.
-            </p>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">07.</span>
-              Readability Score
-            </h3>
-            <p class="text-light-slate text-sm">
-              Analyzes clarity, conciseness, and overall readability for both human reviewers and ATS systems.
-            </p>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">08.</span>
-              Overall ATS Compatibility
-            </h3>
-            <p class="text-light-slate text-sm">
-              Comprehensive evaluation of how well the CV will perform in automated applicant tracking systems.
-            </p>
+            <ul class="space-y-2 text-light-slate text-sm">
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Create custom tags
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Edit tag names
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Delete unused tags
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-2 font-mono">▹</span>
+                Tag-based filtering
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -624,81 +672,81 @@
         <div class="space-y-6">
           <div class="bg-light-navy p-6 rounded-md">
             <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Multi-Provider AI Integration
+              Policy-Based Authorization
             </h3>
             <p class="text-light-slate mb-4">
-              Flexible AI architecture supporting multiple providers for CV analysis with intelligent fallback mechanisms.
+              Laravel policies provide granular control over resource access, ensuring users can only perform authorized actions.
             </p>
             <ul class="space-y-2 text-light-slate">
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Support for Claude, OpenAI, and Gemini AI models
+                Centralized authorization logic in policy classes
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Intelligent caching system to minimize API calls and costs
+                Automatic enforcement at controller level
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Provider-agnostic interface for easy switching between AI services
+                Clear separation between admin and user permissions
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Structured prompts for consistent analysis across providers
+                Prevents unauthorized data access at API level
               </li>
             </ul>
           </div>
 
           <div class="bg-light-navy p-6 rounded-md">
             <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Livewire 3 & Volt Architecture
+              Docker Integration with Laravel Sail
             </h3>
             <p class="text-light-slate mb-4">
-              Modern reactive components for seamless user interactions without full page reloads.
+              Containerized development environment ensures consistency across development and production deployments.
             </p>
             <ul class="space-y-2 text-light-slate">
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Functional Volt components for cleaner, more maintainable code
+                One-command setup for local development
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Real-time updates without JavaScript framework overhead
+                Isolated environment with all dependencies
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Server-side rendering for better SEO and performance
+                Easy scaling and deployment options
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Progressive enhancement for accessibility
+                Reproducible builds across different systems
               </li>
             </ul>
           </div>
 
           <div class="bg-light-navy p-6 rounded-md">
             <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Secure Document Handling
+              API Documentation
             </h3>
             <p class="text-light-slate mb-4">
-              Enterprise-grade document management with encryption and access controls.
+              Comprehensive documentation through multiple formats for easy integration and testing.
             </p>
             <ul class="space-y-2 text-light-slate">
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                PDF upload and storage with validation
+                OpenAPI/Swagger specification for interactive docs
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                User-scoped access controls for privacy
+                Postman collection for immediate testing
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Encrypted storage for sensitive documents
+                Clear endpoint examples and request/response formats
               </li>
               <li class="flex items-start">
                 <span class="text-accent me-3 mt-1">▹</span>
-                Version tracking for document updates
+                Authentication flow documentation
               </li>
             </ul>
           </div>
@@ -736,6 +784,6 @@
     </footer>
 
     <!-- External JavaScript -->
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/js/theme.js"></script>
   </body>
 </html>
