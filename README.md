@@ -22,21 +22,29 @@ Personal portfolio website featuring:
 ## Features
 
 - ✨ Fully responsive design (mobile, tablet, desktop)
-- 🎨 Modern dark theme with accent colors
-- 📱 Mobile-friendly navigation
-- 📄 Downloadable resume
-- 🔗 Social media integration
-- ⚡ Fast loading with CDN-based assets
+- 🎨 Light & dark theme toggle with localStorage persistence
+- 🌙 Modern dark theme (default) with vibrant cyan accent
+- ☀️ Clean light theme with teal accent
+- 📱 Mobile-friendly hamburger navigation menu
+- 📄 Downloadable resume (PDF)
+- 🔗 Social media integration (GitHub, LinkedIn, X/Twitter)
+- ⚡ Fast loading with CDN-based assets (Tailwind CSS Browser CDN)
+- 🎯 Smooth scrolling and animations
+- ♿ Accessible with ARIA labels and semantic HTML
+- 🔍 SEO optimized (meta tags, robots.txt, sitemap.xml)
 
 ## Project Structure
 
 ```
 .
-├── index.html                              # Main portfolio page
-├── pranay_baddam_software_engineer.pdf     # Downloadable CV
+├── index.html                              # Main portfolio page (HTML + Tailwind + JS)
+├── pranay_baddam_software_engineer.pdf     # Downloadable CV/Resume
 ├── pb.ico                                  # Favicon
+├── robots.txt                              # SEO - Search engine instructions
+├── sitemap.xml                             # SEO - Site map for search engines
+├── .gitignore                              # Git ignore rules
 ├── CNAME                                   # Custom domain configuration
-└── README.md                               # This file
+└── README.md                               # Project documentation
 ```
 
 ## Local Development
