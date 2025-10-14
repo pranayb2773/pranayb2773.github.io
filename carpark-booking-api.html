@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Car Park Booking API - A Laravel 12 REST API for managing car park bookings with token authentication, seasonal pricing, and comprehensive booking management." />
+    <meta name="keywords" content="Laravel, REST API, Car Park, Booking System, PHP, Sanctum, API Development" />
+    <meta name="author" content="Pranay Teja Baddam" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pranaybaddam.site/carpark-booking-api.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://pranaybaddam.site/carpark-booking-api.html" />
+    <meta property="og:title" content="Car Park Booking API - Project Case Study | Pranay Teja Baddam" />
+    <meta property="og:description" content="A Laravel REST API for managing car park bookings with seasonal pricing and token-based authentication." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pranaybaddam.site/carpark-booking-api.html" />
+    <meta name="twitter:title" content="Car Park Booking API - Project Case Study | Pranay Teja Baddam" />
+    <meta name="twitter:description" content="A Laravel REST API for managing car park bookings with seasonal pricing and token-based authentication." />
+
+    <title>Car Park Booking API - Project Case Study | Pranay Teja Baddam</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="img/svg+xml" href="/pb.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-navy: #0a192f;
+        --color-light-navy: #112240;
+        --color-lightest-navy: #233554;
+        --color-slate: #8892b0;
+        --color-light-slate: #a8b2d1;
+        --color-lightest-slate: #ccd6f6;
+        --color-accent: #64ffda;
+
+        --font-family-sans: Inter, sans-serif;
+        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
+          monospace;
+      }
+    </style>
+  </head>
+  <body class="text-slate font-sans">
+    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
+      <nav
+        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
+      >
+        <div class="text-accent text-2xl font-mono font-bold">
+          <a href="/">PB</a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="flex items-center space-x-6">
+          <a
+            href="/"
+            class="text-lightest-slate hover:text-accent duration-300"
+          >
+            <span class="text-accent">←</span> Back to Portfolio
+          </a>
+          <button
+            id="theme-toggle"
+            class="theme-toggle text-accent focus:outline-none"
+            aria-label="Toggle theme"
+          >
+            <svg
+              id="sun-icon"
+              class="w-6 h-6 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              id="moon-icon"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pt-24">
+      <!-- Hero Section -->
+      <section class="py-12">
+        <a
+          href="/"
+          class="inline-flex items-center text-accent font-mono text-sm hover:underline mb-8"
+        >
+          <svg
+            class="w-4 h-4 me-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Portfolio
+        </a>
+        <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate mb-4">
+          Car Park Booking API
+        </h1>
+        <p class="text-xl text-light-slate mb-8">
+          A Laravel 12 REST API for managing car park bookings with seasonal pricing and token-based authentication
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://github.com/pranayb2773/carpark-booking-api"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+          >
+            <svg
+              class="w-5 h-5 me-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+              ></path>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </section>
+
+      <!-- Project Overview -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Project Overview
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Purpose
+          </h3>
+          <p class="text-light-slate mb-6">
+            The Car Park Booking API is a comprehensive REST API built with Laravel 12 that enables efficient management of car park bookings. It provides a flexible pricing system with seasonal variations, secure authentication, and complete booking lifecycle management.
+          </p>
+
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Challenge
+          </h3>
+          <p class="text-light-slate mb-6">
+            Design and implement a scalable API that handles complex pricing rules (summer/winter rates, weekday/weekend variations), manages capacity constraints, and provides secure user authentication while maintaining clean, testable code architecture.
+          </p>
+
+          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+            Solution
+          </h3>
+          <p class="text-light-slate">
+            Built a RESTful API using Laravel 12 with PHP 8.2, implementing Laravel Sanctum for token-based authentication. Created a flexible pricing engine that handles seasonal variations, developed comprehensive CRUD operations for bookings, and included public endpoints for price calculations and availability checks. Utilized SQLite for development with support for production databases, and implemented a complete Pest test suite for quality assurance.
+          </p>
+        </div>
+      </section>
+
+      <!-- Key Features -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Seasonal Pricing Engine
+                </h3>
+                <p class="text-light-slate">
+                  Configurable pricing rules supporting summer/winter rates and weekday/weekend variations. Prices stored in pence internally for precision, with capacity and pricing evaluated per calendar day.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Token-Based Authentication
+                </h3>
+                <p class="text-light-slate">
+                  Secure authentication using Laravel Sanctum with user registration, login, logout, and profile management. Includes seeded demo accounts for both admin and customer roles.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Comprehensive Booking Management
+                </h3>
+                <p class="text-light-slate">
+                  Full CRUD operations for bookings including list, create, update, and delete functionality. Automatic availability checking and capacity management per calendar day.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Public API Endpoints
+                </h3>
+                <p class="text-light-slate">
+                  Public endpoints for price calculation and availability checking, allowing integration with external systems without authentication. Includes Postman collection for easy testing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Comprehensive Test Suite
+                </h3>
+                <p class="text-light-slate">
+                  Built with Pest testing framework for robust quality assurance. Includes unit and feature tests ensuring reliability across all API endpoints and business logic.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <div class="flex items-start mb-4">
+              <svg
+                class="w-8 h-8 text-accent me-4 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                />
+              </svg>
+              <div>
+                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
+                  Flexible Database Support
+                </h3>
+                <p class="text-light-slate">
+                  SQLite for development with seamless support for MySQL, PostgreSQL, and other Laravel-compatible databases in production environments.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Technology Stack
+        </h2>
+        <div class="bg-light-navy p-8 rounded-md">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+                Backend & Framework
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Laravel 12</span
+                    >
+                    <p class="text-slate text-sm">
+                      Modern PHP framework providing robust API foundation
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >PHP 8.2</span
+                    >
+                    <p class="text-slate text-sm">
+                      Latest PHP features for type safety and performance
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Laravel Sanctum</span
+                    >
+                    <p class="text-slate text-sm">
+                      Token-based authentication for API security
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Composer</span
+                    >
+                    <p class="text-slate text-sm">
+                      Dependency management for PHP packages
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+                Database & Testing
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >SQLite</span
+                    >
+                    <p class="text-slate text-sm">
+                      Development database with production database support
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold">Pest</span>
+                    <p class="text-slate text-sm">
+                      Modern testing framework for comprehensive test coverage
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Eloquent ORM</span
+                    >
+                    <p class="text-slate text-sm">
+                      Laravel's database abstraction layer
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
+                Development Tools
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold"
+                      >Postman Collection</span
+                    >
+                    <p class="text-slate text-sm">
+                      Pre-configured API testing collection
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent me-3 mt-1">▹</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold">Git</span>
+                    <p class="text-slate text-sm">
+                      Version control and source code management
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Endpoints -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          API Endpoints
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Public Endpoints
+            </h3>
+            <ul class="space-y-3 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">GET /api/price</span>
+                  <p class="text-sm mt-1">Calculate booking price for specified dates</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">GET /api/availability</span>
+                  <p class="text-sm mt-1">Check availability for specified dates</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Authentication Endpoints
+            </h3>
+            <ul class="space-y-3 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">POST /api/register</span>
+                  <p class="text-sm mt-1">Create new user account</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">POST /api/login</span>
+                  <p class="text-sm mt-1">Authenticate user and receive token</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">POST /api/logout</span>
+                  <p class="text-sm mt-1">Invalidate authentication token</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">GET /api/profile</span>
+                  <p class="text-sm mt-1">Retrieve authenticated user profile</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Booking Management Endpoints (Protected)
+            </h3>
+            <ul class="space-y-3 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">GET /api/bookings</span>
+                  <p class="text-sm mt-1">List all bookings for authenticated user</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">POST /api/bookings</span>
+                  <p class="text-sm mt-1">Create new booking</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">PUT /api/bookings/{id}</span>
+                  <p class="text-sm mt-1">Update existing booking</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1 font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent">DELETE /api/bookings/{id}</span>
+                  <p class="text-sm mt-1">Delete booking</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Implementation -->
+      <section class="py-12">
+        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
+          Technical Highlights
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Pricing Engine Architecture
+            </h3>
+            <p class="text-light-slate mb-4">
+              The pricing system uses a sophisticated rule-based engine that evaluates multiple factors to calculate accurate booking costs.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Prices stored in pence for precise calculations without floating-point errors
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Seasonal rates configurable for summer and winter periods
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Weekday/weekend rate variations for dynamic pricing
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Per-calendar-day evaluation for accurate multi-day bookings
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Capacity Management
+            </h3>
+            <p class="text-light-slate mb-4">
+              Intelligent capacity tracking ensures the car park never exceeds its maximum occupancy.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Real-time availability checking before booking confirmation
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Per-day capacity evaluation for overlapping bookings
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Configurable capacity limits via application settings
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-light-navy p-6 rounded-md">
+            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
+              Security & Authentication
+            </h3>
+            <p class="text-light-slate mb-4">
+              Laravel Sanctum provides robust token-based authentication for secure API access.
+            </p>
+            <ul class="space-y-2 text-light-slate">
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Stateless token authentication for scalability
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                User-specific booking access and management
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent me-3 mt-1">▹</span>
+                Demo accounts seeded for testing (admin and customer roles)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back to Portfolio -->
+      <section class="py-12 text-center">
+        <a
+          href="/"
+          class="inline-flex items-center px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+        >
+          <svg
+            class="w-5 h-5 me-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Portfolio
+        </a>
+      </section>
+    </main>
+
+    <footer class="text-center py-6">
+      <p class="text-slate text-xs font-mono">
+        Designed & Built by Pranay Teja Baddam
+      </p>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="/assets/theme.js"></script>
+  </body>
+</html>
