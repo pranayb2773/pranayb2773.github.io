@@ -62,3 +62,29 @@ body.menu-open {
 .screenshot-container:hover img {
   transform: scale(1.05);
 }
+
+/* Typing animation cursor */
+.typing-animation::after {
+  content: '|';
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Improved line height for better readability */
+p {
+  line-height: 1.75;
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  box-shadow: 0 2px 4px rgba(100, 255, 218, 0.3);
+}
