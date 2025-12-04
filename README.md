@@ -7,7 +7,7 @@ A modern, responsive portfolio website showcasing my experience as a Full-Stack 
 ## About
 
 Personal portfolio website featuring:
-- 6+ years of professional software engineering experience
+- 7+ years of professional software engineering experience
 - Expertise in PHP, Python, Laravel, Django, and modern web technologies
 - Project showcase and work history
 - Downloadable CV/Resume
