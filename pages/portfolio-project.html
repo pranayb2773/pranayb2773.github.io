@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -49,13 +49,61 @@
         --color-light-slate: #a8b2d1;
         --color-lightest-slate: #ccd6f6;
         --color-accent: #64ffda;
+        --color-accent-dim: #64ffda20;
+        --color-accent-glow: #64ffda40;
 
-        --font-family-sans: Inter, sans-serif;
-        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
-          monospace;
+        --font-family-sans: "DM Sans", sans-serif;
+        --font-family-display: "Sora", sans-serif;
+        --font-family-mono: "JetBrains Mono", monospace;
       }
     </style>
     <style>
+      @keyframes slide-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+
+      .glass {
+        background: var(--glass-bg, rgba(10, 25, 47, 0.8));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+      }
+
+      .glass-card {
+        background: linear-gradient(135deg, var(--glass-card-from, rgba(17, 34, 64, 0.8)), var(--glass-card-to, rgba(17, 34, 64, 0.4)));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+        transition: all 0.3s ease;
+      }
+
+      .glass-card:hover {
+        border-color: rgba(100, 255, 218, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       /* Lightbox Styles */
       .lightbox {
         display: none;
@@ -126,13 +174,8 @@
         transform: translateY(-50%) scale(1.1);
       }
 
-      .lightbox-prev {
-        left: 40px;
-      }
-
-      .lightbox-next {
-        right: 40px;
-      }
+      .lightbox-prev { left: 40px; }
+      .lightbox-next { right: 40px; }
 
       .lightbox-caption {
         position: absolute;
@@ -150,159 +193,86 @@
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
 
       @keyframes zoomIn {
-        from {
-          transform: scale(0.8);
-          opacity: 0;
-        }
-        to {
-          transform: scale(1);
-          opacity: 1;
-        }
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
       }
 
-      /* Mobile responsive */
       @media (max-width: 768px) {
-        #lightbox-img {
-          max-width: 95%;
-          max-height: 80vh;
-        }
-
-        .lightbox-close {
-          top: 10px;
-          right: 20px;
-          font-size: 32px;
-        }
-
-        .lightbox-prev,
-        .lightbox-next {
-          padding: 12px;
-        }
-
-        .lightbox-prev {
-          left: 10px;
-        }
-
-        .lightbox-next {
-          right: 10px;
-        }
-
-        .lightbox-caption {
-          bottom: 20px;
-          font-size: 14px;
-          padding: 8px 16px;
-          max-width: 90%;
-        }
+        #lightbox-img { max-width: 95%; max-height: 80vh; }
+        .lightbox-close { top: 10px; right: 20px; font-size: 32px; }
+        .lightbox-prev, .lightbox-next { padding: 12px; }
+        .lightbox-prev { left: 10px; }
+        .lightbox-next { right: 10px; }
+        .lightbox-caption { bottom: 20px; font-size: 14px; padding: 8px 16px; max-width: 90%; }
       }
     </style>
   </head>
-  <body class="text-slate font-sans">
-    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
-      <nav
-        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
-      >
-        <div class="text-accent text-2xl font-mono font-bold">
-          <a href="/">PB</a>
-        </div>
+  <body class="bg-navy text-slate font-sans">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-30" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-20" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+    </div>
 
-        <!-- Desktop Menu -->
-        <div class="flex items-center space-x-6">
-          <a
-            href="/"
-            class="text-lightest-slate hover:text-accent duration-300"
-          >
-            <span class="text-accent">←</span> Back to Portfolio
-          </a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle text-accent focus:outline-none"
-            aria-label="Toggle theme"
-          >
-            <svg
-              id="sun-icon"
-              class="w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg
-              id="moon-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
+    <header class="fixed top-0 z-[100] w-full">
+      <nav class="glass mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-xl sm:rounded-2xl">
+        <div class="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto">
+          <div class="text-accent text-xl sm:text-2xl font-mono font-bold animate-fade-in">
+            <a href="/" class="relative group">
+              <span class="relative z-10">PB</span>
+              <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+            </a>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-6">
+            <a href="/" class="text-lightest-slate hover:text-accent duration-300 text-sm sm:text-base group flex items-center gap-2">
+              <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+              <span class="hidden sm:inline">Back to Portfolio</span>
+              <span class="sm:hidden">Back</span>
+            </a>
+            <button id="theme-toggle" class="theme-toggle text-accent focus:outline-none hover:rotate-180 transition-transform duration-500" aria-label="Toggle theme">
+              <svg id="sun-icon" class="w-5 h-5 sm:w-6 sm:h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <svg id="moon-icon" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pt-24">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12 relative z-10">
       <!-- Hero Section -->
-      <section class="py-12">
-        <a
-          href="/"
-          class="inline-flex items-center text-accent font-mono text-sm hover:underline mb-8"
-        >
-          <svg
-            class="w-4 h-4 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+      <section class="py-8 sm:py-12">
+        <a href="/" class="inline-flex items-center text-accent font-mono text-xs sm:text-sm hover:underline mb-6 sm:mb-8 animate-fade-in">
+          <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
-        <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate mb-4">
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate mb-4 animate-slide-up">
           Portfolio Website
         </h1>
-        <p class="text-xl text-light-slate mb-8">
-          A modern, responsive personal portfolio built with vanilla HTML,
-          Tailwind CSS, and JavaScript
+        <p class="text-base sm:text-lg md:text-xl text-light-slate mb-6 sm:mb-8 animate-slide-up delay-100 max-w-3xl">
+          A modern, responsive personal portfolio built with vanilla HTML, Tailwind CSS, and JavaScript
         </p>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-3 sm:gap-4 animate-slide-up delay-200">
           <a
             href="https://github.com/pranayb2773/pranayb2773.github.io"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+            class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
           >
-            <svg
-              class="w-5 h-5 me-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
-              ></path>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
             </svg>
             View on GitHub
           </a>
@@ -310,20 +280,10 @@
             href="https://pranaybaddam.site"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+            class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
           >
-            <svg
-              class="w-5 h-5 me-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
             </svg>
             Live Demo
           </a>
@@ -331,273 +291,176 @@
       </section>
 
       <!-- Project Overview -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Project Overview
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">01.</span> Project Overview
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Purpose
-          </h3>
-          <p class="text-light-slate mb-6">
-            This portfolio website serves as a digital resume and showcase of my
-            professional experience as a Full-Stack Software Engineer. The goal
-            was to create a clean, modern, and accessible platform that
-            effectively communicates my skills, experience, and projects while
-            demonstrating my front-end development capabilities.
-          </p>
-
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Challenge
-          </h3>
-          <p class="text-light-slate mb-6">
-            Create a portfolio website that is fast, accessible, and visually
-            appealing without relying on heavy frameworks or build processes.
-            The site needed to be easily maintainable, SEO-friendly, and provide
-            an excellent user experience across all devices and themes.
-          </p>
-
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Solution
-          </h3>
-          <p class="text-light-slate">
-            Built a single-page application using semantic HTML5, Tailwind CSS
-            Browser CDN for rapid styling, and vanilla JavaScript for
-            interactivity. Implemented a custom light/dark theme toggle with
-            localStorage persistence, mobile-first responsive design, and SEO
-            optimizations including meta tags, robots.txt, and sitemap.xml.
-          </p>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Purpose</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                This portfolio website serves as a digital resume and showcase of my professional experience as a Full-Stack Software Engineer. The goal was to create a clean, modern, and accessible platform that effectively communicates my skills, experience, and projects.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Challenge</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Create a portfolio website that is fast, accessible, and visually appealing without relying on heavy frameworks. The site needed to be easily maintainable, SEO-friendly, and provide an excellent user experience across all devices.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Solution</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Built a single-page application using semantic HTML5, Tailwind CSS Browser CDN for rapid styling, and vanilla JavaScript for interactivity. Implemented a custom light/dark theme toggle with localStorage persistence, mobile-first responsive design, and SEO optimizations.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Screenshots Section -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Screenshots
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">02.</span> Screenshots
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="screenshot-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-3 sm:p-4 rounded-xl">
             <img
               src="../assets/images/Home.png"
               alt="Portfolio Homepage"
-              class="w-full rounded-md border-2 border-lightest-navy cursor-pointer hover:opacity-80 transition-opacity"
+              class="w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               onclick="openLightbox(0)"
             />
-            <p class="text-light-slate text-sm mt-2 text-center">
-              Hero Section with Introduction
-            </p>
+            <p class="text-light-slate text-xs sm:text-sm mt-2 text-center">Hero Section with Introduction</p>
           </div>
-          <div class="screenshot-container">
+          <div class="glass-card p-3 sm:p-4 rounded-xl">
             <img
               src="../assets/images/About.png"
               alt="About Section"
-              class="w-full rounded-md border-2 border-lightest-navy cursor-pointer hover:opacity-80 transition-opacity"
+              class="w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               onclick="openLightbox(1)"
             />
-            <p class="text-light-slate text-sm mt-2 text-center">
-              About Section with Skills
-            </p>
+            <p class="text-light-slate text-xs sm:text-sm mt-2 text-center">About Section with Skills</p>
           </div>
-          <div class="screenshot-container">
+          <div class="glass-card p-3 sm:p-4 rounded-xl">
             <img
               src="../assets/images/Experience.png"
               alt="Experience Section"
-              class="w-full rounded-md border-2 border-lightest-navy cursor-pointer hover:opacity-80 transition-opacity"
+              class="w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               onclick="openLightbox(2)"
             />
-            <p class="text-light-slate text-sm mt-2 text-center">
-              Work Experience with Tab Navigation
-            </p>
+            <p class="text-light-slate text-xs sm:text-sm mt-2 text-center">Work Experience with Tab Navigation</p>
           </div>
-          <div class="screenshot-container">
+          <div class="glass-card p-3 sm:p-4 rounded-xl">
             <img
               src="../assets/images/Projects.png"
               alt="Projects Section"
-              class="w-full rounded-md border-2 border-lightest-navy cursor-pointer hover:opacity-80 transition-opacity"
+              class="w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               onclick="openLightbox(3)"
             />
-            <p class="text-light-slate text-sm mt-2 text-center">
-              Featured Projects Showcase
-            </p>
+            <p class="text-light-slate text-xs sm:text-sm mt-2 text-center">Featured Projects Showcase</p>
           </div>
         </div>
       </section>
 
       <!-- Key Features -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Key Features
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">03.</span> Key Features
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Light/Dark Theme Toggle
-                </h3>
-                <p class="text-light-slate">
-                  Custom theme switcher with smooth transitions. User preference
-                  persists across sessions using localStorage. Includes
-                  carefully crafted color palettes for both themes with
-                  optimized contrast ratios.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Light/Dark Theme Toggle</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Custom theme switcher with smooth transitions and localStorage persistence for user preference.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Mobile-First Design
-                </h3>
-                <p class="text-light-slate">
-                  Fully responsive layout optimized for all screen sizes.
-                  Features a hamburger menu for mobile navigation with smooth
-                  slide-in animation and body scroll prevention when menu is
-                  open.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Mobile-First Design</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Fully responsive layout optimized for all screen sizes with hamburger menu for mobile navigation.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  SEO Optimized
-                </h3>
-                <p class="text-light-slate">
-                  Comprehensive meta tags including Open Graph and Twitter
-                  Cards. Includes robots.txt for search engine instructions and
-                  sitemap.xml for better indexing. Semantic HTML5 markup for
-                  improved accessibility and SEO.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">SEO Optimized</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Comprehensive meta tags, Open Graph, Twitter Cards, robots.txt, and sitemap.xml for better indexing.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Performance Optimized
-                </h3>
-                <p class="text-light-slate">
-                  Zero build process with CDN-based Tailwind CSS for fast
-                  loading. Minimal JavaScript for core functionality. Smooth CSS
-                  transitions and animations without performance overhead.
-                  Perfect for static hosting on GitHub Pages.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Performance Optimized</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Zero build process with CDN-based Tailwind CSS for fast loading. Perfect for static hosting.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Interactive Components
-                </h3>
-                <p class="text-light-slate">
-                  Tab-based work experience navigation for easy browsing.
-                  Smooth scroll-to-section navigation. Hover effects and
-                  animations on project cards. Downloadable PDF resume with
-                  clear call-to-action buttons.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Interactive Components</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Tab-based work experience navigation, smooth scroll, and hover effects on project cards.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Accessible Design
-                </h3>
-                <p class="text-light-slate">
-                  ARIA labels for better screen reader support. Keyboard
-                  navigation friendly. High contrast color schemes in both
-                  themes. Semantic HTML structure for improved accessibility and
-                  better user experience.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Accessible Design</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  ARIA labels, keyboard navigation, high contrast colors, and semantic HTML structure.
                 </p>
               </div>
             </div>
@@ -606,425 +469,73 @@
       </section>
 
       <!-- Tech Stack -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technology Stack
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> Technology Stack
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Frontend
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Frontend</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >HTML5</span
-                    >
-                    <p class="text-slate text-sm">
-                      Semantic markup for better SEO and accessibility
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">HTML5</span>
+                    <p class="text-slate text-xs sm:text-sm">Semantic markup for SEO and accessibility</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Tailwind CSS (Browser CDN v4)</span
-                    >
-                    <p class="text-slate text-sm">
-                      Utility-first CSS framework for rapid styling without
-                      build process
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Tailwind CSS 4</span>
+                    <p class="text-slate text-xs sm:text-sm">Utility-first CSS via Browser CDN</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >JavaScript (ES6+)</span
-                    >
-                    <p class="text-slate text-sm">
-                      Vanilla JavaScript for theme toggle, mobile menu, and tab
-                      navigation
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Google Fonts</span
-                    >
-                    <p class="text-slate text-sm">
-                      Inter font family for modern typography
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">JavaScript (ES6+)</span>
+                    <p class="text-slate text-xs sm:text-sm">Vanilla JS for interactivity</p>
                   </div>
                 </li>
               </ul>
             </div>
-
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Development & Deployment
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Deployment</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold">Git</span>
-                    <p class="text-slate text-sm">
-                      Version control and source code management
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">GitHub Pages</span>
+                    <p class="text-slate text-xs sm:text-sm">Static site hosting with auto deployment</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >GitHub Pages</span
-                    >
-                    <p class="text-slate text-sm">
-                      Static site hosting with automatic deployment from main
-                      branch
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Custom Domain</span>
+                    <p class="text-slate text-xs sm:text-sm">pranaybaddam.site via CNAME</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Custom Domain</span
-                    >
-                    <p class="text-slate text-sm">
-                      Configured with CNAME for professional domain
-                      (pranaybaddam.site)
-                    </p>
-                  </div>
-                </li>
-              </ul>
-
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
-                SEO & Performance
-              </h3>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Meta Tags</span
-                    >
-                    <p class="text-slate text-sm">
-                      Open Graph, Twitter Cards, and standard SEO meta tags
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >robots.txt & sitemap.xml</span
-                    >
-                    <p class="text-slate text-sm">
-                      Search engine optimization files for better indexing
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Google Analytics</span>
+                    <p class="text-slate text-xs sm:text-sm">Visitor tracking and insights</p>
                   </div>
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Project Structure -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Project Structure
-        </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <pre
-            class="text-light-slate font-mono text-sm overflow-x-auto"
-          ><code>.
-├── index.html                              # Main portfolio page (HTML + Tailwind + JS)
-├── pages/                                  # Project detail pages
-│   ├── portfolio-project.html              # This case study page
-│   ├── carpark-booking-api.html            # Car Park Booking API project
-│   ├── todo-list-api.html                  # Todo List API project
-│   └── job-tracker.html                    # Job Application Tracker project
-├── assets/                                 # Static assets
-│   ├── images/                             # Images and media files
-│   │   ├── Home.png                        # Screenshot - Homepage
-│   │   ├── About.png                       # Screenshot - About section
-│   │   ├── Experience.png                  # Screenshot - Experience section
-│   │   ├── Projects.png                    # Screenshot - Projects section
-│   │   ├── pb.ico                          # Favicon
-│   │   └── pranay_baddam_software_engineer.pdf # Downloadable CV/Resume
-│   ├── css/                                # Stylesheets
-│   │   └── styles.css                      # Custom CSS styles
-│   └── js/                                 # JavaScript files
-│       ├── theme.js                        # Theme toggle functionality
-│       └── main.js                         # Main JavaScript file
-├── robots.txt                              # SEO - Search engine instructions
-├── sitemap.xml                             # SEO - Site map for search engines
-├── .gitignore                              # Git ignore rules
-├── CNAME                                   # Custom domain configuration
-└── README.md                               # Project documentation</code></pre>
-        </div>
-      </section>
-
-      <!-- Technical Implementation -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technical Implementation
-        </h2>
-        <div class="space-y-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              1. Theme Toggle System
-            </h3>
-            <p class="text-light-slate mb-4">
-              Implemented a custom theme switcher that toggles between light and
-              dark modes. The system uses CSS custom properties (CSS variables)
-              to define color schemes and JavaScript to manage theme state.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                CSS custom properties for dynamic color switching
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                localStorage API for persisting user preference
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Smooth 0.3s transitions for theme changes
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Synchronized toggle buttons for desktop and mobile
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              2. Responsive Navigation
-            </h3>
-            <p class="text-light-slate mb-4">
-              Created a mobile-first navigation system with a hamburger menu for
-              smaller screens and a traditional horizontal menu for desktop.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Breakpoint-based visibility with Tailwind's responsive classes
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Full-screen mobile menu overlay with slide-in animation
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Body scroll prevention when mobile menu is open
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Smooth scroll to sections with proper z-index management
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              3. Interactive Experience Tabs
-            </h3>
-            <p class="text-light-slate mb-4">
-              Built a tab-based interface for the work experience section,
-              allowing users to switch between different companies easily.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Event delegation for efficient tab switching
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Dynamic content visibility with show/hide logic
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Active state styling with border accent colors
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Responsive layout (vertical on desktop, horizontal on mobile)
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              4. Performance Optimization
-            </h3>
-            <p class="text-light-slate mb-4">
-              Focused on delivering fast loading times and smooth performance
-              without compromising design quality.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Zero build process - direct browser execution
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                CDN-delivered Tailwind CSS for fast loading
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Minimal JavaScript (under 100 lines)
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                CSS transitions instead of JavaScript animations
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Preconnect hints for Google Fonts
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lessons Learned -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Lessons Learned
-        </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <ul class="space-y-4 text-light-slate">
-            <li class="flex items-start">
-              <span class="text-accent me-3 mt-1 text-xl">▹</span>
-              <div>
-                <span class="font-semibold text-lightest-slate"
-                  >Simplicity is powerful:</span
-                >
-                Modern web development doesn't always require complex
-                frameworks. Vanilla JavaScript and Tailwind CSS can deliver
-                professional results with better performance.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="text-accent me-3 mt-1 text-xl">▹</span>
-              <div>
-                <span class="font-semibold text-lightest-slate"
-                  >Mobile-first approach works:</span
-                >
-                Starting with mobile design constraints leads to better
-                decision-making and cleaner code for all screen sizes.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="text-accent me-3 mt-1 text-xl">▹</span>
-              <div>
-                <span class="font-semibold text-lightest-slate"
-                  >User preferences matter:</span
-                >
-                Implementing theme persistence with localStorage significantly
-                improves user experience by respecting their choice.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="text-accent me-3 mt-1 text-xl">▹</span>
-              <div>
-                <span class="font-semibold text-lightest-slate"
-                  >SEO from the start:</span
-                >
-                Building in SEO optimizations from the beginning (semantic HTML,
-                meta tags, sitemap) is easier than adding them later.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="text-accent me-3 mt-1 text-xl">▹</span>
-              <div>
-                <span class="font-semibold text-lightest-slate"
-                  >Accessibility is essential:</span
-                >
-                Using ARIA labels, semantic HTML, and proper contrast ratios
-                makes the site usable for everyone and improves overall quality.
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Future Improvements -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Future Improvements
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
-              Blog Integration
-            </h3>
-            <p class="text-light-slate text-sm">
-              Add a blog section to share technical articles and tutorials,
-              helping to increase organic traffic and demonstrate expertise.
-            </p>
-          </div>
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
-              Contact Form
-            </h3>
-            <p class="text-light-slate text-sm">
-              Implement a working contact form with backend integration
-              (possibly using Netlify Forms or similar) to make it easier for
-              potential employers to reach out.
-            </p>
-          </div>
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
-              Analytics Integration
-            </h3>
-            <p class="text-light-slate text-sm">
-              Add Google Analytics or privacy-focused alternatives like Plausible
-              to track visitor behavior and optimize content.
-            </p>
-          </div>
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3">
-              Project Filtering
-            </h3>
-            <p class="text-light-slate text-sm">
-              Add filter buttons to the projects section to allow visitors to
-              filter by technology stack (Laravel, Python, React, etc.).
-            </p>
           </div>
         </div>
       </section>
 
       <!-- Back to Portfolio -->
-      <section class="py-12 text-center">
-        <a
-          href="/"
-          class="inline-flex items-center px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
-        >
-          <svg
-            class="w-5 h-5 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+      <section class="py-8 sm:py-12 text-center scroll-animate">
+        <a href="/" class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm hover:bg-accent/10 duration-300 group">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
@@ -1048,99 +559,69 @@
       </button>
     </div>
 
-    <footer class="text-center py-6">
-      <p class="text-slate text-xs font-mono">
-        Designed & Built by Pranay Teja Baddam
+    <footer class="text-center py-8 sm:py-12 relative z-10">
+      <p class="text-slate text-xs sm:text-sm font-mono">
+        Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
       </p>
     </footer>
 
-    <!-- External JavaScript -->
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/analytics.js"></script>
 
-    <!-- Lightbox JavaScript -->
     <script>
-      // Array of images for the lightbox
       const images = [
-        {
-          src: '../assets/images/Home.png',
-          alt: 'Portfolio Homepage',
-          caption: 'Hero Section with Introduction'
-        },
-        {
-          src: '../assets/images/About.png',
-          alt: 'About Section',
-          caption: 'About Section with Skills'
-        },
-        {
-          src: '../assets/images/Experience.png',
-          alt: 'Experience Section',
-          caption: 'Work Experience with Tab Navigation'
-        },
-        {
-          src: '../assets/images/Projects.png',
-          alt: 'Projects Section',
-          caption: 'Featured Projects Showcase'
-        }
+        { src: '../assets/images/Home.png', alt: 'Portfolio Homepage', caption: 'Hero Section with Introduction' },
+        { src: '../assets/images/About.png', alt: 'About Section', caption: 'About Section with Skills' },
+        { src: '../assets/images/Experience.png', alt: 'Experience Section', caption: 'Work Experience with Tab Navigation' },
+        { src: '../assets/images/Projects.png', alt: 'Projects Section', caption: 'Featured Projects Showcase' }
       ];
-
       let currentIndex = 0;
 
-      // Open lightbox with specific image
       function openLightbox(index) {
         currentIndex = index;
         const lightbox = document.getElementById('lightbox');
         const img = document.getElementById('lightbox-img');
         const caption = document.getElementById('lightbox-caption');
-
         img.src = images[currentIndex].src;
         img.alt = images[currentIndex].alt;
         caption.textContent = images[currentIndex].caption;
-
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        document.body.style.overflow = 'hidden';
       }
 
-      // Close lightbox
       function closeLightbox() {
-        const lightbox = document.getElementById('lightbox');
-        lightbox.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
       }
 
-      // Change image (next or previous)
       function changeImage(direction) {
         currentIndex += direction;
-
-        // Loop around if at the end or beginning
-        if (currentIndex >= images.length) {
-          currentIndex = 0;
-        } else if (currentIndex < 0) {
-          currentIndex = images.length - 1;
-        }
-
+        if (currentIndex >= images.length) currentIndex = 0;
+        else if (currentIndex < 0) currentIndex = images.length - 1;
         const img = document.getElementById('lightbox-img');
         const caption = document.getElementById('lightbox-caption');
-
         img.src = images[currentIndex].src;
         img.alt = images[currentIndex].alt;
         caption.textContent = images[currentIndex].caption;
       }
 
-      // Keyboard navigation
       document.addEventListener('keydown', function(event) {
         const lightbox = document.getElementById('lightbox');
-
         if (lightbox.classList.contains('active')) {
-          if (event.key === 'Escape') {
-            closeLightbox();
-          } else if (event.key === 'ArrowLeft') {
-            changeImage(-1);
-          } else if (event.key === 'ArrowRight') {
-            changeImage(1);
-          }
+          if (event.key === 'Escape') closeLightbox();
+          else if (event.key === 'ArrowLeft') changeImage(-1);
+          else if (event.key === 'ArrowRight') changeImage(1);
         }
       });
+
+      // Scroll animations
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, observerOptions);
+      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>

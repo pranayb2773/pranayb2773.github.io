@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -49,111 +49,123 @@
         --color-light-slate: #a8b2d1;
         --color-lightest-slate: #ccd6f6;
         --color-accent: #64ffda;
+        --color-accent-dim: #64ffda20;
+        --color-accent-glow: #64ffda40;
 
-        --font-family-sans: Inter, sans-serif;
-        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
-          monospace;
+        --font-family-sans: "DM Sans", sans-serif;
+        --font-family-display: "Sora", sans-serif;
+        --font-family-mono: "JetBrains Mono", monospace;
+      }
+    </style>
+    <style>
+      @keyframes slide-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+
+      .glass {
+        background: var(--glass-bg, rgba(10, 25, 47, 0.8));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+      }
+
+      .glass-card {
+        background: linear-gradient(135deg, var(--glass-card-from, rgba(17, 34, 64, 0.8)), var(--glass-card-to, rgba(17, 34, 64, 0.4)));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+        transition: all 0.3s ease;
+      }
+
+      .glass-card:hover {
+        border-color: rgba(100, 255, 218, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
-  <body class="text-slate font-sans">
-    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
-      <nav
-        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
-      >
-        <div class="text-accent text-2xl font-mono font-bold">
-          <a href="/">PB</a>
-        </div>
+  <body class="bg-navy text-slate font-sans">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-30" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-20" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+    </div>
 
-        <!-- Desktop Menu -->
-        <div class="flex items-center space-x-6">
-          <a
-            href="/"
-            class="text-lightest-slate hover:text-accent duration-300"
-          >
-            <span class="text-accent">←</span> Back to Portfolio
-          </a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle text-accent focus:outline-none"
-            aria-label="Toggle theme"
-          >
-            <svg
-              id="sun-icon"
-              class="w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg
-              id="moon-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
+    <header class="fixed top-0 z-[100] w-full">
+      <nav class="glass mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-xl sm:rounded-2xl">
+        <div class="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto">
+          <div class="text-accent text-xl sm:text-2xl font-mono font-bold animate-fade-in">
+            <a href="/" class="relative group">
+              <span class="relative z-10">PB</span>
+              <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+            </a>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-6">
+            <a href="/" class="text-lightest-slate hover:text-accent duration-300 text-sm sm:text-base group flex items-center gap-2">
+              <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+              <span class="hidden sm:inline">Back to Portfolio</span>
+              <span class="sm:hidden">Back</span>
+            </a>
+            <button id="theme-toggle" class="theme-toggle text-accent focus:outline-none hover:rotate-180 transition-transform duration-500" aria-label="Toggle theme">
+              <svg id="sun-icon" class="w-5 h-5 sm:w-6 sm:h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <svg id="moon-icon" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pt-24">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12 relative z-10">
       <!-- Hero Section -->
-      <section class="py-12">
-        <a
-          href="/"
-          class="inline-flex items-center text-accent font-mono text-sm hover:underline mb-8"
-        >
-          <svg
-            class="w-4 h-4 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+      <section class="py-8 sm:py-12">
+        <a href="/" class="inline-flex items-center text-accent font-mono text-xs sm:text-sm hover:underline mb-6 sm:mb-8 animate-fade-in">
+          <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
-        <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate mb-4">
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate mb-4 animate-slide-up">
           Todo List API
         </h1>
-        <p class="text-xl text-light-slate mb-8">
+        <p class="text-base sm:text-lg md:text-xl text-light-slate mb-6 sm:mb-8 animate-slide-up delay-100 max-w-3xl">
           A RESTful API built with Laravel featuring role-based access control, tag management, and Docker support
         </p>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-3 sm:gap-4 animate-slide-up delay-200">
           <a
             href="https://github.com/pranayb2773/todo-list-api"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+            class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
           >
-            <svg
-              class="w-5 h-5 me-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
-              ></path>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
             </svg>
             View on GitHub
           </a>
@@ -161,191 +173,131 @@
       </section>
 
       <!-- Project Overview -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Project Overview
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">01.</span> Project Overview
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Purpose
-          </h3>
-          <p class="text-light-slate mb-6">
-            The Todo List API is a comprehensive RESTful API built with Laravel that provides robust todo list management functionality. It features sophisticated role-based access control, tag management capabilities, and complete CRUD operations for managing users, tags, and todo lists.
-          </p>
-
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Challenge
-          </h3>
-          <p class="text-light-slate mb-6">
-            Build a scalable, secure API that implements fine-grained access control where administrators have full system access while regular users can only manage their own data. The system needed to support tag-based organization, containerized deployment, and comprehensive API documentation.
-          </p>
-
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Solution
-          </h3>
-          <p class="text-light-slate">
-            Implemented a RESTful API using Laravel with Laravel Sanctum for authentication. Created a policy-based authorization system that enforces role-specific permissions for all operations. Integrated Docker support via Laravel Sail for easy deployment, and provided comprehensive documentation through OpenAPI/Swagger specifications and Postman collections.
-          </p>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Purpose</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                The Todo List API is a comprehensive RESTful API built with Laravel that provides robust todo list management functionality. It features sophisticated role-based access control, tag management capabilities, and complete CRUD operations.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Challenge</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Build a scalable, secure API that implements fine-grained access control where administrators have full system access while regular users can only manage their own data. Support tag-based organization and containerized deployment.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Solution</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Implemented a RESTful API using Laravel with Sanctum for authentication. Created a policy-based authorization system that enforces role-specific permissions. Integrated Docker support via Laravel Sail and provided comprehensive documentation.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Key Features -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Key Features
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">02.</span> Key Features
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Role-Based Access Control
-                </h3>
-                <p class="text-light-slate">
-                  Comprehensive policy-based authorization system. Admins have full CRUD access across all resources, while regular users can only view and manage their own data. Enforced at the API level for security.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Role-Based Access Control</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Comprehensive policy-based authorization. Admins have full access, users can only manage their own data.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Tag Management System
-                </h3>
-                <p class="text-light-slate">
-                  All authenticated users can create, edit, and delete tags for organizing todo items. Provides flexible categorization and filtering capabilities for better task organization.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Tag Management System</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  All users can create, edit, and delete tags for organizing todo items. Flexible categorization and filtering.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Complete Todo List CRUD
-                </h3>
-                <p class="text-light-slate">
-                  Full lifecycle management for todo lists including create, read, update, and delete operations. Admin users can manage all lists, while regular users can only access their own.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Complete Todo List CRUD</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Full lifecycle management for todo lists. Admin users can manage all lists, regular users access only their own.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Comprehensive Documentation
-                </h3>
-                <p class="text-light-slate">
-                  OpenAPI/Swagger specification for interactive API documentation. Includes Postman collection for easy testing and integration, providing clear examples for all endpoints.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Comprehensive Documentation</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  OpenAPI/Swagger specification for interactive docs. Includes Postman collection for easy testing.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Docker Support with Laravel Sail
-                </h3>
-                <p class="text-light-slate">
-                  Containerized deployment using Laravel Sail for consistent development and production environments. Simplifies setup and ensures reproducible builds across different systems.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Docker Support</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Containerized deployment using Laravel Sail. Consistent development and production environments.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  User Management
-                </h3>
-                <p class="text-light-slate">
-                  Admin users can perform all user operations including creation, updates, and deletion. Regular users can view and update their own profile information for account management.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">User Management</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Admin users can perform all user operations. Regular users can view and update their own profile.
                 </p>
               </div>
             </div>
@@ -354,137 +306,60 @@
       </section>
 
       <!-- Tech Stack -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technology Stack
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">03.</span> Technology Stack
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Backend & Framework
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Backend & Framework</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Laravel Framework</span
-                    >
-                    <p class="text-slate text-sm">
-                      Modern PHP framework for robust API development
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel Framework</span>
+                    <p class="text-slate text-xs sm:text-sm">Modern PHP framework for robust APIs</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >PHP (85.3%)</span
-                    >
-                    <p class="text-slate text-sm">
-                      Primary language with modern PHP features
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PHP 8.x</span>
+                    <p class="text-slate text-xs sm:text-sm">Modern PHP with advanced features</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Blade Templates (13.7%)</span
-                    >
-                    <p class="text-slate text-sm">
-                      Laravel's templating engine for views
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Laravel Sanctum</span
-                    >
-                    <p class="text-slate text-sm">
-                      Token-based authentication for secure API access
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel Sanctum</span>
+                    <p class="text-slate text-xs sm:text-sm">Token-based API authentication</p>
                   </div>
                 </li>
               </ul>
             </div>
-
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Development & Deployment
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Development & Deployment</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Laravel Sail</span
-                    >
-                    <p class="text-slate text-sm">
-                      Docker-based development environment
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel Sail</span>
+                    <p class="text-slate text-xs sm:text-sm">Docker-based development environment</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Docker</span
-                    >
-                    <p class="text-slate text-sm">
-                      Containerization for consistent deployments
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Docker</span>
+                    <p class="text-slate text-xs sm:text-sm">Containerization for consistent deployments</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Composer</span
-                    >
-                    <p class="text-slate text-sm">
-                      PHP dependency management
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold">Git</span>
-                    <p class="text-slate text-sm">
-                      Version control system
-                    </p>
-                  </div>
-                </li>
-              </ul>
-
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
-                Documentation & Testing
-              </h3>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >OpenAPI/Swagger</span
-                    >
-                    <p class="text-slate text-sm">
-                      Interactive API documentation
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Postman Collection</span
-                    >
-                    <p class="text-slate text-sm">
-                      Pre-configured API testing suite
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">OpenAPI/Swagger</span>
+                    <p class="text-slate text-xs sm:text-sm">Interactive API documentation</p>
                   </div>
                 </li>
               </ul>
@@ -493,179 +368,113 @@
         </div>
       </section>
 
-      <!-- Architecture & Access Control -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Architecture & Access Control
+      <!-- Role-Based Permissions -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> Access Control
         </h2>
-        <div class="space-y-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Role-Based Permissions
-            </h3>
-            <p class="text-light-slate mb-4">
-              The API implements a sophisticated policy-based authorization system that enforces different access levels based on user roles.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-              <div>
-                <h4 class="text-lg font-semibold text-lightest-slate mb-3">
-                  Admin Permissions
-                </h4>
-                <ul class="space-y-2 text-light-slate text-sm">
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    Full CRUD access to all users
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    Manage all todo lists across the system
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    Create, edit, and delete all tags
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    System-wide read and write access
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="text-lg font-semibold text-lightest-slate mb-3">
-                  Regular User Permissions
-                </h4>
-                <ul class="space-y-2 text-light-slate text-sm">
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    View and update own profile only
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    Manage only their own todo lists
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    Create, edit, and delete their own tags
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-accent me-2">▹</span>
-                    No access to other users' data
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Project Structure
-            </h3>
-            <p class="text-light-slate mb-4">
-              Clean architecture following Laravel best practices with organized controllers, policies, and database layers.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-              <div>
-                <h4 class="text-sm font-semibold text-accent mb-2">
-                  Controllers (v1)
-                </h4>
-                <p class="text-light-slate text-sm">
-                  app/Http/Controllers/v1
-                </p>
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold text-accent mb-2">
-                  Access Policies (v1)
-                </h4>
-                <p class="text-light-slate text-sm">
-                  app/Policies/v1
-                </p>
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold text-accent mb-2">
-                  Database Layer
-                </h4>
-                <p class="text-light-slate text-sm">
-                  database/migrations & seeders
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- API Features -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          API Capabilities
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
-              User Management
-            </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Admin Permissions</h3>
             <ul class="space-y-2 text-light-slate text-sm">
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                Full CRUD access to all users
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                Manage all todo lists across the system
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                Create, edit, and delete all tags
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                System-wide read and write access
+              </li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Regular User Permissions</h3>
+            <ul class="space-y-2 text-light-slate text-sm">
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                View and update own profile only
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                Manage only their own todo lists
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                Create, edit, and delete their own tags
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-accent">▹</span>
+                No access to other users' data
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Capabilities -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">05.</span> API Capabilities
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">User Management</h3>
+            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 User registration & authentication
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 Profile view & updates
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 Admin user CRUD operations
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
-                Role-based access enforcement
-              </li>
             </ul>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
-              Todo List Management
-            </h3>
-            <ul class="space-y-2 text-light-slate text-sm">
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+          <div class="glass-card p-5 sm:p-6 rounded-xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">Todo List Management</h3>
+            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 Create new todo lists
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 View all accessible lists
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
-                Update list details
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
-                Delete owned lists
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
+                Update and delete lists
               </li>
             </ul>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-4">
-              Tag Organization
-            </h3>
-            <ul class="space-y-2 text-light-slate text-sm">
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+          <div class="glass-card p-5 sm:p-6 rounded-xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">Tag Organization</h3>
+            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 Create custom tags
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
-                Edit tag names
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
+                Edit and delete tags
               </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
-                Delete unused tags
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-2 font-mono">▹</span>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-mono">▹</span>
                 Tag-based filtering
               </li>
             </ul>
@@ -673,127 +482,33 @@
         </div>
       </section>
 
-      <!-- Technical Implementation -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technical Highlights
-        </h2>
-        <div class="space-y-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Policy-Based Authorization
-            </h3>
-            <p class="text-light-slate mb-4">
-              Laravel policies provide granular control over resource access, ensuring users can only perform authorized actions.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Centralized authorization logic in policy classes
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Automatic enforcement at controller level
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Clear separation between admin and user permissions
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Prevents unauthorized data access at API level
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Docker Integration with Laravel Sail
-            </h3>
-            <p class="text-light-slate mb-4">
-              Containerized development environment ensures consistency across development and production deployments.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                One-command setup for local development
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Isolated environment with all dependencies
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Easy scaling and deployment options
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Reproducible builds across different systems
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              API Documentation
-            </h3>
-            <p class="text-light-slate mb-4">
-              Comprehensive documentation through multiple formats for easy integration and testing.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                OpenAPI/Swagger specification for interactive docs
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Postman collection for immediate testing
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Clear endpoint examples and request/response formats
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Authentication flow documentation
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <!-- Back to Portfolio -->
-      <section class="py-12 text-center">
-        <a
-          href="/"
-          class="inline-flex items-center px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
-        >
-          <svg
-            class="w-5 h-5 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+      <section class="py-8 sm:py-12 text-center scroll-animate">
+        <a href="/" class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm hover:bg-accent/10 duration-300 group">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
       </section>
     </main>
 
-    <footer class="text-center py-6">
-      <p class="text-slate text-xs font-mono">
-        Designed & Built by Pranay Teja Baddam
+    <footer class="text-center py-8 sm:py-12 relative z-10">
+      <p class="text-slate text-xs sm:text-sm font-mono">
+        Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
       </p>
     </footer>
 
-    <!-- External JavaScript -->
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/analytics.js"></script>
+    <script>
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, observerOptions);
+      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>

@@ -9,15 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabs.forEach((tab, index) => {
     tab.addEventListener("click", () => {
+      // Remove active state from all tabs
       tabs.forEach((t) => {
-        t.classList.remove("active", "text-accent", "border-accent");
-        t.classList.add("text-slate", "border-lightest-navy");
+        t.classList.remove("active", "text-accent", "border-accent", "glass-card");
+        t.classList.add("text-slate", "border-transparent");
       });
-      tab.classList.add("active", "text-accent", "border-accent");
-      tab.classList.remove("text-slate", "border-lightest-navy");
 
+      // Add active state to clicked tab
+      tab.classList.add("active", "text-accent", "border-accent", "glass-card");
+      tab.classList.remove("text-slate", "border-transparent");
+
+      // Hide all content panels
       contents.forEach((c) => c.classList.add("hidden"));
-      contents[index].classList.remove("hidden");
+
+      // Show the corresponding content panel
+      if (contents[index]) {
+        contents[index].classList.remove("hidden");
+      }
     });
   });
 

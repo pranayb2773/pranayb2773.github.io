@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -49,116 +49,162 @@
         --color-light-slate: #a8b2d1;
         --color-lightest-slate: #ccd6f6;
         --color-accent: #64ffda;
+        --color-accent-dim: #64ffda20;
+        --color-accent-glow: #64ffda40;
 
-        --font-family-sans: Inter, sans-serif;
-        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
-          monospace;
+        --font-family-sans: "DM Sans", sans-serif;
+        --font-family-display: "Sora", sans-serif;
+        --font-family-mono: "JetBrains Mono", monospace;
+      }
+    </style>
+    <style>
+      /* Animations */
+      @keyframes slide-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+      }
+
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+      }
+
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+
+      /* Glass effect */
+      .glass {
+        background: var(--glass-bg, rgba(10, 25, 47, 0.8));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+      }
+
+      .glass-card {
+        background: linear-gradient(135deg, var(--glass-card-from, rgba(17, 34, 64, 0.8)), var(--glass-card-to, rgba(17, 34, 64, 0.4)));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+        transition: all 0.3s ease;
+      }
+
+      .glass-card:hover {
+        border-color: rgba(100, 255, 218, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #64ffda 0%, #00d9ff 50%, #64ffda 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 200% auto;
       }
     </style>
   </head>
-  <body class="text-slate font-sans">
-    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
-      <nav
-        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
-      >
-        <div class="text-accent text-2xl font-mono font-bold">
-          <a href="/">PB</a>
-        </div>
+  <body class="bg-navy text-slate font-sans">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-30" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-20" style="background: radial-gradient(circle, var(--orb-color, rgba(100, 255, 218, 0.05)) 0%, transparent 70%);"></div>
+    </div>
 
-        <!-- Desktop Menu -->
-        <div class="flex items-center space-x-6">
-          <a
-            href="/"
-            class="text-lightest-slate hover:text-accent duration-300"
-          >
-            <span class="text-accent">←</span> Back to Portfolio
-          </a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle text-accent focus:outline-none"
-            aria-label="Toggle theme"
-          >
-            <svg
-              id="sun-icon"
-              class="w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+    <header class="fixed top-0 z-[100] w-full">
+      <nav class="glass mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-xl sm:rounded-2xl">
+        <div class="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto">
+          <div class="text-accent text-xl sm:text-2xl font-mono font-bold animate-fade-in">
+            <a href="/" class="relative group">
+              <span class="relative z-10">PB</span>
+              <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 sm:gap-6">
+            <a
+              href="/"
+              class="text-lightest-slate hover:text-accent duration-300 text-sm sm:text-base group flex items-center gap-2"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg
-              id="moon-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+              <span class="hidden sm:inline">Back to Portfolio</span>
+              <span class="sm:hidden">Back</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle text-accent focus:outline-none hover:rotate-180 transition-transform duration-500"
+              aria-label="Toggle theme"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
+              <svg id="sun-icon" class="w-5 h-5 sm:w-6 sm:h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <svg id="moon-icon" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pt-24">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12 relative z-10">
       <!-- Hero Section -->
-      <section class="py-12">
+      <section class="py-8 sm:py-12">
         <a
           href="/"
-          class="inline-flex items-center text-accent font-mono text-sm hover:underline mb-8"
+          class="inline-flex items-center text-accent font-mono text-xs sm:text-sm hover:underline mb-6 sm:mb-8 animate-fade-in"
         >
-          <svg
-            class="w-4 h-4 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+          <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
-        <div class="flex items-center gap-4 mb-4">
-          <h1 class="text-4xl md:text-6xl font-bold text-lightest-slate">
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 animate-slide-up">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate">
             Job Application Tracker
           </h1>
-          <span class="px-3 py-1 text-xs font-mono bg-accent/10 text-accent border border-accent rounded-full">
+          <span class="self-start px-3 py-1 text-xs font-mono bg-accent/10 text-accent border border-accent/30 rounded-full whitespace-nowrap">
             In Development
           </span>
         </div>
-        <p class="text-xl text-light-slate mb-8">
+
+        <p class="text-base sm:text-lg md:text-xl text-light-slate mb-6 sm:mb-8 animate-slide-up delay-100 max-w-3xl">
           A comprehensive Laravel web application with AI-powered CV analysis and intelligent job application tracking
         </p>
-        <div class="flex flex-wrap gap-4">
+
+        <div class="flex flex-wrap gap-3 sm:gap-4 animate-slide-up delay-200">
           <a
             href="https://github.com/pranayb2773/job_tracker"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+            class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
           >
-            <svg
-              class="w-5 h-5 me-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
-              ></path>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
             </svg>
             View on GitHub
           </a>
@@ -166,224 +212,157 @@
       </section>
 
       <!-- Project Overview -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Project Overview
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">01.</span> Project Overview
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Purpose
-          </h3>
-          <p class="text-light-slate mb-6">
-            Job Application Tracker is a comprehensive web application designed to help job seekers manage their application process efficiently. It combines traditional application tracking with cutting-edge AI technology to provide intelligent CV analysis, ATS scoring, and personalized improvement recommendations.
-          </p>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Purpose</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Job Application Tracker is a comprehensive web application designed to help job seekers manage their application process efficiently. It combines traditional application tracking with cutting-edge AI technology to provide intelligent CV analysis, ATS scoring, and personalized improvement recommendations.
+              </p>
+            </div>
 
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Challenge
-          </h3>
-          <p class="text-light-slate mb-6">
-            Job seekers often struggle to keep track of multiple applications and understand how their CVs perform against Applicant Tracking Systems (ATS). The challenge was to create a system that not only manages applications but also provides actionable insights to improve application success rates using AI analysis across multiple dimensions.
-          </p>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Challenge</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Job seekers often struggle to keep track of multiple applications and understand how their CVs perform against Applicant Tracking Systems (ATS). The challenge was to create a system that not only manages applications but also provides actionable insights to improve application success rates using AI analysis across multiple dimensions.
+              </p>
+            </div>
 
-          <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-            Solution
-          </h3>
-          <p class="text-light-slate">
-            Built a modern full-stack Laravel application using Livewire 3 and Volt for reactive UI components, integrated with multiple AI providers (Claude, OpenAI, Gemini) for comprehensive CV analysis. Implemented an 8-dimensional ATS scoring system with caching for performance, secure document management for PDF uploads, and real-time application status tracking. The application uses Tailwind CSS 4.x and Flux Pro UI for a polished, modern interface.
-          </p>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Solution</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Built a modern full-stack Laravel application using Livewire 3 and Volt for reactive UI components, integrated with multiple AI providers (Claude, OpenAI, Gemini) for comprehensive CV analysis. Implemented an 8-dimensional ATS scoring system with caching for performance, secure document management for PDF uploads, and real-time application status tracking.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Development Status -->
-      <section class="py-12">
-        <div class="bg-light-navy border-l-4 border-accent p-6 rounded-md">
-          <div class="flex items-start">
-            <svg
-              class="w-6 h-6 text-accent me-4 flex-shrink-0 mt-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+      <section class="py-8 sm:py-12 scroll-animate">
+        <div class="glass-card border-l-4 border-l-accent p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-3">
-                Active Development
-              </h3>
-              <p class="text-light-slate mb-3">
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-2">Active Development</h3>
+              <p class="text-light-slate text-sm sm:text-base mb-3">
                 This project is currently under active development. New features are being added regularly, and the application is being continuously improved based on real-world usage and feedback.
               </p>
-              <p class="text-light-slate text-sm">
-                <span class="font-semibold text-accent">License:</span> MIT (Open Source) |
-                <span class="font-semibold text-accent ml-4">Status:</span> Actively Maintained
-              </p>
+              <div class="flex flex-wrap gap-3 text-xs sm:text-sm">
+                <span class="text-accent font-mono">License: MIT</span>
+                <span class="text-slate">|</span>
+                <span class="text-accent font-mono">Status: Active</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Key Features -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Key Features
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">02.</span> Key Features
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                />
-              </svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  AI-Powered CV Analysis
-                </h3>
-                <p class="text-light-slate">
-                  Comprehensive ATS scoring across 8 dimensions with AI-generated improvement recommendations. Supports multiple AI providers including Claude, OpenAI, and Gemini with intelligent caching for performance.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">AI-Powered CV Analysis</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Comprehensive ATS scoring across 8 dimensions with AI-generated improvement recommendations. Supports multiple AI providers including Claude, OpenAI, and Gemini.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Application Lifecycle Tracking
-                </h3>
-                <p class="text-light-slate">
-                  Real-time job application status tracking from initial submission through interviews to final decision. Manage all your applications in one centralized dashboard with detailed timeline views.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Application Lifecycle Tracking</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Real-time job application status tracking from initial submission through interviews to final decision. Manage all your applications in one centralized dashboard.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Secure Document Management
-                </h3>
-                <p class="text-light-slate">
-                  Upload and securely store PDF documents including CVs, cover letters, and certificates. All documents are encrypted and accessible only to authenticated users with proper access controls.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Secure Document Management</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Upload and securely store PDF documents including CVs, cover letters, and certificates. All documents are encrypted and accessible only to authenticated users.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Modern Reactive UI
-                </h3>
-                <p class="text-light-slate">
-                  Built with Livewire 3 and Volt for smooth, reactive interactions without page reloads. Features a polished interface using Flux Pro UI components and Tailwind CSS 4.x for a modern user experience.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Modern Reactive UI</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Built with Livewire 3 and Volt for smooth, reactive interactions without page reloads. Features a polished interface using Flux Pro UI components.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  8-Dimensional ATS Scoring
-                </h3>
-                <p class="text-light-slate">
-                  Comprehensive analysis across keyword optimization, formatting, skills matching, experience relevance, education alignment, achievements quantification, readability, and overall ATS compatibility.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">8-Dimensional ATS Scoring</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Comprehensive analysis across keyword optimization, formatting, skills matching, experience relevance, education alignment, and more.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <div class="flex items-start mb-4">
-              <svg
-                class="w-8 h-8 text-accent me-4 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+              </div>
               <div>
-                <h3 class="text-xl font-semibold text-lightest-slate mb-2">
-                  Secure Authentication
-                </h3>
-                <p class="text-light-slate">
-                  Built on Laravel's robust authentication system with secure session management. User data and documents are protected with industry-standard encryption and access controls.
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Secure Authentication</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Built on Laravel's robust authentication system with secure session management. User data and documents are protected with industry-standard encryption.
                 </p>
               </div>
             </div>
@@ -392,144 +371,89 @@
       </section>
 
       <!-- Tech Stack -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technology Stack
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">03.</span> Technology Stack
         </h2>
-        <div class="bg-light-navy p-8 rounded-md">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Backend & Framework
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Backend & Framework</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Laravel 12</span
-                    >
-                    <p class="text-slate text-sm">
-                      Modern PHP framework for robust web application development
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel 12</span>
+                    <p class="text-slate text-xs sm:text-sm">Modern PHP framework for robust web apps</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >PHP 8.3+</span
-                    >
-                    <p class="text-slate text-sm">
-                      Latest PHP version with enhanced performance and features
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PHP 8.3+</span>
+                    <p class="text-slate text-xs sm:text-sm">Latest PHP with enhanced performance</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Livewire 3</span
-                    >
-                    <p class="text-slate text-sm">
-                      Full-stack framework for dynamic, reactive interfaces
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
-                  <div>
-                    <span class="text-lightest-slate font-semibold">Volt</span>
-                    <p class="text-slate text-sm">
-                      Functional Livewire components for cleaner code
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Livewire 3 & Volt</span>
+                    <p class="text-slate text-xs sm:text-sm">Reactive UI components without JS overhead</p>
                   </div>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-                Frontend & Styling
-              </h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Frontend & Database</h3>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Tailwind CSS 4.x</span
-                    >
-                    <p class="text-slate text-sm">
-                      Utility-first CSS framework for modern styling
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Tailwind CSS 4.x</span>
+                    <p class="text-slate text-xs sm:text-sm">Utility-first CSS framework</p>
                   </div>
                 </li>
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >Flux Pro UI</span
-                    >
-                    <p class="text-slate text-sm">
-                      Premium UI component library for polished interfaces
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Flux Pro UI</span>
+                    <p class="text-slate text-xs sm:text-sm">Premium UI component library</p>
                   </div>
                 </li>
-              </ul>
-
-              <h3 class="text-xl font-semibold text-lightest-slate mb-4 mt-6">
-                Database
-              </h3>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="text-accent me-3 mt-1">▹</span>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold"
-                      >SQLite / MySQL / PostgreSQL</span
-                    >
-                    <p class="text-slate text-sm">
-                      Flexible database support for different environments
-                    </p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">SQLite / MySQL / PostgreSQL</span>
+                    <p class="text-slate text-xs sm:text-sm">Flexible database support</p>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div class="mt-8 pt-8 border-t border-lightest-navy">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              AI Integration
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
+          <div class="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-lightest-navy/30">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">AI Integration</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="flex items-start gap-3">
+                <span class="text-accent mt-1">▹</span>
                 <div>
-                  <span class="text-lightest-slate font-semibold"
-                    >Anthropic Claude</span
-                  >
-                  <p class="text-slate text-sm">
-                    Advanced AI for CV analysis and recommendations
-                  </p>
+                  <span class="text-lightest-slate font-semibold text-sm sm:text-base">Anthropic Claude</span>
+                  <p class="text-slate text-xs sm:text-sm">Advanced AI for CV analysis</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
+              <div class="flex items-start gap-3">
+                <span class="text-accent mt-1">▹</span>
                 <div>
-                  <span class="text-lightest-slate font-semibold">OpenAI</span>
-                  <p class="text-slate text-sm">
-                    Alternative AI provider for diverse analysis
-                  </p>
+                  <span class="text-lightest-slate font-semibold text-sm sm:text-base">OpenAI</span>
+                  <p class="text-slate text-xs sm:text-sm">Alternative AI provider</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
+              <div class="flex items-start gap-3">
+                <span class="text-accent mt-1">▹</span>
                 <div>
-                  <span class="text-lightest-slate font-semibold"
-                    >Google Gemini</span
-                  >
-                  <p class="text-slate text-sm">
-                    Additional AI integration option
-                  </p>
+                  <span class="text-lightest-slate font-semibold text-sm sm:text-base">Google Gemini</span>
+                  <p class="text-slate text-xs sm:text-sm">Additional AI integration</p>
                 </div>
               </div>
             </div>
@@ -538,214 +462,136 @@
       </section>
 
       <!-- ATS Scoring Dimensions -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          8-Dimensional ATS Scoring System
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> ATS Scoring System
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">01.</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">01.</span>
               Keyword Optimization
             </h3>
-            <p class="text-light-slate text-sm">
-              Analyzes the presence and placement of relevant industry keywords and job-specific terms to maximize ATS compatibility.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Analyzes presence and placement of relevant industry keywords and job-specific terms.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">02.</span>
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">02.</span>
               Formatting Quality
             </h3>
-            <p class="text-light-slate text-sm">
-              Evaluates document structure, consistency, and ATS-friendly formatting to ensure proper parsing by applicant tracking systems.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Evaluates document structure, consistency, and ATS-friendly formatting.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">03.</span>
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">03.</span>
               Skills Matching
             </h3>
-            <p class="text-light-slate text-sm">
-              Compares listed skills against job requirements and industry standards to identify gaps and strengths.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Compares listed skills against job requirements and industry standards.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">04.</span>
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">04.</span>
               Experience Relevance
             </h3>
-            <p class="text-light-slate text-sm">
-              Assesses how well work experience aligns with target roles and demonstrates career progression.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Assesses how well work experience aligns with target roles.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">05.</span>
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">05.</span>
               Education Alignment
             </h3>
-            <p class="text-light-slate text-sm">
-              Evaluates educational background relevance to target positions and industry requirements.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Evaluates educational background relevance to target positions.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">06.</span>
-              Achievements Quantification
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">06.</span>
+              Achievements
             </h3>
-            <p class="text-light-slate text-sm">
-              Checks for measurable accomplishments and quantified results that demonstrate impact and value.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Checks for measurable accomplishments and quantified results.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">07.</span>
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">07.</span>
               Readability Score
             </h3>
-            <p class="text-light-slate text-sm">
-              Analyzes clarity, conciseness, and overall readability for both human reviewers and ATS systems.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Analyzes clarity, conciseness, and overall readability.
             </p>
           </div>
 
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-lg font-semibold text-lightest-slate mb-3 flex items-center">
-              <span class="text-accent me-3 font-mono">08.</span>
-              Overall ATS Compatibility
+          <div class="glass-card p-4 sm:p-5 rounded-xl">
+            <h3 class="text-sm sm:text-base font-display font-semibold text-lightest-slate mb-2 flex items-center">
+              <span class="text-accent me-2 font-mono text-xs sm:text-sm">08.</span>
+              ATS Compatibility
             </h3>
-            <p class="text-light-slate text-sm">
-              Comprehensive evaluation of how well the CV will perform in automated applicant tracking systems.
+            <p class="text-light-slate text-xs sm:text-sm leading-relaxed">
+              Comprehensive evaluation of automated system performance.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technical Implementation -->
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-lightest-slate mb-6">
-          Technical Highlights
-        </h2>
-        <div class="space-y-6">
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Multi-Provider AI Integration
-            </h3>
-            <p class="text-light-slate mb-4">
-              Flexible AI architecture supporting multiple providers for CV analysis with intelligent fallback mechanisms.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Support for Claude, OpenAI, and Gemini AI models
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Intelligent caching system to minimize API calls and costs
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Provider-agnostic interface for easy switching between AI services
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Structured prompts for consistent analysis across providers
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Livewire 3 & Volt Architecture
-            </h3>
-            <p class="text-light-slate mb-4">
-              Modern reactive components for seamless user interactions without full page reloads.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Functional Volt components for cleaner, more maintainable code
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Real-time updates without JavaScript framework overhead
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Server-side rendering for better SEO and performance
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Progressive enhancement for accessibility
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-light-navy p-6 rounded-md">
-            <h3 class="text-xl font-semibold text-lightest-slate mb-4">
-              Secure Document Handling
-            </h3>
-            <p class="text-light-slate mb-4">
-              Enterprise-grade document management with encryption and access controls.
-            </p>
-            <ul class="space-y-2 text-light-slate">
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                PDF upload and storage with validation
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                User-scoped access controls for privacy
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Encrypted storage for sensitive documents
-              </li>
-              <li class="flex items-start">
-                <span class="text-accent me-3 mt-1">▹</span>
-                Version tracking for document updates
-              </li>
-            </ul>
           </div>
         </div>
       </section>
 
       <!-- Back to Portfolio -->
-      <section class="py-12 text-center">
+      <section class="py-8 sm:py-12 text-center scroll-animate">
         <a
           href="/"
-          class="inline-flex items-center px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
+          class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm hover:bg-accent/10 duration-300 group"
         >
-          <svg
-            class="w-5 h-5 me-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
           Back to Portfolio
         </a>
       </section>
     </main>
 
-    <footer class="text-center py-6">
-      <p class="text-slate text-xs font-mono">
-        Designed & Built by Pranay Teja Baddam
+    <footer class="text-center py-8 sm:py-12 relative z-10">
+      <p class="text-slate text-xs sm:text-sm font-mono">
+        Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
       </p>
     </footer>
 
     <!-- External JavaScript -->
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/analytics.js"></script>
+
+    <!-- Scroll Animation Script -->
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>

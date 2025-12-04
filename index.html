@@ -446,11 +446,11 @@
     </div>
 
     <header class="fixed top-0 z-[100] w-full">
-      <nav class="glass mx-4 mt-4 rounded-2xl">
+      <nav class="glass mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-xl sm:rounded-2xl">
         <div
-          class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
+          class="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto"
         >
-          <div class="text-accent text-2xl font-mono font-bold animate-fade-in">
+          <div class="text-accent text-xl sm:text-2xl font-mono font-bold animate-fade-in">
             <a href="/" class="relative group">
               <span class="relative z-10">PB</span>
               <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
@@ -727,38 +727,38 @@
       </div>
     </div>
 
-    <main class="max-w-5xl mx-auto px-6 relative z-10">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <!-- Hero Section -->
-      <section id="hero" class="min-h-screen flex flex-col justify-center py-24">
+      <section id="hero" class="min-h-screen flex flex-col justify-center py-16 sm:py-20 md:py-24">
         <div class="relative">
           <!-- Decorative elements -->
-          <div class="absolute -left-8 top-0 w-px h-32 animate-fade-in delay-300" style="background: linear-gradient(to bottom, transparent, var(--line-color, rgba(100, 255, 218, 0.5)), transparent);"></div>
+          <div class="absolute -left-8 top-0 w-px h-32 animate-fade-in delay-300 hidden sm:block" style="background: linear-gradient(to bottom, transparent, var(--line-color, rgba(100, 255, 218, 0.5)), transparent);"></div>
 
-          <p class="text-accent font-mono mb-6 text-lg animate-slide-up">Hi, my name is</p>
+          <p class="text-accent font-mono mb-4 sm:mb-6 text-base sm:text-lg animate-slide-up">Hi, my name is</p>
 
-          <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-lightest-slate tracking-tight animate-slide-up delay-100">
+          <h1 class="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-lightest-slate tracking-tight animate-slide-up delay-100">
             Pranay Teja Baddam<span class="text-accent">.</span>
           </h1>
 
-          <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold mt-4 animate-slide-up delay-200">
+          <h2 class="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mt-3 sm:mt-4 animate-slide-up delay-200">
             <span class="gradient-text">I build high-quality</span>
             <br class="hidden sm:block" />
             <span class="text-slate">web applications.</span>
           </h2>
 
-          <p class="text-light-slate max-w-2xl mt-8 text-lg leading-relaxed animate-slide-up delay-300">
+          <p class="text-light-slate max-w-2xl mt-6 sm:mt-8 text-base sm:text-lg leading-relaxed animate-slide-up delay-300">
             I'm a Senior Full-Stack Developer with <span class="text-accent font-semibold">7+ years of experience</span>
             specializing in PHP and Python. My focus is on building scalable,
             high-performance web applications and robust RESTful APIs using modern
             frameworks like <span class="text-lightest-slate">Laravel</span> and <span class="text-lightest-slate">Django</span>.
           </p>
 
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12 animate-slide-up delay-400">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-slide-up delay-400">
             <a
               href="#work"
-              class="magnetic-btn group relative px-8 py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm overflow-hidden"
+              class="magnetic-btn group relative px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm overflow-hidden text-center"
             >
-              <span class="relative z-10 flex items-center gap-2">
+              <span class="relative z-10 flex items-center justify-center gap-2">
                 Check Out My Work
                 <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -768,9 +768,9 @@
             <a
               href="/assets/cvs/Pranay_Baddam_Senior_Software_Engineer_CV.pdf"
               download
-              class="magnetic-btn group relative px-8 py-4 bg-accent/10 border border-accent/30 text-accent rounded-lg font-mono text-sm hover:border-accent transition-colors"
+              class="magnetic-btn group relative px-6 sm:px-8 py-3 sm:py-4 bg-accent/10 border border-accent/30 text-accent rounded-lg font-mono text-xs sm:text-sm hover:border-accent transition-colors text-center"
             >
-              <span class="relative z-10 flex items-center gap-2">
+              <span class="relative z-10 flex items-center justify-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
@@ -780,176 +780,206 @@
           </div>
 
           <!-- Stats -->
-          <div class="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-lightest-navy/30 animate-slide-up delay-500">
+          <div class="grid grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-lightest-navy/30 animate-slide-up delay-500">
             <div class="text-center sm:text-left">
-              <div class="text-3xl md:text-4xl font-display font-bold text-accent">7+</div>
-              <div class="text-sm text-slate mt-1">Years Experience</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-accent">7+</div>
+              <div class="text-xs sm:text-sm text-slate mt-1">Years Experience</div>
             </div>
             <div class="text-center sm:text-left">
-              <div class="text-3xl md:text-4xl font-display font-bold text-accent">50+</div>
-              <div class="text-sm text-slate mt-1">Projects Delivered</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-accent">80%+</div>
+              <div class="text-xs sm:text-sm text-slate mt-1">Code Coverage</div>
             </div>
             <div class="text-center sm:text-left">
-              <div class="text-3xl md:text-4xl font-display font-bold text-accent">1M+</div>
-              <div class="text-sm text-slate mt-1">API Requests/Day</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-accent">$24K</div>
+              <div class="text-xs sm:text-sm text-slate mt-1">Annual Savings</div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- About Section -->
-      <section id="about" class="py-32">
+      <section id="about" class="py-16 sm:py-24 lg:py-32">
         <div class="scroll-animate">
-          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
-            <span class="flex items-center mb-2 md:mb-0">
-              <span class="text-accent font-mono text-lg me-3">01.</span> About Me
+          <h2 class="flex flex-col sm:flex-row sm:items-center text-xl sm:text-2xl font-display font-bold text-lightest-slate mb-8 sm:mb-12">
+            <span class="flex items-center mb-2 sm:mb-0">
+              <span class="text-accent font-mono text-base sm:text-lg me-3">01.</span> About Me
             </span>
-            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
+            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent sm:ms-6"></span>
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <div class="lg:col-span-3 space-y-6">
-            <div class="scroll-animate delay-100">
-              <p class="text-light-slate text-lg leading-relaxed">
-                Hello! I'm Pranay, a Senior Full-Stack Developer with 7+ years of
-                experience building scalable web applications for <span class="text-accent">SaaS</span>, <span class="text-accent">fintech</span>,
-                and <span class="text-accent">healthcare</span> industries. Currently based in Edinburgh, Scotland,
-                I recently completed nearly 3 years at Bigtincan where I delivered
-                <span class="text-lightest-slate font-semibold">$24K in annual AWS cost savings</span>, led critical PHP 7.1 to 8.3
-                migration, and architected enterprise CRM integrations serving
-                Fortune 500 clients.
-              </p>
+        <!-- Introduction Card -->
+        <div class="scroll-animate delay-100 glass-card rounded-2xl p-6 sm:p-8 mb-8">
+          <p class="text-light-slate text-base sm:text-lg leading-relaxed">
+            Hello! I'm <span class="text-accent font-semibold">Pranay</span>, a Senior Full-Stack Developer with 7+ years of
+            experience building scalable web applications for <span class="text-accent">SaaS</span>, <span class="text-accent">fintech</span>,
+            and <span class="text-accent">healthcare</span> industries. Currently based in <span class="text-lightest-slate">Edinburgh, Scotland</span>.
+          </p>
+        </div>
+
+        <!-- Key Highlights Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <!-- Highlight 1 -->
+          <div class="scroll-animate delay-200 glass-card rounded-xl p-5 sm:p-6 hover-lift">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
             </div>
-
-            <div class="scroll-animate delay-200">
-              <p class="text-light-slate text-lg leading-relaxed">
-                I'm an expert in the Laravel ecosystem with a proven track record
-                building high-performance APIs processing millions of daily
-                requests and mentoring engineering teams. Passionate about
-                Test-Driven Development, I consistently achieve <span class="text-accent">80%+ code coverage</span>
-                and have reduced production incidents by 40-45% through robust
-                testing practices.
-              </p>
-            </div>
-
-            <div class="scroll-animate delay-300">
-              <p class="text-light-slate text-lg leading-relaxed">
-                I thrive in collaborative Agile/Scrum environments and enjoy
-                turning complex technical challenges into elegant, user-friendly
-                solutions that drive measurable business impact.
-              </p>
-            </div>
-
-            <div class="scroll-animate delay-400">
-              <p class="text-light-slate mb-6">Here are the technologies I've been working with:</p>
-
-              <!-- Languages -->
-              <div class="mb-6">
-                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Languages</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHP 7.x/8.x</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Python 3.x</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">JavaScript</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TypeScript</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">SQL</span>
-                </div>
-              </div>
-
-              <!-- Frameworks -->
-              <div class="mb-6">
-                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Frameworks & Libraries</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Laravel</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Livewire</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Symfony</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Django</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">FastAPI</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Vue.js</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">React</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Tailwind CSS</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Filament</span>
-                </div>
-              </div>
-
-              <!-- Databases & Caching -->
-              <div class="mb-6">
-                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Databases & Caching</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">MySQL</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PostgreSQL</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Redis</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Memcached</span>
-                </div>
-              </div>
-
-              <!-- DevOps & Cloud -->
-              <div class="mb-6">
-                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">DevOps & Cloud</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Docker</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Kubernetes</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">AWS</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Azure</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">GitLab CI</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">GitHub Actions</span>
-                </div>
-              </div>
-
-              <!-- Testing -->
-              <div>
-                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Testing & Quality</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHPUnit</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Pest</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TDD</span>
-                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Jest</span>
-                </div>
-              </div>
-            </div>
+            <h3 class="text-lightest-slate font-display font-semibold mb-2 text-sm sm:text-base">Performance Expert</h3>
+            <p class="text-slate text-xs sm:text-sm leading-relaxed">Delivered <span class="text-accent font-semibold">$24K annual AWS savings</span> through Redis optimization, improving cache hit ratio from 72% to 94%.</p>
           </div>
 
-          <!-- Profile Image Placeholder -->
-          <div class="lg:col-span-2 scroll-animate-scale delay-300">
-            <div class="relative group">
-              <div class="absolute -inset-4 bg-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative aspect-square rounded-2xl bg-gradient-to-br from-light-navy to-lightest-navy p-1">
-                <div class="w-full h-full rounded-xl bg-light-navy flex items-center justify-center overflow-hidden">
-                  <div class="text-accent/30 text-9xl font-display font-bold">PB</div>
-                </div>
+          <!-- Highlight 2 -->
+          <div class="scroll-animate delay-300 glass-card rounded-xl p-5 sm:p-6 hover-lift">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="text-lightest-slate font-display font-semibold mb-2 text-sm sm:text-base">Quality Focused</h3>
+            <p class="text-slate text-xs sm:text-sm leading-relaxed">Consistently achieve <span class="text-accent font-semibold">80%+ code coverage</span>, reducing production incidents by 40-45% through TDD practices.</p>
+          </div>
+
+          <!-- Highlight 3 -->
+          <div class="scroll-animate delay-400 glass-card rounded-xl p-5 sm:p-6 hover-lift sm:col-span-2 lg:col-span-1">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lightest-slate font-display font-semibold mb-2 text-sm sm:text-base">Enterprise Scale</h3>
+            <p class="text-slate text-xs sm:text-sm leading-relaxed">Built APIs processing <span class="text-accent font-semibold">1M+ daily requests</span>, serving Fortune 500 clients across 200+ global organizations.</p>
+          </div>
+        </div>
+
+        <!-- Tech Stack Section -->
+        <div class="scroll-animate delay-500">
+          <h3 class="text-lightest-slate font-display font-semibold mb-6 text-base sm:text-lg flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            Tech Stack
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Languages -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                Languages
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHP 8.x</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Python</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">JavaScript</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TypeScript</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">SQL</span>
               </div>
-              <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-accent/30 rounded-2xl -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+            </div>
+
+            <!-- Frameworks -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                Frameworks
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Laravel</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Livewire</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Django</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Vue.js</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">React</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Tailwind</span>
+              </div>
+            </div>
+
+            <!-- Databases -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                Databases
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">MySQL</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PostgreSQL</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Redis</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Memcached</span>
+              </div>
+            </div>
+
+            <!-- DevOps -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                DevOps & Cloud
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Docker</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">AWS</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Azure</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">K8s</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">CI/CD</span>
+              </div>
+            </div>
+
+            <!-- Testing -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                Testing
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHPUnit</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Pest</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TDD</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Jest</span>
+              </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+              <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                Tools & More
+              </h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Filament</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">FastAPI</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Symfony</span>
+                <span class="skill-tag px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Git</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Experience Section -->
-      <section id="experience" class="py-32">
+      <section id="experience" class="py-16 sm:py-24 lg:py-32">
         <div class="scroll-animate">
-          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
-            <span class="flex items-center mb-2 md:mb-0">
-              <span class="text-accent font-mono text-lg me-3">02.</span> Where I've Worked
+          <h2 class="flex flex-col sm:flex-row sm:items-center text-xl sm:text-2xl font-display font-bold text-lightest-slate mb-8 sm:mb-12">
+            <span class="flex items-center mb-2 sm:mb-0">
+              <span class="text-accent font-mono text-base sm:text-lg me-3">02.</span> Where I've Worked
             </span>
-            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
+            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent sm:ms-6"></span>
           </h2>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 scroll-animate delay-200">
+        <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 scroll-animate delay-200">
           <!-- Tab Buttons -->
-          <div class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 md:min-w-[180px]">
+          <div class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 lg:min-w-[180px] scrollbar-hide">
             <button
-              class="tab-button active text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg glass-card border-l-2 border-accent text-accent transition-all duration-300"
+              class="tab-button active text-left px-4 sm:px-5 py-3 sm:py-4 whitespace-nowrap font-mono text-xs sm:text-sm rounded-lg glass-card border-l-2 border-accent text-accent transition-all duration-300 flex-shrink-0"
             >
               Bigtincan
             </button>
             <button
-              class="tab-button text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300"
+              class="tab-button text-left px-4 sm:px-5 py-3 sm:py-4 whitespace-nowrap font-mono text-xs sm:text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300 flex-shrink-0"
             >
               Dynamo
             </button>
             <button
-              class="tab-button text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300"
+              class="tab-button text-left px-4 sm:px-5 py-3 sm:py-4 whitespace-nowrap font-mono text-xs sm:text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300 flex-shrink-0"
             >
               Meditab
             </button>
@@ -957,104 +987,110 @@
 
           <!-- Tab Content -->
           <div class="flex-1">
-            <div class="tab-content glass-card rounded-2xl p-8">
-              <h3 class="text-xl font-display font-semibold text-lightest-slate">
+            <div class="tab-content glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8">
+              <h3 class="text-base sm:text-lg lg:text-xl font-display font-semibold text-lightest-slate">
                 Software Engineer <span class="text-accent">@ Bigtincan</span>
               </h3>
-              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
-                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <p class="font-mono text-xs sm:text-sm text-slate mt-2 mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
+                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
-                January 2023 – November 2025 | Glasgow, Scotland
+                <span>Jan 2023 – Nov 2025</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="text-accent">Glasgow, Scotland</span>
               </p>
-              <ul class="space-y-4 text-light-slate">
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+              <ul class="space-y-3 sm:space-y-4 text-light-slate text-sm sm:text-base">
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
                   <span>Architected and maintained backend services for enterprise-grade content management platform serving millions of users across 200+ global organizations.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
                   <span>Identified and resolved Redis caching inefficiency, reducing AWS costs by <span class="text-accent font-semibold">$2,000/month ($24K annual savings)</span> while improving cache hit ratio from 72% to 94%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Led complete PHP 7.1 to 8.3 migration for monolithic codebase, improving application performance by 25-30% and eliminating critical security vulnerabilities.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Led complete PHP 7.1 to 8.3 migration for monolithic codebase, improving application performance by 25-30%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
                   <span>Established PHPUnit testing standards achieving 80% code coverage, reducing production incidents by 40-45%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Designed and optimized MySQL data models and complex queries to support high-throughput operations processing 1M+ requests daily.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Designed and optimized MySQL data models to support high-throughput operations processing 1M+ requests daily.</span>
                 </li>
               </ul>
             </div>
 
-            <div class="tab-content hidden glass-card rounded-2xl p-8">
-              <h3 class="text-xl font-display font-semibold text-lightest-slate">
+            <div class="tab-content hidden glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8">
+              <h3 class="text-base sm:text-lg lg:text-xl font-display font-semibold text-lightest-slate">
                 PHP Developer <span class="text-accent">@ Dynamo</span>
               </h3>
-              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
-                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <p class="font-mono text-xs sm:text-sm text-slate mt-2 mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
+                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
-                September 2020 – September 2022 | Camberley, England
+                <span>Sep 2020 – Sep 2022</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="text-accent">Camberley, England</span>
               </p>
-              <ul class="space-y-4 text-light-slate">
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+              <ul class="space-y-3 sm:space-y-4 text-light-slate text-sm sm:text-base">
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
                   <span>Led full-stack development for customer-facing websites and internal business applications serving 5,000+ active property investors.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Successfully migrated entire customer database and CRM system from Drupal/CiviCRM to Laravel, reducing page load times by <span class="text-accent font-semibold">60% (from 3.5s to 1.4s)</span> and cutting monthly hosting costs by £100.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Migrated customer database and CRM from Drupal/CiviCRM to Laravel, reducing page load times by <span class="text-accent font-semibold">60% (from 3.5s to 1.4s)</span>.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Built Laravel-based lead injection API processing 2,000+ mortgage enquiries monthly from third-party providers, increasing lead volume by 35%.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Built Laravel-based lead injection API processing 2,000+ mortgage enquiries monthly, increasing lead volume by 35%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Developed Deal Tuner gamification platform integrating with Unifi Controller API, improving sales team engagement and increasing deal closure rates by 18%.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Developed Deal Tuner gamification platform integrating with Unifi Controller API, increasing deal closure rates by 18%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
                   <span>Maintained 99.5% uptime across 4 production websites during 2-year tenure with zero critical data loss incidents.</span>
                 </li>
               </ul>
             </div>
 
-            <div class="tab-content hidden glass-card rounded-2xl p-8">
-              <h3 class="text-xl font-display font-semibold text-lightest-slate">
-                Full Stack PHP Developer <span class="text-accent">@ Meditab Software</span>
+            <div class="tab-content hidden glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8">
+              <h3 class="text-base sm:text-lg lg:text-xl font-display font-semibold text-lightest-slate">
+                Full Stack PHP Developer <span class="text-accent">@ Meditab</span>
               </h3>
-              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
-                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <p class="font-mono text-xs sm:text-sm text-slate mt-2 mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
+                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
-                January 2018 – August 2020 | Ahmedabad, India
+                <span>Jan 2018 – Aug 2020</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="text-accent">Ahmedabad, India</span>
               </p>
-              <ul class="space-y-4 text-light-slate">
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Developed and maintained HIPAA-compliant healthcare applications for 40+ US-based medical practices serving 200,000+ patients.</span>
+              <ul class="space-y-3 sm:space-y-4 text-light-slate text-sm sm:text-base">
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Developed HIPAA-compliant healthcare applications for 40+ US-based medical practices serving 200,000+ patients.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Optimized 25+ slow-running MSSQL queries processing patient records, reducing average report generation time from 45 seconds to 5 seconds <span class="text-accent font-semibold">(85% improvement)</span>.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Optimized 25+ slow-running MSSQL queries, reducing report generation time from 45s to 5s <span class="text-accent font-semibold">(85% improvement)</span>.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Implemented automated SQL job schedulers for overnight data processing tasks, reducing manual intervention by 70%.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Implemented automated SQL job schedulers for overnight data processing, reducing manual intervention by 70%.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Conducted daily code reviews for 5-member development team and managed releases to staging/production environments.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Conducted daily code reviews for 5-member development team and managed releases to staging/production.</span>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
-                  <span>Mentored 3 junior developers through pair programming and code review sessions, improving team code quality score by 35%.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-accent mt-1 sm:mt-1.5 flex-shrink-0">▹</span>
+                  <span>Mentored 3 junior developers through pair programming, improving team code quality score by 35%.</span>
                 </li>
               </ul>
             </div>
@@ -1063,26 +1099,26 @@
       </section>
 
       <!-- Work Section -->
-      <section id="work" class="py-32">
+      <section id="work" class="py-16 sm:py-24 md:py-32">
         <div class="scroll-animate">
-          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
+          <h2 class="flex flex-col md:flex-row md:items-center text-xl sm:text-2xl font-display font-bold text-lightest-slate mb-8 sm:mb-12">
             <span class="flex items-center mb-2 md:mb-0">
-              <span class="text-accent font-mono text-lg me-3">03.</span> Some Things I've Built
+              <span class="text-accent font-mono text-base sm:text-lg me-2 sm:me-3">03.</span> Some Things I've Built
             </span>
             <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <a
             href="/pages/job-tracker"
-            class="project-card-enhanced scroll-animate-scale glass-card p-8 rounded-2xl flex flex-col justify-between group"
+            class="project-card-enhanced scroll-animate-scale glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-start mb-6">
-                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <div class="flex justify-between items-start mb-4 sm:mb-6">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <svg
-                    class="size-8 text-accent"
+                    class="size-6 sm:size-8 text-accent"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1097,7 +1133,7 @@
                   </svg>
                 </div>
                 <svg
-                  class="size-6 text-slate group-hover:text-accent transition-colors"
+                  class="size-5 sm:size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1106,16 +1142,16 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
+              <h3 class="text-lg sm:text-xl font-display font-bold text-lightest-slate mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                 Job Applications Tracker
               </h3>
-              <p class="text-slate leading-relaxed">
+              <p class="text-slate text-sm sm:text-base leading-relaxed">
                 A powerful Laravel 12 application for tracking job applications
                 with AI-powered CV analysis, built with modern tools and best
                 practices.
               </p>
             </div>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6">
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Livewire</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Flux UI</span>
@@ -1125,13 +1161,13 @@
 
           <a
             href="/pages/carpark-booking-api"
-            class="project-card-enhanced scroll-animate-scale delay-100 glass-card p-8 rounded-2xl flex flex-col justify-between group"
+            class="project-card-enhanced scroll-animate-scale delay-100 glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-start mb-6">
-                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <div class="flex justify-between items-start mb-4 sm:mb-6">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <svg
-                    class="size-8 text-accent"
+                    class="size-6 sm:size-8 text-accent"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1146,7 +1182,7 @@
                   </svg>
                 </div>
                 <svg
-                  class="size-6 text-slate group-hover:text-accent transition-colors"
+                  class="size-5 sm:size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1155,16 +1191,16 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
+              <h3 class="text-lg sm:text-xl font-display font-bold text-lightest-slate mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                 Car Park Booking API
               </h3>
-              <p class="text-slate leading-relaxed">
+              <p class="text-slate text-sm sm:text-base leading-relaxed">
                 A Laravel 12 (PHP 8.2) REST API for checking car park
                 availability, calculating prices, and managing bookings with
                 token-based authentication.
               </p>
             </div>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6">
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">PHP 8.2</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Sanctum</span>
@@ -1174,13 +1210,13 @@
 
           <a
             href="/pages/portfolio-project"
-            class="project-card-enhanced scroll-animate-scale delay-200 glass-card p-8 rounded-2xl flex flex-col justify-between group"
+            class="project-card-enhanced scroll-animate-scale delay-200 glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-start mb-6">
-                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <div class="flex justify-between items-start mb-4 sm:mb-6">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <svg
-                    class="size-8 text-accent"
+                    class="size-6 sm:size-8 text-accent"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1195,7 +1231,7 @@
                   </svg>
                 </div>
                 <svg
-                  class="size-6 text-slate group-hover:text-accent transition-colors"
+                  class="size-5 sm:size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1204,16 +1240,16 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
+              <h3 class="text-lg sm:text-xl font-display font-bold text-lightest-slate mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                 Portfolio Website
               </h3>
-              <p class="text-slate leading-relaxed">
+              <p class="text-slate text-sm sm:text-base leading-relaxed">
                 A modern, responsive portfolio website built with vanilla HTML,
                 Tailwind CSS, and JavaScript. Features light/dark theme toggle,
                 mobile navigation, and smooth animations.
               </p>
             </div>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6">
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">HTML5</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Tailwind</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">JavaScript</span>
@@ -1223,13 +1259,13 @@
 
           <a
             href="/pages/todo-list-api"
-            class="project-card-enhanced scroll-animate-scale delay-300 glass-card p-8 rounded-2xl flex flex-col justify-between group"
+            class="project-card-enhanced scroll-animate-scale delay-300 glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-start mb-6">
-                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <div class="flex justify-between items-start mb-4 sm:mb-6">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <svg
-                    class="size-8 text-accent"
+                    class="size-6 sm:size-8 text-accent"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1244,7 +1280,7 @@
                   </svg>
                 </div>
                 <svg
-                  class="size-6 text-slate group-hover:text-accent transition-colors"
+                  class="size-5 sm:size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1253,16 +1289,16 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
+              <h3 class="text-lg sm:text-xl font-display font-bold text-lightest-slate mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                 Todo List API
               </h3>
-              <p class="text-slate leading-relaxed">
+              <p class="text-slate text-sm sm:text-base leading-relaxed">
                 A sample to-do list RESTful API created using Laravel.
                 Manage your to-do list with view, create, edit and delete
                 functionalities.
               </p>
             </div>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6">
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">PHP</span>
               <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Sanctum</span>
@@ -1273,18 +1309,18 @@
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="py-32">
+      <section id="contact" class="py-16 sm:py-24 md:py-32">
         <div class="max-w-4xl mx-auto">
           <!-- Section Header -->
           <div class="text-center scroll-animate">
-            <p class="text-accent font-mono text-lg mb-4">04. What's Next?</p>
-            <h3 class="text-5xl md:text-6xl font-display font-bold text-lightest-slate">
+            <p class="text-accent font-mono text-base sm:text-lg mb-3 sm:mb-4">04. What's Next?</p>
+            <h3 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate">
               Let's Work Together
             </h3>
           </div>
 
           <div class="scroll-animate delay-200">
-            <p class="text-light-slate text-lg mt-6 leading-relaxed text-center max-w-2xl mx-auto">
+            <p class="text-light-slate text-base sm:text-lg mt-4 sm:mt-6 leading-relaxed text-center max-w-2xl mx-auto px-2">
               I'm currently open to new opportunities where I can contribute, learn, and grow.
               If you have a project that needs a dedicated developer or a position that matches my skills,
               I'd love to hear from you.
@@ -1292,79 +1328,83 @@
           </div>
 
           <!-- Contact Cards -->
-          <div class="grid md:grid-cols-3 gap-6 mt-12">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
             <!-- Email Card -->
             <a href="mailto:pranayb2773@gmail.com"
-               class="scroll-animate delay-300 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="scroll-animate delay-300 group contact-card glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl text-center hover-lift">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
               </div>
-              <h4 class="font-display font-semibold text-lightest-slate mb-2">Email Me</h4>
-              <p class="text-sm text-slate mb-3">For job opportunities & collaborations</p>
-              <span class="text-accent font-mono text-sm group-hover:underline">pranayb2773@gmail.com</span>
+              <h4 class="font-display font-semibold text-lightest-slate mb-1 sm:mb-2 text-sm sm:text-base">Email Me</h4>
+              <p class="text-xs sm:text-sm text-slate mb-2 sm:mb-3">For job opportunities & collaborations</p>
+              <span class="text-accent font-mono text-xs sm:text-sm group-hover:underline break-all">pranayb2773@gmail.com</span>
             </a>
 
             <!-- LinkedIn Card -->
             <a href="https://www.linkedin.com/in/pranay-teja-baddam/"
                target="_blank"
                rel="noopener noreferrer"
-               class="scroll-animate delay-400 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <svg class="w-7 h-7 text-accent" fill="currentColor" viewBox="0 0 24 24">
+               class="scroll-animate delay-400 group contact-card glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl text-center hover-lift">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-accent" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 012.063-2.065 2.064 2.064 0 012.063 2.065c0 1.14-.925 2.065-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
                 </svg>
               </div>
-              <h4 class="font-display font-semibold text-lightest-slate mb-2">Connect on LinkedIn</h4>
-              <p class="text-sm text-slate mb-3">Let's expand our professional network</p>
-              <span class="text-accent font-mono text-sm group-hover:underline">@pranay-teja-baddam</span>
+              <h4 class="font-display font-semibold text-lightest-slate mb-1 sm:mb-2 text-sm sm:text-base">Connect on LinkedIn</h4>
+              <p class="text-xs sm:text-sm text-slate mb-2 sm:mb-3">Let's expand our professional network</p>
+              <span class="text-accent font-mono text-xs sm:text-sm group-hover:underline">@pranay-teja-baddam</span>
             </a>
 
             <!-- Phone Card -->
             <a href="tel:+447503097560"
-               class="scroll-animate delay-500 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="scroll-animate delay-500 group contact-card glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl text-center hover-lift sm:col-span-2 md:col-span-1">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
                 </svg>
               </div>
-              <h4 class="font-display font-semibold text-lightest-slate mb-2">Call Me</h4>
-              <p class="text-sm text-slate mb-3">For urgent discussions</p>
-              <span class="text-accent font-mono text-sm group-hover:underline">+44 7503 097560</span>
+              <h4 class="font-display font-semibold text-lightest-slate mb-1 sm:mb-2 text-sm sm:text-base">Call Me</h4>
+              <p class="text-xs sm:text-sm text-slate mb-2 sm:mb-3">For urgent discussions</p>
+              <span class="text-accent font-mono text-xs sm:text-sm group-hover:underline">+44 7503 097560</span>
             </a>
           </div>
 
           <!-- Availability Status -->
-          <div class="scroll-animate delay-600 mt-12 text-center">
-            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card">
-              <span class="relative flex h-3 w-3">
+          <div class="scroll-animate delay-600 mt-8 sm:mt-12 text-center">
+            <div class="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full glass-card">
+              <span class="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-green-500"></span>
               </span>
-              <span class="text-light-slate text-sm">Currently available for full-time positions</span>
+              <span class="text-light-slate text-xs sm:text-sm">Currently available for full-time positions</span>
             </div>
           </div>
 
           <!-- Location Info -->
-          <div class="scroll-animate delay-700 mt-8 text-center">
-            <p class="text-slate text-sm flex items-center justify-center gap-2">
-              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-              Based in Edinburgh, Scotland | Open to Remote & Hybrid roles across UK & Europe
+          <div class="scroll-animate delay-700 mt-6 sm:mt-8 text-center px-2">
+            <p class="text-slate text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+              <span class="flex items-center gap-1 sm:gap-2">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Based in Edinburgh, Scotland
+              </span>
+              <span class="hidden sm:inline">|</span>
+              <span>Open to Remote & Hybrid roles across UK & Europe</span>
             </p>
           </div>
 
           <!-- CTA Button -->
-          <div class="scroll-animate delay-800 mt-10 text-center">
+          <div class="scroll-animate delay-800 mt-8 sm:mt-10 text-center">
             <a
               href="mailto:pranayb2773@gmail.com?subject=Job%20Opportunity%20-%20Let's%20Connect&body=Hi%20Pranay,%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0A"
-              class="magnetic-btn group inline-flex items-center gap-3 px-10 py-5 bg-accent text-navy rounded-xl font-mono font-semibold text-base hover:bg-accent/90 transition-colors"
+              class="magnetic-btn group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-accent text-navy rounded-lg sm:rounded-xl font-mono font-semibold text-sm sm:text-base hover:bg-accent/90 transition-colors"
             >
               <span>Start a Conversation</span>
-              <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
@@ -1373,8 +1413,8 @@
       </section>
     </main>
 
-    <footer class="text-center py-12 relative z-10">
-      <div class="md:hidden flex justify-center items-center gap-8 mb-8">
+    <footer class="text-center py-8 sm:py-12 relative z-10 px-4">
+      <div class="md:hidden flex justify-center items-center gap-5 sm:gap-8 mb-6 sm:mb-8">
         <a
           href="https://github.com/pranayb2773"
           target="_blank"
@@ -1385,7 +1425,7 @@
             xmlns="http://www.w3.org/2000/svg"
             role="img"
             viewBox="0 0 24 24"
-            class="size-6 fill-current"
+            class="size-5 sm:size-6 fill-current"
           >
             <title>GitHub</title>
             <path
@@ -1403,7 +1443,7 @@
             xmlns="http://www.w3.org/2000/svg"
             role="img"
             viewBox="0 0 24 24"
-            class="size-6 fill-current"
+            class="size-5 sm:size-6 fill-current"
           >
             <title>LinkedIn</title>
             <path
@@ -1421,7 +1461,7 @@
             xmlns="http://www.w3.org/2000/svg"
             role="img"
             viewBox="0 0 24 24"
-            class="size-6 fill-current"
+            class="size-5 sm:size-6 fill-current"
           >
             <title>X</title>
             <path
@@ -1439,7 +1479,7 @@
             xmlns="http://www.w3.org/2000/svg"
             role="img"
             viewBox="0 0 24 24"
-            class="size-6 fill-current"
+            class="size-5 sm:size-6 fill-current"
           >
             <path
               stroke-linecap="round"
@@ -1456,7 +1496,7 @@
             xmlns="http://www.w3.org/2000/svg"
             role="img"
             viewBox="0 0 24 24"
-            class="size-6 fill-current"
+            class="size-5 sm:size-6 fill-current"
           >
             <path
               d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
@@ -1464,7 +1504,7 @@
           </svg>
         </a>
       </div>
-      <p class="text-slate text-sm font-mono">
+      <p class="text-slate text-xs sm:text-sm font-mono">
         Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
       </p>
     </footer>
