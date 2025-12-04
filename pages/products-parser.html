@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3HPPJV62B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Z3HPPJV62B');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Products Parser - A native PHP CLI that streams large supplier catalogs (CSV/TSV, JSON/NDJSON, XML), normalizes fields, and counts unique product combinations with optional parallel processing." />
+    <meta name="keywords" content="PHP, CLI, CSV parser, JSON parser, XML parser, NDJSON, PCNTL, Streaming, Data processing, ETL" />
+    <meta name="author" content="Pranay Teja Baddam" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pranaybaddam.site/products-parser" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://pranaybaddam.site/products-parser" />
+    <meta property="og:title" content="Products Parser - Project Case Study | Pranay Teja Baddam" />
+    <meta property="og:description" content="Supplier product list processor in modern PHP. Streams CSV/TSV, JSON/NDJSON, XML catalogs, normalizes fields, counts unique combinations, and optionally runs in parallel." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pranaybaddam.site/products-parser" />
+    <meta name="twitter:title" content="Products Parser - Project Case Study | Pranay Teja Baddam" />
+    <meta name="twitter:description" content="Native PHP CLI for streaming supplier catalogs, normalization, unique counting, and parallel processing." />
+
+    <title>Products Parser - Project Case Study | Pranay Teja Baddam</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="img/svg+xml" href="/assets/images/pb.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-navy: #0a192f;
+        --color-light-navy: #112240;
+        --color-lightest-navy: #233554;
+        --color-slate: #8892b0;
+        --color-light-slate: #a8b2d1;
+        --color-lightest-slate: #ccd6f6;
+        --color-accent: #64ffda;
+        --color-accent-dim: #64ffda20;
+        --color-accent-glow: #64ffda40;
+
+        --font-family-sans: "DM Sans", sans-serif;
+        --font-family-display: "Sora", sans-serif;
+        --font-family-mono: "JetBrains Mono", monospace;
+      }
+    </style>
+  </head>
+  <body class="bg-navy text-slate font-sans decoration-grid">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0 transition-opacity duration-300">
+      <!-- Gradient Orbs -->
+      <div class="orb-element absolute top-1/4 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse-glow" style="background: var(--orb-color);"></div>
+      <div class="orb-element absolute bottom-1/4 -right-32 w-80 h-80 rounded-full blur-3xl animate-pulse-glow delay-1000" style="background: var(--orb-color);"></div>
+      <div class="orb-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl animate-morph" style="background: radial-gradient(circle, var(--orb-glow), transparent);"></div>
+
+      <!-- Floating Geometric Shapes -->
+      <div class="absolute top-20 right-1/4 w-4 h-4 border border-accent/30 rotate-45 animate-float"></div>
+      <div class="absolute top-1/3 left-1/4 w-6 h-6 border border-accent/20 rounded-full animate-float-delayed"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-3 h-3 bg-accent/20 rotate-45 animate-float delay-500"></div>
+      <div class="absolute top-2/3 left-1/3 w-2 h-2 bg-accent/30 rounded-full animate-float-delayed delay-300"></div>
+    </div>
+
+    <header class="fixed top-0 z-[100] w-full">
+      <nav class="glass mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-xl sm:rounded-2xl">
+        <div class="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto">
+          <div class="text-accent text-xl sm:text-2xl font-mono font-bold animate-fade-in">
+            <a href="/" class="relative group">
+              <span class="relative z-10">PB</span>
+              <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+            </a>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-6">
+            <a href="/" class="text-lightest-slate hover:text-accent duration-300 text-sm sm:text-base group flex items-center gap-2">
+              <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+              <span class="hidden sm:inline">Back to Portfolio</span>
+              <span class="sm:hidden">Back</span>
+            </a>
+            <button id="theme-toggle" class="theme-toggle text-accent focus:outline-none hover:rotate-180 transition-transform duration-500" aria-label="Toggle theme">
+              <svg id="sun-icon" class="w-5 h-5 sm:w-6 sm:h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <svg id="moon-icon" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12 relative z-10">
+      <!-- Hero Section -->
+      <section class="py-8 sm:py-12">
+        <a href="/" class="inline-flex items-center text-accent font-mono text-xs sm:text-sm hover:underline mb-6 sm:mb-8 animate-fade-in">
+          <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to Portfolio
+        </a>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate mb-4 animate-slide-up">
+          Products Parser
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-light-slate mb-6 sm:mb-8 animate-slide-up delay-100 max-w-3xl">
+          Supplier product list processor in modern native PHP that streams large CSV/TSV, JSON/NDJSON, and XML catalogs, normalizes fields, and counts unique product combinations with optional PCNTL-powered parallelism.
+        </p>
+        <div class="flex flex-wrap gap-3 sm:gap-4 animate-slide-up delay-200">
+          <a
+            href="https://github.com/pranayb2773/products_parser"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </section>
+
+      <!-- Project Overview -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">01.</span> Project Overview
+        </h2>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Purpose</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Build a lightweight CLI that can ingest massive supplier catalogs in multiple formats, normalize field names, and emit both raw products and aggregated unique combinations without exhausting memory.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Challenge</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Support CSV/TSV delimiter auto-detection, JSON arrays/objects/NDJSON, and streaming XML while keeping processing consistent across Windows and POSIX systems, with opt-in PCNTL parallelism for heavy workloads.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Solution</h3>
+              <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+                Implemented streaming parsers, a flexible field mapper, and a unique combination counter that can export CSV/JSON/XML. A seeder generates deterministic synthetic datasets, and parallel modes accelerate both parsing and generation when PCNTL is available.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Features -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">02.</span> Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h6l2 2h10v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Streaming Parsers</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  CSV/TSV with delimiter auto-detect, JSON arrays or NDJSON, and XML via XMLReader—processed as generators to keep memory flat on huge files.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Field Normalization</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Maps supplier headers (brand_name, model_name, gb_spec_name, etc.) into canonical fields: make, model, colour, capacity, network, grade, condition.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Unique Combination Counter</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Aggregates normalized products and exports CSV, JSON, or XML summaries of unique make/model/capacity/colour/network/grade/condition combinations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Parallel Modes</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Optional PCNTL-powered workers partition inputs and merge results for faster parsing or seeding on POSIX systems; sequential mode runs everywhere.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m-4-4h8m-9 9h10a2 2 0 002-2V5a2 2 0 00-2-2H7l-5 5v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Synthetic Data Seeder</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Generates deterministic sample catalogs across CSV, TSV, JSON, NDJSON, and XML for benchmarks or fixtures with zero-copy merges in parallel mode.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5v2m0 10v2m6-14v2m0 10v2m-9 0h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Memory Efficient</h3>
+                <p class="text-light-slate text-sm leading-relaxed">
+                  Generator-driven parsing keeps RAM steady on large catalogs; optional chunk flushing avoids blowups on extreme cardinality.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technology & Requirements -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">03.</span> Technology & Requirements
+        </h2>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Runtime & Libraries</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PHP 8.4+</span>
+                    <p class="text-slate text-xs sm:text-sm">Strict typing, readonly classes, modern enums.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">XMLReader, DOM, SimpleXML</span>
+                    <p class="text-slate text-xs sm:text-sm">Native extensions for streaming XML parsing.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Composer</span>
+                    <p class="text-slate text-xs sm:text-sm">Install dependencies with <code>composer install --no-interaction --ignore-platform-reqs</code>.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Parallelism & OS Support</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PCNTL Optional</span>
+                    <p class="text-slate text-xs sm:text-sm">Parallel modes for parsing/seeding on POSIX systems; sequential mode works on Windows.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Input/Output Paths</span>
+                    <p class="text-slate text-xs sm:text-sm">Inputs at <code>data/input/</code>; outputs at <code>data/output/</code>; seeded defaults go to <code>data/input/products.&lt;type&gt;</code>.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-accent mt-1">?</span>
+                  <div>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Format Coverage</span>
+                    <p class="text-slate text-xs sm:text-sm">CSV, TSV, JSON, NDJSON, XML with consistent normalized fields.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLI Usage -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> CLI Usage
+        </h2>
+        <div class="space-y-4 sm:space-y-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Parser</h3>
+            <p class="text-light-slate text-sm leading-relaxed mb-3">Stream products and optionally write aggregated unique combinations.</p>
+            <div class="bg-light-navy/60 border border-accent/20 rounded-lg p-4 font-mono text-xs text-lightest-slate space-y-2">
+              <p><span class="text-accent">composer</span> install --no-interaction --ignore-platform-reqs</p>
+              <p><span class="text-accent">php</span> parser.php --file=data/input/products_comma_separated.csv --unique-combinations=data/output/combination_count.csv</p>
+              <p><span class="text-accent">php</span> parser.php --file=data/input/products.json --unique-combinations=data/output/combination_count.json</p>
+              <p><span class="text-accent">php</span> parser.php --file=data/input/products.xml --unique-combinations=data/output/combination_count.xml</p>
+              <p><span class="text-accent">php</span> parser.php --file=data/input/products.csv --unique-combinations=data/output/results.json --parallel=4</p>
+            </div>
+            <ul class="mt-3 space-y-1 text-slate text-xs sm:text-sm">
+              <li class="flex gap-2"><span class="text-accent">?</span><span><code>--file</code> required; format auto-detected.</span></li>
+              <li class="flex gap-2"><span class="text-accent">?</span><span><code>--unique-combinations</code> writes CSV/JSON/XML based on extension.</span></li>
+              <li class="flex gap-2"><span class="text-accent">?</span><span><code>--parallel</code> enables PCNTL workers (>=2).</span></li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Seeder</h3>
+            <p class="text-light-slate text-sm leading-relaxed mb-3">Generate deterministic sample catalogs for benchmarks or fixtures.</p>
+            <div class="bg-light-navy/60 border border-accent/20 rounded-lg p-4 font-mono text-xs text-lightest-slate space-y-2">
+              <p><span class="text-accent">php</span> seeder.php --type=csv --count=1000</p>
+              <p><span class="text-accent">php</span> seeder.php --type=json --count=50000</p>
+              <p><span class="text-accent">php</span> seeder.php --type=xml --count=100 --output=custom/data.xml</p>
+              <p><span class="text-accent">php</span> seeder.php --type=ndjson --count=10000</p>
+              <p><span class="text-accent">php</span> seeder.php --type=csv --count=1000000 --parallel=8</p>
+            </div>
+            <ul class="mt-3 space-y-1 text-slate text-xs sm:text-sm">
+              <li class="flex gap-2"><span class="text-accent">?</span><span><code>--type</code> and <code>--count</code> required; output defaults to <code>data/input/products.&lt;type&gt;</code>.</span></li>
+              <li class="flex gap-2"><span class="text-accent">?</span><span><code>--output</code> customizes target path.</span></li>
+              <li class="flex gap-2"><span class="text-accent">?</span><span>Parallel generation merges worker outputs zero-copy.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">05.</span> Architecture Highlights
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">Parsers</h3>
+            <p class="text-light-slate text-sm leading-relaxed">CsvParser (auto-detect delimiter), JsonParser (arrays, wrapped objects, NDJSON), and XmlParser (XMLReader) all implement FileParserInterface and yield products via generators.</p>
+          </div>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">Field Mapper</h3>
+            <p class="text-light-slate text-sm leading-relaxed">FieldMapper normalizes supplier headers (brand_name, model_name, gb_spec_name, etc.) into canonical fields: make, model, colour, capacity, network, grade, condition.</p>
+          </div>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">Product VO</h3>
+            <p class="text-light-slate text-sm leading-relaxed">Immutable Product validates required fields and generates unique keys used by UniqueCounter to aggregate combinations safely.</p>
+          </div>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">UniqueCounter</h3>
+            <p class="text-light-slate text-sm leading-relaxed">Aggregates normalized products, supports optional chunk flushing for extreme cardinality, and exports CSV/JSON/XML summaries.</p>
+          </div>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">Parallel</h3>
+            <p class="text-light-slate text-sm leading-relaxed">ParallelProcessor and ParallelSeeder split work across PCNTL workers on POSIX, then merge results (zero-copy for seeding); sequential paths run on Windows.</p>
+          </div>
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-base sm:text-lg font-display font-semibold text-accent mb-2">Factories & CLI</h3>
+            <p class="text-light-slate text-sm leading-relaxed">ParserFactory and SeederFactory pick implementations; ParserOptions/SeederOptions validate CLI flags; output writers centralize help and console UX.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testing -->
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">06.</span> Testing & Quality
+        </h2>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <div>
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Coverage</h3>
+            <ul class="space-y-2 text-light-slate text-sm">
+              <li class="flex items-start gap-3"><span class="text-accent">?</span>68 passing tests, 21 skipped (PCNTL on Windows) with 185 assertions.</li>
+              <li class="flex items-start gap-3"><span class="text-accent">?</span>Unit suites for ParserFactory, Product, FieldMapper, ParserOptions, UniqueCounter, ParallelProcessor.</li>
+              <li class="flex items-start gap-3"><span class="text-accent">?</span>Integration coverage for CSV/JSON/XML parsers and end-to-end parser CLI flows.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Commands</h3>
+            <div class="bg-light-navy/60 border border-accent/20 rounded-lg p-4 font-mono text-xs text-lightest-slate space-y-2">
+              <p><span class="text-accent">composer</span> test</p>
+              <p><span class="text-accent">composer</span> test:parallel</p>
+              <p><span class="text-accent">composer</span> format</p>
+              <p><span class="text-accent">composer</span> check-format</p>
+            </div>
+            <p class="text-light-slate text-xs sm:text-sm mt-3">Parallel test targets skip gracefully on Windows when PCNTL is unavailable.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back to Portfolio -->
+      <section class="py-8 sm:py-12 text-center scroll-animate">
+        <a href="/" class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm hover:bg-accent/10 duration-300 group">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 me-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to Portfolio
+        </a>
+      </section>
+    </main>
+
+    <footer class="text-center py-8 sm:py-12 relative z-10">
+      <p class="text-slate text-xs sm:text-sm font-mono">
+        Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
+      </p>
+    </footer>
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/analytics.js"></script>
+    <script>
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, observerOptions);
+      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>
