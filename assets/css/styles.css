@@ -7,6 +7,34 @@ body {
   --color-light-slate: #a8b2d1;
   --color-lightest-slate: #ccd6f6;
   --color-accent: #64ffda;
+
+  /* Glass effects - dark mode */
+  --glass-bg: rgba(10, 25, 47, 0.7);
+  --glass-border: rgba(100, 255, 218, 0.1);
+  --glass-card-from: rgba(17, 34, 64, 0.8);
+  --glass-card-to: rgba(17, 34, 64, 0.4);
+
+  /* Gradient text colors */
+  --gradient-start: #64ffda;
+  --gradient-mid: #a8b2d1;
+  --gradient-end: #64ffda;
+
+  /* Background orbs */
+  --orb-color: rgba(100, 255, 218, 0.05);
+  --orb-glow: rgba(100, 255, 218, 0.03);
+
+  /* Decorative elements */
+  --grid-color: rgba(100, 255, 218, 0.03);
+  --line-color: rgba(100, 255, 218, 0.5);
+
+  /* Scrollbar */
+  --scrollbar-track: #0a192f;
+  --scrollbar-thumb: #233554;
+
+  /* Shadows */
+  --shadow-color: rgba(100, 255, 218, 0.15);
+  --card-shadow: 0 25px 50px -12px rgba(100, 255, 218, 0.15);
+
   background-color: var(--color-navy);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -16,11 +44,177 @@ body.light-theme {
   --color-navy: #f8fafc;
   --color-light-navy: #f1f5f9;
   --color-lightest-navy: #e2e8f0;
-  --color-slate: #475569;
-  --color-light-slate: #334155;
+  --color-slate: #64748b;
+  --color-light-slate: #475569;
   --color-lightest-slate: #1e293b;
-  --color-accent: #14b8a6;
+  --color-accent: #0d9488;
+
+  /* Glass effects - light mode */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(13, 148, 136, 0.2);
+  --glass-card-from: rgba(255, 255, 255, 0.9);
+  --glass-card-to: rgba(241, 245, 249, 0.7);
+
+  /* Gradient text colors */
+  --gradient-start: #0d9488;
+  --gradient-mid: #475569;
+  --gradient-end: #0d9488;
+
+  /* Background orbs */
+  --orb-color: rgba(13, 148, 136, 0.08);
+  --orb-glow: rgba(13, 148, 136, 0.05);
+
+  /* Decorative elements */
+  --grid-color: rgba(13, 148, 136, 0.05);
+  --line-color: rgba(13, 148, 136, 0.3);
+
+  /* Scrollbar */
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+
+  /* Shadows */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+
   background-color: var(--color-navy);
+}
+
+/* Light theme specific overrides for better contrast */
+body.light-theme .glass {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .glass-card {
+  background: linear-gradient(135deg, var(--glass-card-from), var(--glass-card-to));
+  border-color: var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .gradient-text {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-theme .decoration-grid {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+}
+
+/* Light mode floating elements */
+body.light-theme .bg-accent\/5,
+body.light-theme .bg-accent\/3 {
+  opacity: 0.8;
+}
+
+/* Light mode project cards */
+body.light-theme .project-card-enhanced:hover {
+  box-shadow: var(--card-shadow);
+}
+
+/* Light mode skill tags */
+body.light-theme .skill-tag {
+  border-color: rgba(13, 148, 136, 0.3);
+  background: rgba(13, 148, 136, 0.05);
+}
+
+body.light-theme .skill-tag:hover {
+  background: rgba(13, 148, 136, 0.1);
+  border-color: rgba(13, 148, 136, 0.5);
+}
+
+/* Light mode buttons */
+body.light-theme .magnetic-btn {
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15);
+}
+
+body.light-theme .magnetic-btn:hover {
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.25);
+}
+
+/* Light mode contact cards */
+body.light-theme .contact-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(13, 148, 136, 0.15);
+}
+
+body.light-theme .contact-card:hover {
+  box-shadow: 0 20px 40px -15px rgba(13, 148, 136, 0.2);
+}
+
+/* Light mode scrollbar */
+body.light-theme::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+body.light-theme::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+}
+
+body.light-theme::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Light mode tab buttons */
+body.light-theme .tab-button.active {
+  background: rgba(13, 148, 136, 0.1);
+}
+
+/* Light mode social bar lines */
+body.light-theme .bg-gradient-to-b {
+  --tw-gradient-from: var(--line-color);
+}
+
+/* Light mode profile placeholder */
+body.light-theme .bg-gradient-to-br.from-light-navy {
+  background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+}
+
+/* Theme transition for all elements */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Light mode orb elements */
+body.light-theme .orb-element {
+  opacity: 0.6;
+}
+
+/* Light mode profile image placeholder */
+body.light-theme .text-accent\/30 {
+  color: rgba(13, 148, 136, 0.2);
+}
+
+/* Light mode mobile menu */
+body.light-theme #mobile-menu {
+  background: rgba(248, 250, 252, 0.98);
+}
+
+/* Light mode floating shapes */
+body.light-theme .border-accent\/30,
+body.light-theme .border-accent\/20 {
+  border-color: rgba(13, 148, 136, 0.3);
+}
+
+body.light-theme .bg-accent\/20,
+body.light-theme .bg-accent\/30 {
+  background-color: rgba(13, 148, 136, 0.15);
+}
+
+/* Light mode stats section border */
+body.light-theme .border-lightest-navy\/30 {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+/* Light mode CTA button */
+body.light-theme .bg-accent.text-navy {
+  background-color: var(--color-accent);
+  color: white;
 }
 
 body.menu-open {

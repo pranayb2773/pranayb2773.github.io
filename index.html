@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -74,148 +74,532 @@
         --color-light-slate: #a8b2d1;
         --color-lightest-slate: #ccd6f6;
         --color-accent: #64ffda;
+        --color-accent-dim: #64ffda20;
+        --color-accent-glow: #64ffda40;
 
-        --font-family-sans: Inter, sans-serif;
-        --font-family-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono,
-          monospace;
+        --font-family-sans: "DM Sans", sans-serif;
+        --font-family-display: "Sora", sans-serif;
+        --font-family-mono: "JetBrains Mono", monospace;
+      }
+    </style>
+    <style>
+      /* Fluid Animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+      }
+
+      @keyframes float-delayed {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(-3deg); }
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.05); }
+      }
+
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      @keyframes slide-up {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes slide-in-left {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      @keyframes slide-in-right {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes scale-in {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes draw-line {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+
+      @keyframes typewriter {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+
+      @keyframes blink {
+        0%, 50% { border-color: transparent; }
+        51%, 100% { border-color: #64ffda; }
+      }
+
+      @keyframes orbit {
+        from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+      }
+
+      @keyframes morph {
+        0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+      }
+
+      /* Animation Classes */
+      .animate-float { animation: float 6s ease-in-out infinite; }
+      .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; }
+      .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+      .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient-shift 8s ease infinite;
+      }
+      .animate-morph { animation: morph 8s ease-in-out infinite; }
+      .animate-orbit { animation: orbit 20s linear infinite; }
+
+      .animate-slide-up {
+        opacity: 0;
+        animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .animate-slide-in-left {
+        opacity: 0;
+        animation: slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .animate-slide-in-right {
+        opacity: 0;
+        animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .animate-fade-in {
+        opacity: 0;
+        animation: fade-in 1s ease forwards;
+      }
+
+      .animate-scale-in {
+        opacity: 0;
+        animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .animate-draw-line {
+        animation: draw-line 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Stagger delays */
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+      .delay-500 { animation-delay: 500ms; }
+      .delay-600 { animation-delay: 600ms; }
+      .delay-700 { animation-delay: 700ms; }
+      .delay-800 { animation-delay: 800ms; }
+      .delay-1000 { animation-delay: 1000ms; }
+      .delay-1200 { animation-delay: 1200ms; }
+
+      /* Scroll-triggered animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-animate-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .scroll-animate-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .scroll-animate-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .scroll-animate-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Glassmorphism */
+      .glass {
+        background: var(--glass-bg, rgba(10, 25, 47, 0.7));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+        transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .glass-card {
+        background: linear-gradient(135deg, var(--glass-card-from, rgba(17, 34, 64, 0.8)) 0%, var(--glass-card-to, rgba(17, 34, 64, 0.4)) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border, rgba(100, 255, 218, 0.1));
+        transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Gradient Text */
+      .gradient-text {
+        background: linear-gradient(135deg, var(--gradient-start, #64ffda) 0%, var(--gradient-mid, #a8b2d1) 50%, var(--gradient-end, #64ffda) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 4s ease infinite;
+      }
+
+      /* Hover Effects */
+      .hover-lift {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-shadow, 0 20px 40px -15px rgba(100, 255, 218, 0.15));
+      }
+
+      .hover-glow {
+        transition: all 0.3s ease;
+      }
+
+      .hover-glow:hover {
+        box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+      }
+
+      /* Magnetic button effect */
+      .magnetic-btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .magnetic-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.2) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .magnetic-btn:hover::before {
+        opacity: 1;
+      }
+
+      .magnetic-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-color, 0 10px 30px -10px rgba(100, 255, 218, 0.3));
+      }
+
+      /* Skill tag hover */
+      .skill-tag {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .skill-tag::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, transparent 100%);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-2px) scale(1.02);
+        border-color: rgba(100, 255, 218, 0.5);
+      }
+
+      .skill-tag:hover::before {
+        opacity: 1;
+      }
+
+      /* Project card enhanced */
+      .project-card-enhanced {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .project-card-enhanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #64ffda, transparent);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+
+      .project-card-enhanced:hover::before {
+        transform: translateX(100%);
+      }
+
+      .project-card-enhanced:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--card-shadow, 0 25px 50px -12px rgba(100, 255, 218, 0.15));
+        border-color: var(--glass-border, rgba(100, 255, 218, 0.3));
+      }
+
+      /* Tab underline animation */
+      .tab-button-enhanced {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .tab-button-enhanced::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: #64ffda;
+        transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .tab-button-enhanced:hover::after,
+      .tab-button-enhanced.active::after {
+        width: 100%;
+      }
+
+      /* Decorative elements */
+      .decoration-grid {
+        background-image:
+          linear-gradient(var(--grid-color, rgba(100, 255, 218, 0.03)) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid-color, rgba(100, 255, 218, 0.03)) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #0a192f);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #233554);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent, #64ffda);
+      }
+
+      /* Section divider */
+      .section-divider {
+        position: relative;
+      }
+
+      .section-divider::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 100px;
+        background: linear-gradient(180deg, transparent, rgba(100, 255, 218, 0.3), transparent);
       }
     </style>
   </head>
-  <body class="text-slate font-sans">
-    <header class="fixed top-0 z-[100] w-full bg-navy/80 backdrop-blur-sm">
-      <nav
-        class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
-      >
-        <div class="text-accent text-2xl font-mono font-bold">
-          <a href="/">PB</a>
-        </div>
+  <body class="text-slate font-sans bg-navy decoration-grid">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0 transition-opacity duration-300">
+      <!-- Gradient Orbs -->
+      <div class="orb-element absolute top-1/4 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse-glow" style="background: var(--orb-color);"></div>
+      <div class="orb-element absolute bottom-1/4 -right-32 w-80 h-80 rounded-full blur-3xl animate-pulse-glow delay-1000" style="background: var(--orb-color);"></div>
+      <div class="orb-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl animate-morph" style="background: radial-gradient(circle, var(--orb-glow), transparent);"></div>
 
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center space-x-6">
-          <a
-            href="#about"
-            class="text-lightest-slate hover:text-accent duration-300"
-            ><span class="text-accent">01.</span> About</a
-          >
-          <a
-            href="#experience"
-            class="text-lightest-slate hover:text-accent duration-300"
-            ><span class="text-accent">02.</span> Experience</a
-          >
-          <a
-            href="#work"
-            class="text-lightest-slate hover:text-accent duration-300"
-            ><span class="text-accent">03.</span> Work</a
-          >
-          <a
-            href="#contact"
-            class="text-lightest-slate hover:text-accent duration-300"
-            ><span class="text-accent">04.</span> Contact</a
-          >
-          <button
-            id="theme-toggle"
-            class="theme-toggle text-accent focus:outline-none ms-2"
-            aria-label="Toggle theme"
-          >
-            <svg
-              id="sun-icon"
-              class="w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg
-              id="moon-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
-        </div>
+      <!-- Floating Geometric Shapes -->
+      <div class="absolute top-20 right-1/4 w-4 h-4 border border-accent/30 rotate-45 animate-float"></div>
+      <div class="absolute top-1/3 left-1/4 w-6 h-6 border border-accent/20 rounded-full animate-float-delayed"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-3 h-3 bg-accent/20 rotate-45 animate-float delay-500"></div>
+      <div class="absolute top-2/3 left-1/3 w-2 h-2 bg-accent/30 rounded-full animate-float-delayed delay-300"></div>
+    </div>
 
-        <!-- Mobile Menu Button and Theme Toggle -->
-        <div class="md:hidden flex items-center gap-4">
-          <button
-            id="theme-toggle-mobile"
-            class="theme-toggle text-accent focus:outline-none"
-            aria-label="Toggle theme"
-          >
-            <svg
-              class="sun-icon w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+    <header class="fixed top-0 z-[100] w-full">
+      <nav class="glass mx-4 mt-4 rounded-2xl">
+        <div
+          class="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto"
+        >
+          <div class="text-accent text-2xl font-mono font-bold animate-fade-in">
+            <a href="/" class="relative group">
+              <span class="relative z-10">PB</span>
+              <span class="absolute inset-0 bg-accent/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#about"
+              class="text-lightest-slate hover:text-accent duration-300 animate-fade-in delay-100 group"
+              ><span class="text-accent font-mono">01.</span>
+              <span class="relative">
+                About
+                <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
+              </span>
+            </a>
+            <a
+              href="#experience"
+              class="text-lightest-slate hover:text-accent duration-300 animate-fade-in delay-200 group"
+              ><span class="text-accent font-mono">02.</span>
+              <span class="relative">
+                Experience
+                <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
+              </span>
+            </a>
+            <a
+              href="#work"
+              class="text-lightest-slate hover:text-accent duration-300 animate-fade-in delay-300 group"
+              ><span class="text-accent font-mono">03.</span>
+              <span class="relative">
+                Work
+                <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
+              </span>
+            </a>
+            <a
+              href="#contact"
+              class="text-lightest-slate hover:text-accent duration-300 animate-fade-in delay-400 group"
+              ><span class="text-accent font-mono">04.</span>
+              <span class="relative">
+                Contact
+                <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
+              </span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle text-accent focus:outline-none ms-2 animate-fade-in delay-500 hover:rotate-180 transition-transform duration-500"
+              aria-label="Toggle theme"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg
-              class="moon-icon w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              <svg
+                id="sun-icon"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+              <svg
+                id="moon-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button and Theme Toggle -->
+          <div class="md:hidden flex items-center gap-4">
+            <button
+              id="theme-toggle-mobile"
+              class="theme-toggle text-accent focus:outline-none"
+              aria-label="Toggle theme"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
-          <button
-            id="mobile-menu-button"
-            class="text-accent focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            <svg
-              id="menu-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              <svg
+                class="sun-icon w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+              <svg
+                class="moon-icon w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+            </button>
+            <button
+              id="mobile-menu-button"
+              class="text-accent focus:outline-none"
+              aria-label="Toggle menu"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-            <svg
-              id="close-icon"
-              class="w-6 h-6 hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              <svg
+                id="menu-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="close-icon"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
@@ -223,7 +607,7 @@
     <!-- Mobile Menu Overlay (moved outside header) -->
     <div
       id="mobile-menu"
-      class="md:hidden fixed inset-0 bg-navy translate-x-full z-50 flex flex-col items-center justify-center"
+      class="md:hidden fixed inset-0 bg-navy/95 backdrop-blur-xl translate-x-full z-50 flex flex-col items-center justify-center transition-transform duration-500"
     >
       <nav class="flex flex-col items-center space-y-8">
         <a
@@ -249,13 +633,14 @@
       </nav>
     </div>
 
+    <!-- Left Social Bar -->
     <div class="hidden md:block fixed bottom-0 start-12 z-10">
       <div class="flex flex-col items-center space-y-6">
         <a
           href="https://github.com/pranayb2773"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-2 hover:scale-110 duration-300 animate-slide-up delay-600"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -273,7 +658,7 @@
           href="https://www.linkedin.com/in/pranay-teja-baddam/"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-2 hover:scale-110 duration-300 animate-slide-up delay-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -291,7 +676,7 @@
           href="https://x.com/pranayb2773"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-2 hover:scale-110 duration-300 animate-slide-up delay-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -309,7 +694,7 @@
           href="tel:+447503097560"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-2 hover:scale-110 duration-300 animate-slide-up delay-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -324,342 +709,352 @@
             />
           </svg>
         </a>
-        <div class="h-24 w-px bg-slate mt-6"></div>
+        <div class="h-24 w-px mt-6 social-line" style="background: linear-gradient(to bottom, var(--line-color, rgba(100, 255, 218, 0.5)), transparent);"></div>
       </div>
     </div>
+
+    <!-- Right Email Bar -->
     <div class="hidden md:block fixed bottom-0 end-12 z-10">
       <div class="flex flex-col items-center">
         <a
           href="mailto:pranayb2773@gmail.com"
-          class="text-slate hover:text-accent font-mono text-sm tracking-widest transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent font-mono text-sm tracking-widest transform hover:-translate-y-1 duration-300 animate-slide-up delay-1000"
           style="writing-mode: vertical-rl"
         >
           pranayb2773@gmail.com
         </a>
-        <div class="h-24 w-px bg-slate mt-6"></div>
+        <div class="h-24 w-px mt-6 social-line" style="background: linear-gradient(to bottom, var(--line-color, rgba(100, 255, 218, 0.5)), transparent);"></div>
       </div>
     </div>
 
-    <main class="max-w-4xl mx-auto px-6">
-      <section id="hero" class="min-h-screen flex flex-col justify-center">
-        <p class="text-accent font-mono mb-4">Hi, my name is</p>
-        <h1 class="text-4xl md:text-7xl font-bold text-lightest-slate">
-          Pranay Teja Baddam.
-        </h1>
-        <h2 class="text-4xl md:text-7xl font-bold text-slate mt-2">
-          I build high-quality web applications.
-        </h2>
-        <p class="text-slate max-w-xl mt-6">
-          I'm a Senior Full-Stack Developer with 7+ years of experience
-          specializing in PHP and Python. My focus is on building scalable,
-          high-performance web applications and robust RESTful APIs using modern
-          frameworks like Laravel and Django.
-        </p>
-        <div
-          class="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-        >
-          <a
-            href="#work"
-            class="inline-block mt-8 sm:mt-12 px-6 sm:px-8 py-3 sm:py-4 border border-accent text-accent rounded font-mono text-sm sm:text-base hover:bg-accent/10 duration-300 whitespace-nowrap"
-          >
-            Check Out My Work!
-          </a>
-          <a
-            href="/assets/cvs/Pranay_Baddam_Senior_Software_Engineer_CV.pdf"
-            download
-            class="inline-block mt-0 sm:mt-12 px-6 sm:px-8 py-3 sm:py-4 border border-accent text-accent rounded font-mono text-sm sm:text-base hover:bg-accent/10 duration-300 whitespace-nowrap"
-          >
-            Download CV!
-          </a>
-        </div>
-      </section>
+    <main class="max-w-5xl mx-auto px-6 relative z-10">
+      <!-- Hero Section -->
+      <section id="hero" class="min-h-screen flex flex-col justify-center py-24">
+        <div class="relative">
+          <!-- Decorative elements -->
+          <div class="absolute -left-8 top-0 w-px h-32 animate-fade-in delay-300" style="background: linear-gradient(to bottom, transparent, var(--line-color, rgba(100, 255, 218, 0.5)), transparent);"></div>
 
-      <section id="about" class="py-24">
-        <h2
-          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-8"
-        >
-          <span class="flex items-center mb-2 md:mb-0">
-            <span class="text-accent font-mono text-xl me-3">01.</span> About Me
-          </span>
-          <span
-            class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"
-          ></span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
-          <div class="md:col-span-3 text-light-slate">
-            <p class="mb-4">
-              Hello! I'm Pranay, a Senior Full-Stack Developer with 7+ years of
-              experience building scalable web applications for SaaS, fintech,
-              and healthcare industries. Currently based in Edinburgh, Scotland,
-              I recently completed nearly 3 years at Bigtincan where I delivered
-              $24K in annual AWS cost savings, led critical PHP 7.1 to 8.3
-              migration, and architected enterprise CRM integrations serving
-              Fortune 500 clients.
-            </p>
-            <p class="mb-4">
-              I'm an expert in the Laravel ecosystem with a proven track record
-              building high-performance APIs processing millions of daily
-              requests and mentoring engineering teams. Passionate about
-              Test-Driven Development, I consistently achieve 80%+ code coverage
-              and have reduced production incidents by 40-45% through robust
-              testing practices.
-            </p>
-            <p class="mb-4">
-              I thrive in collaborative Agile/Scrum environments and enjoy
-              turning complex technical challenges into elegant, user-friendly
-              solutions that drive measurable business impact.
-            </p>
-            <p>Here are a few technologies I've been working with recently:</p>
-            <ul
-              class="grid grid-cols-2 gap-2 mt-4 font-mono text-sm text-slate"
+          <p class="text-accent font-mono mb-6 text-lg animate-slide-up">Hi, my name is</p>
+
+          <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-lightest-slate tracking-tight animate-slide-up delay-100">
+            Pranay Teja Baddam<span class="text-accent">.</span>
+          </h1>
+
+          <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold mt-4 animate-slide-up delay-200">
+            <span class="gradient-text">I build high-quality</span>
+            <br class="hidden sm:block" />
+            <span class="text-slate">web applications.</span>
+          </h2>
+
+          <p class="text-light-slate max-w-2xl mt-8 text-lg leading-relaxed animate-slide-up delay-300">
+            I'm a Senior Full-Stack Developer with <span class="text-accent font-semibold">7+ years of experience</span>
+            specializing in PHP and Python. My focus is on building scalable,
+            high-performance web applications and robust RESTful APIs using modern
+            frameworks like <span class="text-lightest-slate">Laravel</span> and <span class="text-lightest-slate">Django</span>.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12 animate-slide-up delay-400">
+            <a
+              href="#work"
+              class="magnetic-btn group relative px-8 py-4 border-2 border-accent text-accent rounded-lg font-mono text-sm overflow-hidden"
             >
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>PHP 7.x/8.x
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Python 3.x
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>JavaScript/TypeScript
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Laravel & Livewire
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Symfony
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Django & FastAPI
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Vue.js & React
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Tailwind CSS & Filament
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>MySQL & PostgreSQL
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Redis & Memcached
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>Docker & Kubernetes
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>AWS & Azure (AZ-900)
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>PHPUnit & Pest
-              </li>
-              <li class="flex items-center">
-                <span class="text-accent me-2">▹</span>GitLab CI & GitHub
-                Actions
-              </li>
-            </ul>
+              <span class="relative z-10 flex items-center gap-2">
+                Check Out My Work
+                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
+            </a>
+            <a
+              href="/assets/cvs/Pranay_Baddam_Senior_Software_Engineer_CV.pdf"
+              download
+              class="magnetic-btn group relative px-8 py-4 bg-accent/10 border border-accent/30 text-accent rounded-lg font-mono text-sm hover:border-accent transition-colors"
+            >
+              <span class="relative z-10 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Download CV
+              </span>
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-lightest-navy/30 animate-slide-up delay-500">
+            <div class="text-center sm:text-left">
+              <div class="text-3xl md:text-4xl font-display font-bold text-accent">7+</div>
+              <div class="text-sm text-slate mt-1">Years Experience</div>
+            </div>
+            <div class="text-center sm:text-left">
+              <div class="text-3xl md:text-4xl font-display font-bold text-accent">50+</div>
+              <div class="text-sm text-slate mt-1">Projects Delivered</div>
+            </div>
+            <div class="text-center sm:text-left">
+              <div class="text-3xl md:text-4xl font-display font-bold text-accent">1M+</div>
+              <div class="text-sm text-slate mt-1">API Requests/Day</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="experience" class="py-24">
-        <h2
-          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-8"
-        >
-          <span class="flex items-center mb-2 md:mb-0">
-            <span class="text-accent font-mono text-xl me-3">02.</span> Where
-            I've Worked
-          </span>
-          <span
-            class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"
-          ></span>
-        </h2>
-        <div class="flex flex-col md:flex-row gap-8">
-          <div class="flex md:flex-col md:w-48 overflow-x-auto">
+      <!-- About Section -->
+      <section id="about" class="py-32">
+        <div class="scroll-animate">
+          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
+            <span class="flex items-center mb-2 md:mb-0">
+              <span class="text-accent font-mono text-lg me-3">01.</span> About Me
+            </span>
+            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          <div class="lg:col-span-3 space-y-6">
+            <div class="scroll-animate delay-100">
+              <p class="text-light-slate text-lg leading-relaxed">
+                Hello! I'm Pranay, a Senior Full-Stack Developer with 7+ years of
+                experience building scalable web applications for <span class="text-accent">SaaS</span>, <span class="text-accent">fintech</span>,
+                and <span class="text-accent">healthcare</span> industries. Currently based in Edinburgh, Scotland,
+                I recently completed nearly 3 years at Bigtincan where I delivered
+                <span class="text-lightest-slate font-semibold">$24K in annual AWS cost savings</span>, led critical PHP 7.1 to 8.3
+                migration, and architected enterprise CRM integrations serving
+                Fortune 500 clients.
+              </p>
+            </div>
+
+            <div class="scroll-animate delay-200">
+              <p class="text-light-slate text-lg leading-relaxed">
+                I'm an expert in the Laravel ecosystem with a proven track record
+                building high-performance APIs processing millions of daily
+                requests and mentoring engineering teams. Passionate about
+                Test-Driven Development, I consistently achieve <span class="text-accent">80%+ code coverage</span>
+                and have reduced production incidents by 40-45% through robust
+                testing practices.
+              </p>
+            </div>
+
+            <div class="scroll-animate delay-300">
+              <p class="text-light-slate text-lg leading-relaxed">
+                I thrive in collaborative Agile/Scrum environments and enjoy
+                turning complex technical challenges into elegant, user-friendly
+                solutions that drive measurable business impact.
+              </p>
+            </div>
+
+            <div class="scroll-animate delay-400">
+              <p class="text-light-slate mb-6">Here are the technologies I've been working with:</p>
+
+              <!-- Languages -->
+              <div class="mb-6">
+                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Languages</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHP 7.x/8.x</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Python 3.x</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">JavaScript</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TypeScript</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">SQL</span>
+                </div>
+              </div>
+
+              <!-- Frameworks -->
+              <div class="mb-6">
+                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Frameworks & Libraries</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Laravel</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Livewire</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Symfony</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Django</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">FastAPI</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Vue.js</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">React</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Tailwind CSS</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Filament</span>
+                </div>
+              </div>
+
+              <!-- Databases & Caching -->
+              <div class="mb-6">
+                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Databases & Caching</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">MySQL</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PostgreSQL</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Redis</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Memcached</span>
+                </div>
+              </div>
+
+              <!-- DevOps & Cloud -->
+              <div class="mb-6">
+                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">DevOps & Cloud</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Docker</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Kubernetes</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">AWS</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Azure</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">GitLab CI</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">GitHub Actions</span>
+                </div>
+              </div>
+
+              <!-- Testing -->
+              <div>
+                <h4 class="text-xs font-mono text-accent uppercase tracking-wider mb-3">Testing & Quality</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">PHPUnit</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Pest</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">TDD</span>
+                  <span class="skill-tag px-3 py-1.5 rounded-full font-mono text-xs border border-accent/30 text-accent hover:bg-accent/10 transition-all">Jest</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Image Placeholder -->
+          <div class="lg:col-span-2 scroll-animate-scale delay-300">
+            <div class="relative group">
+              <div class="absolute -inset-4 bg-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative aspect-square rounded-2xl bg-gradient-to-br from-light-navy to-lightest-navy p-1">
+                <div class="w-full h-full rounded-xl bg-light-navy flex items-center justify-center overflow-hidden">
+                  <div class="text-accent/30 text-9xl font-display font-bold">PB</div>
+                </div>
+              </div>
+              <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-accent/30 rounded-2xl -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-32">
+        <div class="scroll-animate">
+          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
+            <span class="flex items-center mb-2 md:mb-0">
+              <span class="text-accent font-mono text-lg me-3">02.</span> Where I've Worked
+            </span>
+            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
+          </h2>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 scroll-animate delay-200">
+          <!-- Tab Buttons -->
+          <div class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 md:min-w-[180px]">
             <button
-              class="tab-button active text-left px-4 py-2 whitespace-nowrap font-mono text-sm border-b-2 md:border-b-0 md:border-s-2 border-accent text-accent"
+              class="tab-button active text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg glass-card border-l-2 border-accent text-accent transition-all duration-300"
             >
               Bigtincan
             </button>
             <button
-              class="tab-button text-left px-4 py-2 whitespace-nowrap font-mono text-sm border-b-2 md:border-b-0 md:border-s-2 border-lightest-navy text-slate hover:bg-light-navy/50 hover:text-accent"
+              class="tab-button text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300"
             >
               Dynamo
             </button>
             <button
-              class="tab-button text-left px-4 py-2 whitespace-nowrap font-mono text-sm border-b-2 md:border-b-0 md:border-s-2 border-lightest-navy text-slate hover:bg-light-navy/50 hover:text-accent"
+              class="tab-button text-left px-5 py-4 whitespace-nowrap font-mono text-sm rounded-lg hover:bg-light-navy/50 text-slate hover:text-accent border-l-2 border-transparent hover:border-accent/50 transition-all duration-300"
             >
-              Meditab Software
+              Meditab
             </button>
           </div>
+
+          <!-- Tab Content -->
           <div class="flex-1">
-            <div class="tab-content">
-              <h3 class="text-xl font-semibold text-lightest-slate">
+            <div class="tab-content glass-card rounded-2xl p-8">
+              <h3 class="text-xl font-display font-semibold text-lightest-slate">
                 Software Engineer <span class="text-accent">@ Bigtincan</span>
               </h3>
-              <p class="font-mono text-sm mt-1 mb-4">
+              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
                 January 2023 – November 2025 | Glasgow, Scotland
               </p>
-              <ul class="space-y-2 text-light-slate">
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Architected and
-                  maintained backend services for enterprise-grade content
-                  management platform serving millions of users across 200+
-                  global organizations.
+              <ul class="space-y-4 text-light-slate">
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Architected and maintained backend services for enterprise-grade content management platform serving millions of users across 200+ global organizations.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Identified and
-                  resolved Redis caching inefficiency, reducing AWS costs by
-                  $2,000/month ($24K annual savings) while improving cache hit
-                  ratio from 72% to 94%.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Identified and resolved Redis caching inefficiency, reducing AWS costs by <span class="text-accent font-semibold">$2,000/month ($24K annual savings)</span> while improving cache hit ratio from 72% to 94%.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Led complete PHP
-                  7.1 to 8.3 migration for monolithic codebase, improving
-                  application performance by 25-30% and eliminating critical
-                  security vulnerabilities.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Led complete PHP 7.1 to 8.3 migration for monolithic codebase, improving application performance by 25-30% and eliminating critical security vulnerabilities.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Established
-                  PHPUnit testing standards achieving 80% code coverage,
-                  reducing production incidents by 40-45%.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Established PHPUnit testing standards achieving 80% code coverage, reducing production incidents by 40-45%.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Designed and
-                  optimized MySQL data models and complex queries to support
-                  high-throughput operations processing 1M+ requests daily.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Developed and
-                  extended versioned RESTful APIs consumed by web, mobile, and
-                  third-party integrations.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Implemented CI/CD
-                  pipelines using Docker and Kubernetes to automate testing,
-                  deployment, and environment management across AWS
-                  infrastructure.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Mentored junior
-                  engineers through code reviews and conducted technical
-                  interviews to scale backend team.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Collaborated with
-                  cross-functional teams (product, design, QA) to deliver
-                  user-centric features in 8-week agile sprints.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Designed and optimized MySQL data models and complex queries to support high-throughput operations processing 1M+ requests daily.</span>
                 </li>
               </ul>
             </div>
-            <div class="tab-content hidden">
-              <h3 class="text-xl font-semibold text-lightest-slate">
+
+            <div class="tab-content hidden glass-card rounded-2xl p-8">
+              <h3 class="text-xl font-display font-semibold text-lightest-slate">
                 PHP Developer <span class="text-accent">@ Dynamo</span>
               </h3>
-              <p class="font-mono text-sm mt-1 mb-4">
+              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
                 September 2020 – September 2022 | Camberley, England
               </p>
-              <ul class="space-y-2 text-light-slate">
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Led full-stack
-                  development for customer-facing websites and internal business
-                  applications serving 5,000+ active property investors.
+              <ul class="space-y-4 text-light-slate">
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Led full-stack development for customer-facing websites and internal business applications serving 5,000+ active property investors.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Successfully
-                  migrated entire customer database and CRM system from
-                  Drupal/CiviCRM to Laravel, reducing page load times by 60%
-                  (from 3.5s to 1.4s) and cutting monthly hosting costs by £100.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Successfully migrated entire customer database and CRM system from Drupal/CiviCRM to Laravel, reducing page load times by <span class="text-accent font-semibold">60% (from 3.5s to 1.4s)</span> and cutting monthly hosting costs by £100.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Built
-                  Laravel-based lead injection API processing 2,000+ mortgage
-                  enquiries monthly from third-party providers, increasing lead
-                  volume by 35%.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Built Laravel-based lead injection API processing 2,000+ mortgage enquiries monthly from third-party providers, increasing lead volume by 35%.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Developed Deal
-                  Tuner gamification platform integrating with Unifi Controller
-                  API, improving sales team engagement and increasing deal
-                  closure rates by 18%.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Developed Deal Tuner gamification platform integrating with Unifi Controller API, improving sales team engagement and increasing deal closure rates by 18%.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Created automated
-                  Wi-Fi credential rotation system using Unifi API, reducing IT
-                  support tickets by 40% and improving office security
-                  compliance.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Optimized MySQL
-                  database queries and indexes across legacy Drupal
-                  applications, reducing server response times by 45%.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Maintained 99.5%
-                  uptime across 4 production websites during 2-year tenure with
-                  zero critical data loss incidents.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Maintained 99.5% uptime across 4 production websites during 2-year tenure with zero critical data loss incidents.</span>
                 </li>
               </ul>
             </div>
-            <div class="tab-content hidden">
-              <h3 class="text-xl font-semibold text-lightest-slate">
-                Full Stack PHP Developer
-                <span class="text-accent">@ Meditab Software</span>
+
+            <div class="tab-content hidden glass-card rounded-2xl p-8">
+              <h3 class="text-xl font-display font-semibold text-lightest-slate">
+                Full Stack PHP Developer <span class="text-accent">@ Meditab Software</span>
               </h3>
-              <p class="font-mono text-sm mt-1 mb-4">
+              <p class="font-mono text-sm text-slate mt-2 mb-6 flex items-center gap-2">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
                 January 2018 – August 2020 | Ahmedabad, India
               </p>
-              <ul class="space-y-2 text-light-slate">
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Developed and
-                  maintained HIPAA-compliant healthcare applications for 40+
-                  US-based medical practices serving 200,000+ patients.
+              <ul class="space-y-4 text-light-slate">
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Developed and maintained HIPAA-compliant healthcare applications for 40+ US-based medical practices serving 200,000+ patients.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Optimized 25+
-                  slow-running MSSQL queries processing patient records,
-                  reducing average report generation time from 45 seconds to 5
-                  seconds (85% improvement) and eliminating timeout errors
-                  during peak clinic hours.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Optimized 25+ slow-running MSSQL queries processing patient records, reducing average report generation time from 45 seconds to 5 seconds <span class="text-accent font-semibold">(85% improvement)</span>.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Implemented
-                  automated SQL job schedulers for overnight data processing
-                  tasks, reducing manual intervention by 70% and ensuring
-                  morning report availability for clinic staff.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Implemented automated SQL job schedulers for overnight data processing tasks, reducing manual intervention by 70%.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Conducted daily
-                  code reviews for 5-member development team and managed
-                  releases to staging/production environments using Jenkins and
-                  GitLab.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Conducted daily code reviews for 5-member development team and managed releases to staging/production environments.</span>
                 </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Developed
-                  cross-domain communication framework enabling secure data
-                  exchange between PHP frontend and .NET services, supporting
-                  15+ client integrations.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Built automated
-                  CSV report generation system extracting data from 50+ database
-                  tables, saving medical administrators 10+ hours weekly in
-                  manual report compilation.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Maintained
-                  detailed error logging and monitoring systems, reducing mean
-                  time to resolution (MTTR) for production issues from 4 hours
-                  to 45 minutes.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Mentored 3 junior
-                  developers through pair programming and code review sessions,
-                  improving team code quality score by 35%.
-                </li>
-                <li class="flex">
-                  <span class="text-accent me-3 mt-1">▹</span>Participated in
-                  bi-weekly status calls with US-based clients across multiple
-                  time zones, maintaining 95%+ client satisfaction rating.
+                <li class="flex gap-3">
+                  <span class="text-accent mt-1.5 flex-shrink-0">▹</span>
+                  <span>Mentored 3 junior developers through pair programming and code review sessions, improving team code quality score by 35%.</span>
                 </li>
               </ul>
             </div>
@@ -667,276 +1062,324 @@
         </div>
       </section>
 
-      <section id="work" class="py-24">
-        <h2
-          class="flex flex-col md:flex-row md:items-center text-2xl font-bold text-lightest-slate mb-12"
-        >
-          <span class="flex items-center mb-2 md:mb-0">
-            <span class="text-accent font-mono text-xl me-3">03.</span> Some
-            Things I've Built
-          </span>
-          <span
-            class="block h-px w-full max-w-xs bg-lightest-navy md:ms-4"
-          ></span>
-        </h2>
+      <!-- Work Section -->
+      <section id="work" class="py-32">
+        <div class="scroll-animate">
+          <h2 class="flex flex-col md:flex-row md:items-center text-2xl font-display font-bold text-lightest-slate mb-12">
+            <span class="flex items-center mb-2 md:mb-0">
+              <span class="text-accent font-mono text-lg me-3">03.</span> Some Things I've Built
+            </span>
+            <span class="block h-px flex-1 max-w-xs bg-gradient-to-r from-lightest-navy to-transparent md:ms-6"></span>
+          </h2>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <a
             href="/pages/job-tracker"
-            class="project-card bg-light-navy p-6 rounded-md shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
+            class="project-card-enhanced scroll-animate-scale glass-card p-8 rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-center mb-4">
+              <div class="flex justify-between items-start mb-6">
+                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <svg
+                    class="size-8 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                    ></path>
+                  </svg>
+                </div>
                 <svg
-                  class="size-10 text-accent"
+                  class="size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  ></path>
-                </svg>
-                <svg
-                  class="size-6 text-slate hover:text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>GitHub</title>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3
-                class="project-title text-xl font-bold text-lightest-slate mt-2 mb-4 transition-colors duration-300"
-              >
+              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
                 Job Applications Tracker
               </h3>
-              <p class="text-slate text-sm">
+              <p class="text-slate leading-relaxed">
                 A powerful Laravel 12 application for tracking job applications
                 with AI-powered CV analysis, built with modern tools and best
                 practices.
               </p>
             </div>
-            <ul
-              class="flex flex-wrap gap-x-4 mt-4 font-mono text-xs text-light-slate"
-            >
-              <li>Laravel</li>
-              <li>Livewire</li>
-              <li>Flux UI Pro</li>
-              <li>AI</li>
-              <li>Tailwind</li>
-            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Livewire</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Flux UI</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">AI</span>
+            </div>
           </a>
 
           <a
             href="/pages/carpark-booking-api"
-            class="project-card bg-light-navy p-6 rounded-md shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
+            class="project-card-enhanced scroll-animate-scale delay-100 glass-card p-8 rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-center mb-4">
+              <div class="flex justify-between items-start mb-6">
+                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <svg
+                    class="size-8 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
                 <svg
-                  class="size-10 text-accent"
+                  class="size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <svg
-                  class="size-6 text-slate hover:text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>GitHub</title>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3
-                class="project-title text-xl font-bold text-lightest-slate mt-2 mb-4 transition-colors duration-300"
-              >
+              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
                 Car Park Booking API
               </h3>
-              <p class="text-slate text-sm">
+              <p class="text-slate leading-relaxed">
                 A Laravel 12 (PHP 8.2) REST API for checking car park
                 availability, calculating prices, and managing bookings with
-                token-based authentication (Laravel Sanctum).
+                token-based authentication.
               </p>
             </div>
-            <ul
-              class="flex flex-wrap gap-x-4 mt-4 font-mono text-xs text-light-slate"
-            >
-              <li>Laravel</li>
-              <li>PHP</li>
-              <li>Sanctum</li>
-              <li>API</li>
-            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">PHP 8.2</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Sanctum</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">REST API</span>
+            </div>
           </a>
 
           <a
             href="/pages/portfolio-project"
-            class="project-card bg-light-navy p-6 rounded-md shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
+            class="project-card-enhanced scroll-animate-scale delay-200 glass-card p-8 rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-center mb-4">
+              <div class="flex justify-between items-start mb-6">
+                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <svg
+                    class="size-8 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    ></path>
+                  </svg>
+                </div>
                 <svg
-                  class="size-10 text-accent"
+                  class="size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  ></path>
-                </svg>
-                <svg
-                  class="size-6 text-slate hover:text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>GitHub</title>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3
-                class="project-title text-xl font-bold text-lightest-slate mt-2 mb-4 transition-colors duration-300"
-              >
+              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
                 Portfolio Website
               </h3>
-              <p class="text-slate text-sm">
+              <p class="text-slate leading-relaxed">
                 A modern, responsive portfolio website built with vanilla HTML,
                 Tailwind CSS, and JavaScript. Features light/dark theme toggle,
                 mobile navigation, and smooth animations.
               </p>
             </div>
-            <ul
-              class="flex flex-wrap gap-x-4 mt-4 font-mono text-xs text-light-slate"
-            >
-              <li>HTML5</li>
-              <li>Tailwind CSS</li>
-              <li>JavaScript</li>
-              <li>GitHub Pages</li>
-            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">HTML5</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Tailwind</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">JavaScript</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">GitHub Pages</span>
+            </div>
           </a>
 
           <a
             href="/pages/todo-list-api"
-            class="project-card bg-light-navy p-6 rounded-md shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
+            class="project-card-enhanced scroll-animate-scale delay-300 glass-card p-8 rounded-2xl flex flex-col justify-between group"
           >
             <div>
-              <div class="flex justify-between items-center mb-4">
+              <div class="flex justify-between items-start mb-6">
+                <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <svg
+                    class="size-8 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                    ></path>
+                  </svg>
+                </div>
                 <svg
-                  class="size-10 text-accent"
+                  class="size-6 text-slate group-hover:text-accent transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <svg
-                  class="size-6 text-slate hover:text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>GitHub</title>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
-              <h3
-                class="project-title text-xl font-bold text-lightest-slate mt-2 mb-4 transition-colors duration-300"
-              >
+              <h3 class="text-xl font-display font-bold text-lightest-slate mb-3 group-hover:text-accent transition-colors">
                 Todo List API
               </h3>
-              <p class="text-slate text-sm">
-                This is a sample to-do list RESTful API created using Laravel.
-                With this API, you can manage your to-do list like view, create,
-                edit and delete functionalities.
+              <p class="text-slate leading-relaxed">
+                A sample to-do list RESTful API created using Laravel.
+                Manage your to-do list with view, create, edit and delete
+                functionalities.
               </p>
             </div>
-            <ul
-              class="flex flex-wrap gap-x-4 mt-4 font-mono text-xs text-light-slate"
-            >
-              <li>Laravel</li>
-              <li>PHP</li>
-              <li>Sanctum</li>
-              <li>API</li>
-            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Laravel</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">PHP</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">Sanctum</span>
+              <span class="px-3 py-1 text-xs font-mono text-accent bg-accent/10 rounded-full">API</span>
+            </div>
           </a>
         </div>
       </section>
 
-      <section id="contact" class="py-24 text-center">
-        <h2 class="text-accent font-mono mb-2">04. What's Next?</h2>
-        <h3 class="text-5xl font-bold text-lightest-slate">Get In Touch</h3>
-        <p class="text-slate max-w-xl mx-auto mt-4">
-          I'm actively seeking new opportunities and am excited to contribute to
-          ambitious projects. Whether you have a specific role in mind or just
-          want to connect, my inbox is always open. I'll get back to you as soon
-          as I can!
-        </p>
-        <a
-          href="mailto:pranayb2773@gmail.com"
-          class="inline-block mt-8 px-8 py-4 border border-accent text-accent rounded font-mono hover:bg-accent/10 duration-300"
-        >
-          Say Hello
-        </a>
+      <!-- Contact Section -->
+      <section id="contact" class="py-32">
+        <div class="max-w-4xl mx-auto">
+          <!-- Section Header -->
+          <div class="text-center scroll-animate">
+            <p class="text-accent font-mono text-lg mb-4">04. What's Next?</p>
+            <h3 class="text-5xl md:text-6xl font-display font-bold text-lightest-slate">
+              Let's Work Together
+            </h3>
+          </div>
+
+          <div class="scroll-animate delay-200">
+            <p class="text-light-slate text-lg mt-6 leading-relaxed text-center max-w-2xl mx-auto">
+              I'm currently open to new opportunities where I can contribute, learn, and grow.
+              If you have a project that needs a dedicated developer or a position that matches my skills,
+              I'd love to hear from you.
+            </p>
+          </div>
+
+          <!-- Contact Cards -->
+          <div class="grid md:grid-cols-3 gap-6 mt-12">
+            <!-- Email Card -->
+            <a href="mailto:pranayb2773@gmail.com"
+               class="scroll-animate delay-300 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h4 class="font-display font-semibold text-lightest-slate mb-2">Email Me</h4>
+              <p class="text-sm text-slate mb-3">For job opportunities & collaborations</p>
+              <span class="text-accent font-mono text-sm group-hover:underline">pranayb2773@gmail.com</span>
+            </a>
+
+            <!-- LinkedIn Card -->
+            <a href="https://www.linkedin.com/in/pranay-teja-baddam/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="scroll-animate delay-400 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-7 h-7 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 012.063-2.065 2.064 2.064 0 012.063 2.065c0 1.14-.925 2.065-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                </svg>
+              </div>
+              <h4 class="font-display font-semibold text-lightest-slate mb-2">Connect on LinkedIn</h4>
+              <p class="text-sm text-slate mb-3">Let's expand our professional network</p>
+              <span class="text-accent font-mono text-sm group-hover:underline">@pranay-teja-baddam</span>
+            </a>
+
+            <!-- Phone Card -->
+            <a href="tel:+447503097560"
+               class="scroll-animate delay-500 group contact-card glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+                </svg>
+              </div>
+              <h4 class="font-display font-semibold text-lightest-slate mb-2">Call Me</h4>
+              <p class="text-sm text-slate mb-3">For urgent discussions</p>
+              <span class="text-accent font-mono text-sm group-hover:underline">+44 7503 097560</span>
+            </a>
+          </div>
+
+          <!-- Availability Status -->
+          <div class="scroll-animate delay-600 mt-12 text-center">
+            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <span class="text-light-slate text-sm">Currently available for full-time positions</span>
+            </div>
+          </div>
+
+          <!-- Location Info -->
+          <div class="scroll-animate delay-700 mt-8 text-center">
+            <p class="text-slate text-sm flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              Based in Edinburgh, Scotland | Open to Remote & Hybrid roles across UK & Europe
+            </p>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="scroll-animate delay-800 mt-10 text-center">
+            <a
+              href="mailto:pranayb2773@gmail.com?subject=Job%20Opportunity%20-%20Let's%20Connect&body=Hi%20Pranay,%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0A"
+              class="magnetic-btn group inline-flex items-center gap-3 px-10 py-5 bg-accent text-navy rounded-xl font-mono font-semibold text-base hover:bg-accent/90 transition-colors"
+            >
+              <span>Start a Conversation</span>
+              <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer class="text-center py-6">
-      <div class="md:hidden flex justify-center items-center gap-6 mb-6">
+    <footer class="text-center py-12 relative z-10">
+      <div class="md:hidden flex justify-center items-center gap-8 mb-8">
         <a
           href="https://github.com/pranayb2773"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-1 hover:scale-110 duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -954,7 +1397,7 @@
           href="https://www.linkedin.com/in/pranay-teja-baddam/"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-1 hover:scale-110 duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -972,7 +1415,7 @@
           href="https://x.com/pranayb2773"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-1 hover:scale-110 duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -990,7 +1433,7 @@
           href="tel:+447503097560"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-1 hover:scale-110 duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1007,7 +1450,7 @@
         </a>
         <a
           href="mailto:pranayb2773@gmail.com"
-          class="text-slate hover:text-accent transform hover:-translate-y-1 duration-300"
+          class="text-slate hover:text-accent transform hover:-translate-y-1 hover:scale-110 duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1021,8 +1464,8 @@
           </svg>
         </a>
       </div>
-      <p class="text-slate text-xs font-mono">
-        Designed & Built by Pranay Teja Baddam
+      <p class="text-slate text-sm font-mono">
+        Designed & Built by <span class="text-accent">Pranay Teja Baddam</span>
       </p>
     </footer>
 
@@ -1030,5 +1473,36 @@
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/analytics.js"></script>
+
+    <!-- Scroll Animation Script -->
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all scroll-animate elements
+      document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-scale').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Stagger delays for scroll animations
+      document.querySelectorAll('.scroll-animate, .scroll-animate-scale').forEach((el, index) => {
+        if (el.classList.contains('delay-100')) el.style.transitionDelay = '100ms';
+        if (el.classList.contains('delay-200')) el.style.transitionDelay = '200ms';
+        if (el.classList.contains('delay-300')) el.style.transitionDelay = '300ms';
+        if (el.classList.contains('delay-400')) el.style.transitionDelay = '400ms';
+      });
+    </script>
   </body>
 </html>
