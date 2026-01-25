@@ -1,100 +1,96 @@
-# Portfolio - Pranay Teja Baddam
+# Pranay Teja Baddam - Portfolio
 
-A modern, responsive portfolio website showcasing my experience as a Full-Stack Software Engineer.
-
-🔗 **Live Site:** [https://pranaybaddam.site](https://pranaybaddam.site)
-
-## About
-
-Personal portfolio website featuring:
-- 7+ years of professional software engineering experience
-- Expertise in PHP, Python, Laravel, Django, and modern web technologies
-- Project showcase and work history
-- Downloadable CV/Resume
-
-## Technologies Used
-
-- **HTML5** - Semantic markup
-- **Tailwind CSS** (Browser CDN) - Utility-first styling
-- **JavaScript (Vanilla)** - Interactive components
-- **GitHub Pages** - Hosting
+A modern, responsive portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Features
 
-- ✨ Fully responsive design (mobile, tablet, desktop)
-- 🎨 Light & dark theme toggle with localStorage persistence
-- 🌙 Modern dark theme (default) with vibrant cyan accent
-- ☀️ Clean light theme with teal accent
-- 📱 Mobile-friendly hamburger navigation menu
-- 📄 Downloadable resume (PDF)
-- 🔗 Social media integration (GitHub, LinkedIn, X/Twitter)
-- ⚡ Fast loading with CDN-based assets (Tailwind CSS Browser CDN)
-- 🎯 Smooth scrolling and animations
-- ♿ Accessible with ARIA labels and semantic HTML
-- 🔍 SEO optimized (meta tags, robots.txt, sitemap.xml)
+- **React 19** - Latest React with modern hooks and patterns
+- **TypeScript** - Type-safe development
+- **Tailwind CSS v4** - Modern utility-first styling with CSS variables
+- **Framer Motion** - Smooth, professional animations
+- **React Router** - Client-side routing for SPA
+- **Dark/Light Theme** - Persistent theme switching with smooth transitions
+- **Responsive Design** - Mobile-first approach with beautiful layouts
+- **SEO Optimized** - Meta tags, Open Graph, and Twitter cards
+- **Google Analytics 4** - Event tracking and analytics
+
+## Tech Stack
+
+- **Framework**: React 19 with Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animation**: Framer Motion
+- **Routing**: React Router v7
+- **Deployment**: GitHub Pages
 
 ## Project Structure
 
 ```
-.
-├── index.html                              # Main portfolio page (HTML + Tailwind + JS)
-├── pages/                                  # Project detail pages
-│   ├── portfolio-project.html              # Portfolio website case study
-│   ├── carpark-booking-api.html            # Car Park Booking API project
-│   ├── todo-list-api.html                  # Todo List API project
-│   └── job-tracker.html                    # Job Application Tracker project
-├── assets/                                 # Static assets
-│   ├── images/                             # Images and media files
-│   │   ├── Home.png                        # Screenshot - Homepage
-│   │   ├── About.png                       # Screenshot - About section
-│   │   ├── Experience.png                  # Screenshot - Experience section
-│   │   ├── Projects.png                    # Screenshot - Projects section
-│   │   ├── pb.ico                          # Favicon
-│   │   └── pranay_baddam_software_engineer.pdf # Downloadable CV/Resume
-│   ├── css/                                # Stylesheets
-│   │   └── styles.css                      # Custom CSS styles
-│   └── js/                                 # JavaScript files
-│       ├── theme.js                        # Theme toggle functionality
-│       └── main.js                         # Main JavaScript file
-├── robots.txt                              # SEO - Search engine instructions
-├── sitemap.xml                             # SEO - Site map for search engines
-├── .gitignore                              # Git ignore rules
-├── CNAME                                   # Custom domain configuration
-└── README.md                               # Project documentation
+src/
+├── components/         # Reusable UI components
+│   ├── sections/      # Main page sections (Hero, About, etc.)
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── Sidebar.tsx
+│   └── Icons.tsx
+├── context/           # React Context providers
+│   └── ThemeContext.tsx
+├── data/              # Static data and content
+│   ├── personal.ts
+│   └── projects.ts
+├── pages/             # Page components
+│   ├── Home.tsx
+│   └── ProjectDetail.tsx
+├── styles/            # Global styles
+│   └── index.css
+├── App.tsx
+└── main.tsx
 ```
 
-## Local Development
+## Getting Started
 
-1. Clone the repository:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
 ```bash
+# Clone the repository
 git clone https://github.com/pranayb2773/pranayb2773.github.io.git
+
+# Navigate to the project
+cd pranayb2773.github.io
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-2. Open `index.html` in your browser or use a local server:
+### Build
+
 ```bash
-# Using Python
-python -m http.server 8000
+# Build for production
+npm run build
 
-# Using PHP
-php -S localhost:8000
-
-# Using Node.js (http-server)
-npx http-server
+# Preview production build
+npm run preview
 ```
-
-3. Visit `http://localhost:8000`
 
 ## Deployment
 
-This site is automatically deployed via GitHub Pages. Any push to the `main` branch will trigger a deployment.
+The site is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the `main` branch.
 
-## Contact
+## Author
 
-- **Email:** pranayb2773@gmail.com
-- **LinkedIn:** [Pranay Teja Baddam](https://www.linkedin.com/in/pranay-teja-baddam/)
-- **GitHub:** [@pranayb2773](https://github.com/pranayb2773)
-- **X (Twitter):** [@pranayb2773](https://x.com/pranayb2773)
+**Pranay Teja Baddam**
+- Website: [pranaybaddam.site](https://pranaybaddam.site)
+- GitHub: [@pranayb2773](https://github.com/pranayb2773)
+- LinkedIn: [pranay-teja-baddam](https://www.linkedin.com/in/pranay-teja-baddam/)
 
 ## License
 
-© 2025 Pranay Teja Baddam. All rights reserved.
+This project is open source and available under the [MIT License](LICENSE).
