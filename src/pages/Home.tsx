@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { personalInfo, techStack, experience } from '@/data/personal';
@@ -5,12 +6,13 @@ import { featuredProjects } from '@/data/projects';
 import {
   GithubIcon,
   LinkedInIcon,
-  EmailIcon,
   ExternalLinkIcon,
   ArrowRightIcon,
   CalendarIcon,
   LocationIcon,
   DownloadIcon,
+  BoltIcon,
+  ShieldIcon,
   projectIcons
 } from '@/components/Icons';
 
@@ -19,155 +21,159 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export default function Home() {
+  const [activeExpTab, setActiveExpTab] = useState(0);
+
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 relative z-10">
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 relative z-10">
       <motion.div
-        className="bento-grid"
+        className="space-y-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Profile Card - Large */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card bento-card-lg col-span-12 md:col-span-6 lg:col-span-4 row-span-2"
-        >
-          <div className="flex flex-col h-full">
-            <div className="flex items-start justify-between mb-6">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center text-3xl sm:text-4xl font-display font-bold text-accent border border-accent/20">
+        {/* ===== HERO SECTION ===== */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+          {/* Hero Card - Main */}
+          <motion.div
+            variants={itemVariants}
+            className="bento-card bento-card-lg lg:col-span-2 lg:row-span-2"
+          >
+            <p className="text-slate font-mono text-sm mb-4">Hi, my name is</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-lightest-slate mb-2">
+              {personalInfo.name}.
+            </h1>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold mb-6">
+              <span className="text-slate">I build </span>
+              <span className="text-accent">high-quality</span>
+              <span className="text-slate"> web applications.</span>
+            </h2>
+            <p className="text-slate text-sm sm:text-base leading-relaxed max-w-xl mb-8">
+              I'm a Senior Full-Stack Developer with <span className="text-accent font-semibold">{personalInfo.yearsExperience} years of experience</span> specializing in PHP and Python. My focus is on building scalable, high-performance web applications and robust RESTful APIs.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#work"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent text-accent rounded-lg font-mono text-sm hover:bg-accent/20 transition-colors"
+              >
+                Check Out My Work <ArrowRightIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={personalInfo.cvPath}
+                download
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-light-navy/50 border border-lightest-navy/30 text-lightest-slate rounded-lg font-mono text-sm hover:border-accent/50 transition-colors"
+              >
+                <DownloadIcon className="w-4 h-4" /> Download CV
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Years Experience Card */}
+          <motion.div
+            variants={itemVariants}
+            className="bento-card flex flex-col justify-center items-center text-center"
+          >
+            <span className="text-5xl sm:text-6xl font-display font-bold text-accent">{personalInfo.yearsExperience}</span>
+            <span className="text-xs text-slate uppercase tracking-widest mt-2">Years Experience</span>
+          </motion.div>
+
+          {/* Location Card */}
+          <motion.div
+            variants={itemVariants}
+            className="bento-card"
+          >
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <LocationIcon className="w-5 h-5 text-accent" />
+              </div>
+              <div>
+                <h3 className="font-display font-semibold text-lightest-slate">Edinburgh</h3>
+                <p className="text-sm text-slate">Scotland, <span className="text-accent">UK</span></p>
+              </div>
+            </div>
+            <p className="text-xs text-slate mt-4 pt-4 border-t border-lightest-navy/20">
+              Open to remote & hybrid opportunities worldwide.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ===== ABOUT ME SECTION ===== */}
+        <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+          {/* About Content */}
+          <div className="bento-card lg:col-span-2">
+            <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-lightest-slate mb-4">
+              <span className="text-accent font-mono text-sm">01.</span> About Me
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-slate text-sm leading-relaxed mb-4">
+                  Hello! I'm <span className="text-accent font-semibold">Pranay</span>, a Senior Full-Stack Developer with a passion for building robust digital products. I enjoy bridging the gap between engineering and design.
+                </p>
+                <p className="text-slate text-sm leading-relaxed">
+                  Specializing in scalable web applications for <span className="text-accent">SaaS</span>, <span className="text-accent">fintech</span>, and <span className="text-accent">healthcare</span> industries.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <BoltIcon className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-sm font-semibold text-lightest-slate">Performance Expert</h4>
+                    <p className="text-xs text-slate">Delivered <span className="text-accent">$24K annual savings</span> through Redis optimization.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <ShieldIcon className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-sm font-semibold text-lightest-slate">Quality Focused</h4>
+                    <p className="text-xs text-slate">Achieved <span className="text-accent">80%+ coverage</span> through TDD practices.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Profile Image Placeholder */}
+          <div className="bento-card flex items-center justify-center overflow-hidden">
+            <div className="w-full h-48 lg:h-full rounded-xl bg-gradient-to-br from-accent/10 to-light-navy flex items-center justify-center">
+              <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center text-4xl font-display font-bold text-accent border border-accent/30">
                 {personalInfo.shortName}
               </div>
-              <div className="flex gap-2">
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="w-10 h-10 rounded-xl bg-light-navy/50 flex items-center justify-center text-slate hover:text-accent hover:bg-accent/10 transition-all"
-                >
-                  <EmailIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href={personalInfo.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-light-navy/50 flex items-center justify-center text-slate hover:text-accent hover:bg-accent/10 transition-all"
-                >
-                  <LinkedInIcon className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-2">
-              {personalInfo.name}
-            </h1>
-            <p className="text-accent font-medium mb-4">{personalInfo.title}</p>
-            <p className="text-slate text-sm leading-relaxed flex-1">
-              {personalInfo.heroDescription}
-            </p>
-
-            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-lightest-navy/20">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-              </span>
-              <span className="text-sm text-slate">Open to new opportunities</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Location Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-12 md:col-span-6 lg:col-span-4"
-        >
-          <div className="relative h-full min-h-[180px] overflow-hidden rounded-xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-navy/90 to-transparent">
-              <div className="flex items-center gap-2 text-accent mb-1">
-                <LocationIcon className="w-4 h-4" />
-                <span className="text-xs font-mono uppercase tracking-wider">Based in</span>
-              </div>
-              <h3 className="text-xl font-display font-bold text-lightest-slate">
-                {personalInfo.location}
-              </h3>
-              <p className="text-xs text-slate mt-1">{personalInfo.locationNote}</p>
-            </div>
-            {/* Decorative Map Pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-accent/30 rounded-full" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-accent/20 rounded-full" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-accent rounded-full animate-pulse" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Years Experience Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-6 lg:col-span-2"
-        >
-          <div className="flex flex-col items-center justify-center h-full text-center py-4">
-            <span className="text-5xl sm:text-6xl font-display font-bold text-accent mb-2">
-              {personalInfo.yearsExperience}
-            </span>
-            <span className="text-sm text-slate uppercase tracking-wider">Years Experience</span>
-          </div>
-        </motion.div>
-
-        {/* Download CV Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-6 lg:col-span-2"
-        >
-          <a
-            href={personalInfo.cvPath}
-            download
-            className="flex flex-col items-center justify-center h-full text-center py-4 group"
-          >
-            <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-3 group-hover:bg-accent/20 transition-colors">
-              <DownloadIcon className="w-6 h-6 text-accent" />
-            </div>
-            <span className="text-sm text-lightest-slate font-medium">Download CV</span>
-            <span className="text-xs text-slate mt-1">PDF Format</span>
-          </a>
-        </motion.div>
-
-        {/* Tech Stack Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-12 md:col-span-6 lg:col-span-4 row-span-2"
-        >
-          <div className="flex items-center gap-2 mb-6">
-            <span className="text-accent font-mono">&lt;/&gt;</span>
-            <h3 className="text-lg font-display font-semibold text-lightest-slate">Tech Stack</h3>
-          </div>
-
-          <div className="space-y-4">
-            {Object.entries({
-              'Languages': techStack.languages,
-              'Frameworks': techStack.frameworks,
-              'Databases': techStack.databases,
-              'DevOps': techStack.devops,
-            }).map(([category, skills]) => (
-              <div key={category}>
-                <div className="flex items-center gap-2 mb-2">
+        {/* ===== TECH STACK SECTION ===== */}
+        <motion.div variants={itemVariants} className="bento-card">
+          <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-lightest-slate mb-6">
+            <span className="text-accent font-mono">&lt;/&gt;</span> Tech Stack
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+            {[
+              { title: 'Languages', items: techStack.languages },
+              { title: 'Frameworks', items: techStack.frameworks },
+              { title: 'DevOps & Cloud', items: techStack.devops },
+              { title: 'Databases & Tools', items: [...techStack.databases, ...techStack.testing.slice(0, 2)] },
+            ].map((category) => (
+              <div key={category.title}>
+                <div className="flex items-center gap-2 mb-3">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  <span className="text-xs font-mono text-accent uppercase tracking-wider">{category}</span>
+                  <span className="text-xs font-mono text-accent uppercase tracking-wider">{category.title}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {skills.map((skill) => (
+                  {category.items.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 rounded-lg text-xs font-mono bg-light-navy/50 text-light-slate border border-lightest-navy/30 hover:border-accent/50 hover:text-accent transition-colors"
+                      className="px-2.5 py-1 rounded-md text-xs font-mono bg-light-navy/60 text-light-slate border border-lightest-navy/30 hover:border-accent/40 hover:text-accent transition-colors"
                     >
                       {skill}
                     </span>
@@ -178,162 +184,153 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Experience Section Header */}
-        <motion.div
-          variants={itemVariants}
-          className="col-span-12 lg:col-span-8 flex items-center justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">💼</span>
-            <h2 className="text-xl font-display font-bold text-lightest-slate">Experience</h2>
+        {/* ===== EXPERIENCE SECTION ===== */}
+        <motion.div variants={itemVariants} className="bento-card" id="experience">
+          <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-lightest-slate mb-6">
+            <span className="text-accent font-mono text-sm">02.</span> Where I've Worked
+          </h2>
+
+          {/* Tabs */}
+          <div className="flex gap-4 mb-6 border-b border-lightest-navy/20 overflow-x-auto">
+            {experience.map((exp, index) => (
+              <button
+                key={exp.id}
+                onClick={() => setActiveExpTab(index)}
+                className={`pb-3 px-1 text-sm font-mono whitespace-nowrap border-b-2 transition-colors ${
+                  activeExpTab === index
+                    ? 'text-accent border-accent'
+                    : 'text-slate border-transparent hover:text-lightest-slate'
+                }`}
+              >
+                {exp.company}
+              </button>
+            ))}
           </div>
-          <a
-            href={personalInfo.cvPath}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent text-sm font-mono hover:underline flex items-center gap-1"
-          >
-            View Resume <ArrowRightIcon className="w-3 h-3" />
-          </a>
-        </motion.div>
 
-        {/* Experience Cards */}
-        {experience.slice(0, 2).map((exp, index) => (
-          <motion.div
-            key={exp.id}
-            variants={itemVariants}
-            className="bento-card col-span-12 md:col-span-6 lg:col-span-4"
-          >
-            <div className="flex items-start gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                <span className="text-accent font-mono text-sm">{String(index + 1).padStart(2, '0')}</span>
-              </div>
-              <div>
-                <h3 className="font-display font-semibold text-lightest-slate">{exp.role}</h3>
-                <p className="text-accent text-sm">{exp.company}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-slate mb-3">
-              <CalendarIcon className="w-3.5 h-3.5" />
-              <span>{exp.period}</span>
-            </div>
-            <p className="text-slate text-sm line-clamp-3">
-              {exp.achievements[0]}
-            </p>
-          </motion.div>
-        ))}
-
-        {/* Projects Section Header */}
-        <motion.div
-          variants={itemVariants}
-          className="col-span-12 flex items-center justify-between mt-4"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">🚀</span>
-            <h2 className="text-xl font-display font-bold text-lightest-slate">Featured Projects</h2>
-          </div>
-        </motion.div>
-
-        {/* Project Cards */}
-        {featuredProjects.slice(0, 3).map((project) => {
-          const Icon = projectIcons[project.icon] || projectIcons.folder;
-          return (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className="bento-card col-span-12 sm:col-span-6 lg:col-span-4 group"
-            >
-              <Link to={`/projects/${project.id}`} className="block h-full">
-                <div className="relative h-32 sm:h-40 mb-4 rounded-xl overflow-hidden bg-gradient-to-br from-light-navy to-lightest-navy/50">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon className="w-12 h-12 text-accent/30 group-hover:text-accent/50 transition-colors" />
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <ExternalLinkIcon className="w-5 h-5 text-slate group-hover:text-accent transition-colors" />
-                  </div>
-                </div>
-                <h3 className="font-display font-semibold text-lightest-slate mb-2 group-hover:text-accent transition-colors">
-                  {project.title}
+          {/* Tab Content */}
+          <div className="min-h-[280px]">
+            {experience.map((exp, index) => (
+              <div
+                key={exp.id}
+                className={activeExpTab === index ? 'block' : 'hidden'}
+              >
+                <h3 className="text-lg font-display font-semibold text-lightest-slate mb-1">
+                  {exp.role} <span className="text-accent">@ {exp.company}</span>
                 </h3>
-                <p className="text-slate text-sm line-clamp-2 mb-3">
-                  {project.shortDescription}
+                <p className="text-sm font-mono text-slate mb-4 flex items-center gap-2">
+                  <CalendarIcon className="w-4 h-4" />
+                  {exp.period} | <LocationIcon className="w-4 h-4" /> {exp.location}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 rounded text-xs font-mono bg-accent/10 text-accent"
-                    >
-                      {tech}
-                    </span>
+                <ul className="space-y-3">
+                  {exp.achievements.slice(0, 4).map((achievement, i) => (
+                    <li key={i} className="flex gap-3 text-sm text-slate">
+                      <span className="text-accent mt-1">▹</span>
+                      <span dangerouslySetInnerHTML={{
+                        __html: achievement
+                          .replace(/\$[\d,]+\/month|\$[\d,]+K?/g, '<span class="text-accent font-semibold">$&</span>')
+                          .replace(/\d+%/g, '<span class="text-accent font-semibold">$&</span>')
+                      }} />
+                    </li>
                   ))}
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
-
-        {/* Contact Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card bento-card-accent col-span-12 sm:col-span-6 lg:col-span-4"
-        >
-          <div className="flex flex-col h-full">
-            <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-4">
-              <EmailIcon className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-display font-bold text-lightest-slate mb-2">Get in touch</h3>
-            <p className="text-slate text-sm mb-6 flex-1">Have a project in mind? Let's build something amazing together.</p>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="text-accent font-mono text-sm hover:underline flex items-center gap-2"
-            >
-              {personalInfo.email}
-              <ArrowRightIcon className="w-4 h-4" />
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Social Links Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-12 sm:col-span-6 lg:col-span-4"
-        >
-          <h3 className="text-sm font-mono text-accent uppercase tracking-wider mb-4">Connect</h3>
-          <div className="flex gap-3">
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-light-navy/50 text-slate hover:text-accent hover:bg-accent/10 transition-all"
-            >
-              <GithubIcon className="w-5 h-5" />
-              <span className="text-sm">GitHub</span>
-            </a>
-            <a
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-light-navy/50 text-slate hover:text-accent hover:bg-accent/10 transition-all"
-            >
-              <LinkedInIcon className="w-5 h-5" />
-              <span className="text-sm">LinkedIn</span>
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Stats Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bento-card col-span-12 lg:col-span-4"
-        >
-          <div className="grid grid-cols-3 gap-4 h-full">
-            {personalInfo.stats.map((stat) => (
-              <div key={stat.label} className="text-center flex flex-col justify-center">
-                <span className="text-2xl sm:text-3xl font-display font-bold text-accent">{stat.value}</span>
-                <span className="text-xs text-slate mt-1">{stat.label}</span>
+                </ul>
               </div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* ===== PROJECTS SECTION ===== */}
+        <motion.div variants={itemVariants} id="work">
+          <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-lightest-slate mb-6">
+            <span className="text-accent font-mono text-sm">03.</span> Some Things I've Built
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
+            {featuredProjects.map((project) => {
+              const Icon = projectIcons[project.icon] || projectIcons.folder;
+              return (
+                <Link
+                  key={project.id}
+                  to={`/projects/${project.id}`}
+                  className="bento-card group"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <Icon className="w-6 h-6 text-accent" />
+                    </div>
+                    <ExternalLinkIcon className="w-5 h-5 text-slate group-hover:text-accent transition-colors" />
+                  </div>
+                  <h3 className="font-display font-semibold text-lightest-slate mb-2 group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate text-sm line-clamp-2 mb-4">
+                    {project.shortDescription}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded text-xs font-mono bg-accent/10 text-accent"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* ===== CONTACT SECTION ===== */}
+        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5" id="contact">
+          {/* Contact Card */}
+          <div className="bento-card bento-card-accent">
+            <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-lightest-slate mb-4">
+              <span className="text-accent font-mono text-sm">04.</span> Get In Touch
+            </h2>
+            <p className="text-slate text-sm mb-6">
+              I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll do my best to get back to you!
+            </p>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-navy rounded-lg font-mono text-sm font-semibold hover:bg-accent/90 transition-colors"
+            >
+              Say Hello <ArrowRightIcon className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Social Links Card */}
+          <div className="bento-card flex flex-col justify-between">
+            <div>
+              <h3 className="text-sm font-mono text-accent uppercase tracking-wider mb-4">Connect With Me</h3>
+              <div className="flex gap-3">
+                <a
+                  href={personalInfo.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-light-navy/50 border border-lightest-navy/30 text-slate hover:text-accent hover:border-accent/50 transition-all"
+                >
+                  <GithubIcon className="w-5 h-5" />
+                  <span className="text-sm font-medium">GitHub</span>
+                </a>
+                <a
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-light-navy/50 border border-lightest-navy/30 text-slate hover:text-accent hover:border-accent/50 transition-all"
+                >
+                  <LinkedInIcon className="w-5 h-5" />
+                  <span className="text-sm font-medium">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-lightest-navy/20">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </span>
+              <span className="text-sm text-slate">{personalInfo.availability}</span>
+            </div>
           </div>
         </motion.div>
       </motion.div>
