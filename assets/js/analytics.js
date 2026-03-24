@@ -38,11 +38,13 @@
    */
   function trackProjectClicks() {
     // Track project cards on homepage
-    const projectCards = document.querySelectorAll('a[href*="pages/"]');
+    const projectCards = document.querySelectorAll(
+      'a[href^="/job-tracker/"], a[href^="/carpark-booking-api/"], a[href^="/portfolio-project/"], a[href^="/products-parser/"]'
+    );
     projectCards.forEach(card => {
       card.addEventListener('click', function(e) {
         const projectName = this.querySelector('h3')?.textContent ||
-                           this.getAttribute('href').split('/').pop().replace('.html', '');
+                           this.getAttribute('href').split('/').filter(Boolean).pop().replace('.html', '');
 
         gtag('event', 'project_click', {
           'event_category': 'Projects',

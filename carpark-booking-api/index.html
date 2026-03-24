@@ -12,25 +12,42 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Todo List API - A RESTful API built with Laravel featuring role-based access control, tag management, and comprehensive todo list functionality." />
-    <meta name="keywords" content="Laravel, REST API, Todo List, Role-Based Access, PHP, Sanctum, API Development, Docker" />
+    <meta name="description" content="Car Park Booking API case study: a Laravel 12 REST API with Sanctum authentication, booking management, pricing rules, and car park availability workflows." />
+    <meta name="keywords" content="car park booking API, Laravel REST API case study, Sanctum authentication, booking system API, PHP API project, pricing engine, backend portfolio project" />
     <meta name="author" content="Pranay Teja Baddam" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://pranaybaddam.site/todo-list-api" />
+    <link rel="canonical" href="https://pranaybaddam.site/carpark-booking-api/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://pranaybaddam.site/todo-list-api" />
-    <meta property="og:title" content="Todo List API - Project Case Study | Pranay Teja Baddam" />
-    <meta property="og:description" content="A Laravel REST API for todo list management with role-based access control and comprehensive documentation." />
+    <meta property="og:url" content="https://pranaybaddam.site/carpark-booking-api/" />
+    <meta property="og:title" content="Car Park Booking API Case Study | Laravel REST API" />
+    <meta property="og:description" content="Laravel REST API case study covering token authentication, availability checks, booking workflows, and seasonal car park pricing." />
+    <meta property="og:image" content="https://pranaybaddam.site/assets/images/Projects.png" />
+    <meta property="og:image:alt" content="Projects preview image from Pranay Teja Baddam's portfolio" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://pranaybaddam.site/todo-list-api" />
-    <meta name="twitter:title" content="Todo List API - Project Case Study | Pranay Teja Baddam" />
-    <meta name="twitter:description" content="A Laravel REST API for todo list management with role-based access control and comprehensive documentation." />
+    <meta name="twitter:url" content="https://pranaybaddam.site/carpark-booking-api/" />
+    <meta name="twitter:title" content="Car Park Booking API Case Study | Laravel REST API" />
+    <meta name="twitter:description" content="Laravel REST API case study covering booking workflows, availability checks, pricing rules, and Sanctum authentication." />
+    <meta name="twitter:image" content="https://pranaybaddam.site/assets/images/Projects.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Car Park Booking API Case Study",
+        "description": "A Laravel 12 REST API for car park booking workflows, availability checks, pricing rules, and token authentication.",
+        "author": {
+          "@type": "Person",
+          "name": "Pranay Teja Baddam"
+        },
+        "url": "https://pranaybaddam.site/carpark-booking-api/",
+        "mainEntityOfPage": "https://pranaybaddam.site/carpark-booking-api/"
+      }
+    </script>
 
-    <title>Todo List API - Project Case Study | Pranay Teja Baddam</title>
+    <title>Car Park Booking API Case Study | Laravel REST API</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="icon" type="img/svg+xml" href="/assets/images/pb.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,14 +131,14 @@
         </a>
 
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-lightest-slate mb-4 animate-slide-up">
-          Todo List API
+          Car Park Booking API
         </h1>
         <p class="text-base sm:text-lg md:text-xl text-light-slate mb-6 sm:mb-8 animate-slide-up delay-100 max-w-3xl">
-          A RESTful API built with Laravel featuring role-based access control, tag management, and Docker support
+          A Laravel 12 REST API for car park availability, booking management, seasonal pricing rules, and Sanctum token authentication.
         </p>
         <div class="flex flex-wrap gap-3 sm:gap-4 animate-slide-up delay-200">
           <a
-            href="https://github.com/pranayb2773/todo-list-api"
+            href="https://github.com/pranayb2773/carpark-booking-api"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-accent text-accent rounded-lg font-mono text-xs sm:text-sm hover:bg-accent/10 duration-300"
@@ -131,6 +148,17 @@
             </svg>
             View on GitHub
           </a>
+        </div>
+      </section>
+
+      <section class="py-8 sm:py-12 scroll-animate">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
+          Related Project Case Studies
+        </h2>
+        <div class="glass-card p-5 sm:p-8 rounded-xl sm:rounded-2xl">
+          <p class="text-light-slate text-sm sm:text-base leading-relaxed">
+            View the <a href="/job-tracker/" class="text-accent hover:underline">Job Application Tracker</a> to see similar Laravel experience applied to a larger full-stack workflow product, or explore the <a href="/products-parser/" class="text-accent hover:underline">Products Parser</a> for a PHP CLI approach to data processing.
+          </p>
         </div>
       </section>
 
@@ -144,19 +172,19 @@
             <div>
               <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Purpose</h3>
               <p class="text-light-slate text-sm sm:text-base leading-relaxed">
-                The Todo List API is a comprehensive RESTful API built with Laravel that provides robust todo list management functionality. It features sophisticated role-based access control, tag management capabilities, and complete CRUD operations.
+                The Car Park Booking API is a comprehensive REST API built with Laravel 12 that enables efficient management of car park bookings. It provides a flexible pricing system with seasonal variations, secure authentication, and complete booking lifecycle management.
               </p>
             </div>
             <div>
               <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Challenge</h3>
               <p class="text-light-slate text-sm sm:text-base leading-relaxed">
-                Build a scalable, secure API that implements fine-grained access control where administrators have full system access while regular users can only manage their own data. Support tag-based organization and containerized deployment.
+                Design and implement a scalable API that handles complex pricing rules (summer/winter rates, weekday/weekend variations), manages capacity constraints, and provides secure user authentication while maintaining clean, testable code architecture.
               </p>
             </div>
             <div>
               <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-3">Solution</h3>
               <p class="text-light-slate text-sm sm:text-base leading-relaxed">
-                Implemented a RESTful API using Laravel with Sanctum for authentication. Created a policy-based authorization system that enforces role-specific permissions. Integrated Docker support via Laravel Sail and provided comprehensive documentation.
+                Built a RESTful API using Laravel 12 with PHP 8.2, implementing Laravel Sanctum for token-based authentication. Created a flexible pricing engine that handles seasonal variations, developed comprehensive CRUD operations for bookings, and included public endpoints for price calculations and availability checks.
               </p>
             </div>
           </div>
@@ -173,13 +201,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Role-Based Access Control</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Seasonal Pricing Engine</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  Comprehensive policy-based authorization. Admins have full access, users can only manage their own data.
+                  Configurable pricing rules supporting summer/winter rates and weekday/weekend variations. Prices stored in pence internally for precision.
                 </p>
               </div>
             </div>
@@ -189,13 +217,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Tag Management System</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Token-Based Authentication</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  All users can create, edit, and delete tags for organizing todo items. Flexible categorization and filtering.
+                  Secure authentication using Laravel Sanctum with user registration, login, logout, and profile management.
                 </p>
               </div>
             </div>
@@ -205,13 +233,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Complete Todo List CRUD</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Booking Management</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  Full lifecycle management for todo lists. Admin users can manage all lists, regular users access only their own.
+                  Full CRUD operations for bookings including list, create, update, and delete. Automatic availability checking and capacity management.
                 </p>
               </div>
             </div>
@@ -221,13 +249,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Comprehensive Documentation</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Public API Endpoints</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  OpenAPI/Swagger specification for interactive docs. Includes Postman collection for easy testing.
+                  Public endpoints for price calculation and availability checking, allowing integration without authentication.
                 </p>
               </div>
             </div>
@@ -237,13 +265,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Docker Support</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Comprehensive Test Suite</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  Containerized deployment using Laravel Sail. Consistent development and production environments.
+                  Built with Pest testing framework for robust quality assurance across all API endpoints and business logic.
                 </p>
               </div>
             </div>
@@ -253,13 +281,13 @@
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
                 </svg>
               </div>
               <div>
-                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">User Management</h3>
+                <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-2">Flexible Database Support</h3>
                 <p class="text-light-slate text-sm leading-relaxed">
-                  Admin users can perform all user operations. Regular users can view and update their own profile.
+                  SQLite for development with seamless support for MySQL, PostgreSQL in production environments.
                 </p>
               </div>
             </div>
@@ -280,15 +308,15 @@
                 <li class="flex items-start gap-3">
                   <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel Framework</span>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel 12</span>
                     <p class="text-slate text-xs sm:text-sm">Modern PHP framework for robust APIs</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3">
                   <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PHP 8.x</span>
-                    <p class="text-slate text-xs sm:text-sm">Modern PHP with advanced features</p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">PHP 8.2</span>
+                    <p class="text-slate text-xs sm:text-sm">Latest PHP for type safety and performance</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3">
@@ -301,27 +329,27 @@
               </ul>
             </div>
             <div>
-              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Development & Deployment</h3>
+              <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Database & Testing</h3>
               <ul class="space-y-3">
                 <li class="flex items-start gap-3">
                   <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Laravel Sail</span>
-                    <p class="text-slate text-xs sm:text-sm">Docker-based development environment</p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">SQLite / MySQL / PostgreSQL</span>
+                    <p class="text-slate text-xs sm:text-sm">Flexible database support</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3">
                   <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Docker</span>
-                    <p class="text-slate text-xs sm:text-sm">Containerization for consistent deployments</p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Pest</span>
+                    <p class="text-slate text-xs sm:text-sm">Modern testing framework</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3">
                   <span class="text-accent mt-1">▹</span>
                   <div>
-                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">OpenAPI/Swagger</span>
-                    <p class="text-slate text-xs sm:text-sm">Interactive API documentation</p>
+                    <span class="text-lightest-slate font-semibold text-sm sm:text-base">Eloquent ORM</span>
+                    <p class="text-slate text-xs sm:text-sm">Database abstraction layer</p>
                   </div>
                 </li>
               </ul>
@@ -330,114 +358,89 @@
         </div>
       </section>
 
-      <!-- Role-Based Permissions -->
+      <!-- API Endpoints -->
       <section class="py-8 sm:py-12 scroll-animate">
         <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
-          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> Access Control
+          <span class="text-accent font-mono text-lg sm:text-xl me-2">04.</span> API Endpoints
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="space-y-4 sm:space-y-6">
           <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
-            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Admin Permissions</h3>
-            <ul class="space-y-2 text-light-slate text-sm">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Public Endpoints</h3>
+            <ul class="space-y-3 text-light-slate">
               <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                Full CRUD access to all users
+                <span class="text-accent font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">GET /api/price</span>
+                  <p class="text-xs sm:text-sm mt-1">Calculate booking price for specified dates</p>
+                </div>
               </li>
               <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                Manage all todo lists across the system
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                Create, edit, and delete all tags
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                System-wide read and write access
+                <span class="text-accent font-mono">▹</span>
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">GET /api/availability</span>
+                  <p class="text-xs sm:text-sm mt-1">Check availability for specified dates</p>
+                </div>
               </li>
             </ul>
           </div>
 
           <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
-            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Regular User Permissions</h3>
-            <ul class="space-y-2 text-light-slate text-sm">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Authentication Endpoints</h3>
+            <ul class="space-y-3 text-light-slate">
               <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                View and update own profile only
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                Manage only their own todo lists
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                Create, edit, and delete their own tags
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-accent">▹</span>
-                No access to other users' data
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- API Capabilities -->
-      <section class="py-8 sm:py-12 scroll-animate">
-        <h2 class="text-2xl sm:text-3xl font-display font-bold text-lightest-slate mb-6">
-          <span class="text-accent font-mono text-lg sm:text-xl me-2">05.</span> API Capabilities
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          <div class="glass-card p-5 sm:p-6 rounded-xl">
-            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">User Management</h3>
-            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
-              <li class="flex items-start gap-2">
                 <span class="text-accent font-mono">▹</span>
-                User registration & authentication
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">POST /api/register</span>
+                  <p class="text-xs sm:text-sm mt-1">Create new user account</p>
+                </div>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                Profile view & updates
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">POST /api/login</span>
+                  <p class="text-xs sm:text-sm mt-1">Authenticate and receive token</p>
+                </div>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                Admin user CRUD operations
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">POST /api/logout</span>
+                  <p class="text-xs sm:text-sm mt-1">Invalidate authentication token</p>
+                </div>
               </li>
             </ul>
           </div>
 
-          <div class="glass-card p-5 sm:p-6 rounded-xl">
-            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">Todo List Management</h3>
-            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
-              <li class="flex items-start gap-2">
+          <div class="glass-card p-5 sm:p-6 rounded-xl sm:rounded-2xl">
+            <h3 class="text-lg sm:text-xl font-display font-semibold text-lightest-slate mb-4">Booking Endpoints (Protected)</h3>
+            <ul class="space-y-3 text-light-slate">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                Create new todo lists
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">GET /api/bookings</span>
+                  <p class="text-xs sm:text-sm mt-1">List all bookings for authenticated user</p>
+                </div>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                View all accessible lists
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">POST /api/bookings</span>
+                  <p class="text-xs sm:text-sm mt-1">Create new booking</p>
+                </div>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                Update and delete lists
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">PUT /api/bookings/{id}</span>
+                  <p class="text-xs sm:text-sm mt-1">Update existing booking</p>
+                </div>
               </li>
-            </ul>
-          </div>
-
-          <div class="glass-card p-5 sm:p-6 rounded-xl">
-            <h3 class="text-base sm:text-lg font-display font-semibold text-lightest-slate mb-3">Tag Organization</h3>
-            <ul class="space-y-2 text-light-slate text-xs sm:text-sm">
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-3">
                 <span class="text-accent font-mono">▹</span>
-                Create custom tags
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-accent font-mono">▹</span>
-                Edit and delete tags
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-accent font-mono">▹</span>
-                Tag-based filtering
+                <div>
+                  <span class="font-mono text-accent text-xs sm:text-sm">DELETE /api/bookings/{id}</span>
+                  <p class="text-xs sm:text-sm mt-1">Delete booking</p>
+                </div>
               </li>
             </ul>
           </div>
