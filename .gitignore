@@ -31,3 +31,6 @@ yarn-error.log*
 # Backup files
 *.bak
 *.backup
+
+# Node
+node_modules/
