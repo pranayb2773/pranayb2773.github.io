@@ -569,9 +569,36 @@ body.light-theme .bg-gradient-to-br.from-light-navy {
   background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
 }
 
-/* Theme transition for all elements */
-*, *::before, *::after {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+/* Theme transition — circular reveal via View Transition API */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: none;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+  animation: circle-reveal 0.7s ease-in-out;
+}
+
+::view-transition-old(root) {
+  z-index: -1;
+}
+
+@keyframes circle-reveal {
+  from {
+    clip-path: circle(0% at var(--tx, calc(100% - 2rem)) var(--ty, 2rem));
+  }
+  to {
+    clip-path: circle(200% at var(--tx, calc(100% - 2rem)) var(--ty, 2rem));
+  }
+}
+
+/* Fallback for browsers without View Transition API */
+@supports not (view-transition-name: root) {
+  *, *::before, *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
 }
 
 /* Light mode orb elements */
