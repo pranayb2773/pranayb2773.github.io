@@ -15,3 +15,74 @@
   --font-family-display: "Sora", sans-serif;
   --font-family-mono: "JetBrains Mono", monospace;
 }
+
+/* ===================================
+   CUSTOM ANIMATION UTILITIES
+   Tree-shaken by Tailwind — only included if used in HTML
+   =================================== */
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@utility animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@utility animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@utility animate-morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+@utility animate-orbit {
+  animation: orbit 20s linear infinite;
+}
+
+@utility animate-slide-up {
+  opacity: 0;
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-slide-in-left {
+  opacity: 0;
+  animation: slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-slide-in-right {
+  opacity: 0;
+  animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease forwards;
+}
+
+@utility animate-scale-in {
+  opacity: 0;
+  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-draw-line {
+  animation: draw-line 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animation delays */
+@utility delay-100 { animation-delay: 100ms; }
+@utility delay-200 { animation-delay: 200ms; }
+@utility delay-300 { animation-delay: 300ms; }
+@utility delay-400 { animation-delay: 400ms; }
+@utility delay-500 { animation-delay: 500ms; }
+@utility delay-600 { animation-delay: 600ms; }
+@utility delay-700 { animation-delay: 700ms; }
+@utility delay-800 { animation-delay: 800ms; }
+@utility delay-1000 { animation-delay: 1000ms; }
+@utility delay-1200 { animation-delay: 1200ms; }
